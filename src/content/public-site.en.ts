@@ -162,7 +162,7 @@ export const publicCopyEn: PublicCopy = {
       {
         title: "Vision / Strategy",
         summary: "Guidance on positioning, long-range choices, and quality of ambition.",
-        members: ["Benjamín", "Mau Fabre", "Javi A", "Maza"],
+        members: ["Benjamin Beja", "Mauricio Fabre", "Javier Arrigunaga"],
       },
       {
         title: "Impact / Culture",

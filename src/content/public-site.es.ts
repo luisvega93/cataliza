@@ -168,7 +168,7 @@ export const publicCopyEs: PublicCopy = {
       {
         title: "Vision / Estrategia",
         summary: "Consejo para visión, positioning y decisiones de largo plazo.",
-        members: ["Benjamín", "Mau Fabre", "Javi A", "Maza"],
+        members: ["Benjamin Beja", "Mauricio Fabre", "Javier Arrigunaga"],
       },
       {
         title: "Impact / Cultura",
