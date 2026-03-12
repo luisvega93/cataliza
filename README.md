@@ -43,3 +43,4 @@ npm run dev
 
 - The source Word document remains in the workspace as the original content reference.
 - The financial model uses local client state in v1; there is no persistence layer.
+- GitHub Pages is not a valid deployment target for this app because it uses middleware, API routes, and protected server flows. Deploy it on a platform such as Vercel instead.
