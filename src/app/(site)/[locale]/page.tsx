@@ -129,6 +129,18 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
+      <section className="feature-section soft anchor-section" id={valuesId}>
+        <SectionIntro label={copy.values.eyebrow} summary={copy.values.summary} />
+        <div className="feature-grid">
+          {copy.values.items.map((value) => (
+            <article className="feature-card" key={value.title}>
+              <h3>{value.title}</h3>
+              <p>{value.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="feature-section anchor-section" id={processId}>
         <SectionIntro label={copy.process.eyebrow} summary={copy.process.summary} />
         <div className="timeline">
@@ -166,18 +178,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
           <h3>{copy.allies.emptyTitle}</h3>
           <p>{copy.allies.emptySummary}</p>
         </article>
-      </section>
-
-      <section className="feature-section soft anchor-section" id={valuesId}>
-        <SectionIntro label={copy.values.eyebrow} summary={copy.values.summary} />
-        <div className="feature-grid">
-          {copy.values.items.map((value) => (
-            <article className="feature-card" key={value.title}>
-              <h3>{value.title}</h3>
-              <p>{value.summary}</p>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="feature-section application-panel anchor-section" id={applicationId}>

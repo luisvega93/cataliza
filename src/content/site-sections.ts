@@ -6,10 +6,10 @@ export const publicSectionKeys = [
   "search",
   "offer",
   "work",
+  "values",
   "process",
   "council",
   "allies",
-  "values",
   "application",
 ] as const;
 
