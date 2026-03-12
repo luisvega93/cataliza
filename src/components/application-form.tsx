@@ -1,6 +1,16 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
 import type { FormCopy } from "@/content/public-site";
+import { getPublicSectionHash } from "@/content/site-sections";
 import type { Locale } from "@/lib/i18n";
-import { hasGoogleFormConfigured, staticSiteConfig } from "@/lib/site-config";
+import {
+  hasApplicationContactConfigured,
+  hasGoogleFormConfigured,
+  staticSiteConfig,
+} from "@/lib/site-config";
 
 type ApplicationFormProps = {
   copy: FormCopy;
@@ -9,47 +19,109 @@ type ApplicationFormProps = {
 
 export function ApplicationForm({ copy, locale }: ApplicationFormProps) {
   const isConfigured = hasGoogleFormConfigured();
+  const hasContactUrl = hasApplicationContactConfigured();
+  const [showEmbed, setShowEmbed] = useState(false);
+
+  if (!isConfigured) {
+    return (
+      <div className="application-grid">
+        <article className="feature-card application-card">
+          <span className="eyebrow">{copy.fallbackEyebrow}</span>
+          <h3>{copy.fallbackTitle}</h3>
+          <p>{copy.fallbackSummary}</p>
+          <div className="stack-list">
+            {copy.checklist.map((item) => (
+              <div className="stack-item" key={item}>
+                <strong>{item}</strong>
+              </div>
+            ))}
+          </div>
+          <div className="cta-row">
+            {hasContactUrl ? (
+              <a
+                className="cta-button primary"
+                href={staticSiteConfig.googleForm.contactUrl}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {copy.primaryCta}
+              </a>
+            ) : null}
+            <Link className="cta-button secondary" href={getPublicSectionHash(locale, "search")}>
+              {copy.fallbackCta}
+            </Link>
+          </div>
+          <p className="protected-note">{copy.fallbackNote}</p>
+        </article>
+      </div>
+    );
+  }
 
   return (
-    <div className="application-embed-shell">
-      {isConfigured ? (
-        <iframe
-          className="embedded-form"
-          src={staticSiteConfig.googleForm.embedUrl}
-          title={locale === "es" ? "Formulario de aplicación de Cataliza" : "Cataliza application form"}
-        >
-          Loading...
-        </iframe>
-      ) : (
-        <div className="feature-card placeholder-card">
-          <h3>{locale === "es" ? "Google Form pendiente de configurar" : "Google Form still needs configuration"}</h3>
-          <p>
-            {locale === "es"
-              ? "La experiencia ya está lista para GitHub Pages, pero falta pegar el URL real del Google Form en la configuración estática del sitio."
-              : "The static-site experience is ready, but the real Google Form URL still needs to be added to the site's static configuration."}
-          </p>
+    <div className="application-grid">
+      <article className="feature-card application-card">
+        <span className="eyebrow">{copy.heading}</span>
+        <h3>{copy.lead}</h3>
+        <p>{copy.intro}</p>
+        <div className="application-checklist">
+          <strong>{copy.checklistTitle}</strong>
+          <ul className="card-list">
+            {copy.checklist.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
-      )}
-
-      <div className="form-actions">
-        {isConfigured ? (
+        <div className="cta-row">
           <a
-            className="cta-button secondary"
+            className="cta-button primary"
             href={staticSiteConfig.googleForm.openUrl}
             rel="noreferrer"
             target="_blank"
           >
-            {locale === "es" ? "Abrir formulario en una nueva ventana" : "Open form in a new tab"}
+            {copy.externalCta}
           </a>
+          <button
+            aria-expanded={showEmbed}
+            className="cta-button secondary"
+            onClick={() => setShowEmbed((current) => !current)}
+            type="button"
+          >
+            {showEmbed ? copy.embedClose : copy.embedOpen}
+          </button>
+        </div>
+      </article>
+
+      <article className="feature-card application-card application-embed-card">
+        <span className="eyebrow">{copy.embedTitle}</span>
+        <h3>
+          {locale === "es"
+            ? "Aplicaci\u00f3n ligera, sin fricci\u00f3n"
+            : "A lighter application flow"}
+        </h3>
+        <p>{copy.embedSummary}</p>
+        {showEmbed ? (
+          <iframe
+            className="embedded-form"
+            loading="lazy"
+            src={staticSiteConfig.googleForm.embedUrl}
+            title={
+              locale === "es"
+                ? "Formulario de aplicaci\u00f3n de Cataliza"
+                : "Cataliza application form"
+            }
+          >
+            Loading...
+          </iframe>
         ) : (
-          <p className="protected-note">
-            {locale === "es"
-              ? "Cuando tengas el Google Form, agrega las URLs de apertura y embed en src/lib/site-config.ts."
-              : "Once your Google Form is ready, add the open and embed URLs in src/lib/site-config.ts."}
-          </p>
+          <div className="application-embed-placeholder">
+            <p>
+              {locale === "es"
+                ? "Abre la vista previa embebida solo si prefieres revisar el formulario sin salir del sitio."
+                : "Open the embedded preview only if you want to review the form without leaving the site."}
+            </p>
+          </div>
         )}
-        <p className="section-summary">{copy.intro}</p>
-      </div>
+      </article>
     </div>
   );
 }

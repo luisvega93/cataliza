@@ -8,8 +8,9 @@ Static-export `Next.js` project for the Cataliza Capital public site, internal p
 - Public investor-facing landing page
 - Client-side gated internal playbook and financial model routes
 - Interactive client-side financial model with base and downside scenarios
-- Google Forms-based application flow prepared for static hosting
+- Google Forms-based application flow prepared for static hosting, with a CTA-first experience and lazy inline preview
 - Repo-owned GitHub Pages workflow that deploys the static export from `main`
+- Remembered locale behavior on `/`, with browser-language fallback to Spanish
 
 ## Run
 
@@ -26,14 +27,16 @@ npm run build
 
 ## Structure
 
-- `src/app/[locale]` contains the main routes
+- `src/app/(root)` contains the locale chooser on `/`
+- `src/app/(site)/[locale]` contains the localized static routes
 - `src/content` contains bilingual copy and finance assumptions
 - `src/components` contains the UI building blocks
-- `src/lib/site-config.ts` contains GitHub Pages base-path config, the client access gate hash, and Google Form URLs
+- `src/lib/site-config.ts` contains GitHub Pages base-path config, locale persistence, the client access gate hash, and Google Form/contact URLs
 
 ## Notes
 
 - The deployed URL is `https://luisvega93.github.io/cataliza/`
 - The internal areas are obscured only in the browser; GitHub Pages cannot provide real server-side protection
-- Add the real Google Form `openUrl` and `embedUrl` in `src/lib/site-config.ts` before the public application flow is fully live
+- Add the real Google Form `openUrl` and `embedUrl` in `src/lib/site-config.ts` to enable the application flow
+- Optionally add `contactUrl` in `src/lib/site-config.ts` if you want a direct inquiry CTA while the form is closed
 - The source Word document remains in the workspace as the original content reference

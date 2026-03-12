@@ -27,11 +27,10 @@ export const publicCopyEn: PublicCopy = {
     ],
   },
   search: {
-    id: "what-we-seek",
     eyebrow: "What we seek",
     title: "We choose people and projects with vocation, craft, and commercial discipline.",
     summary:
-      "The right Cataliza ally lives their craft every day, inspires others, and has the intellectual honesty to keep iterating alongside a shared operating hub.",
+      "The right Cataliza ally lives their craft every day, inspires others, and keeps the intellectual honesty to iterate alongside a shared operating hub.",
     points: [
       "People who love what they do, do it extremely well, can monetize it, and serve something the world needs.",
       "High technical or creative ability with the power to elevate culture and community.",
@@ -48,7 +47,7 @@ export const publicCopyEn: PublicCopy = {
     cards: [
       {
         title: "Platform",
-        summary: "Shared services that bring rigor, operating rhythm, and decision quality.",
+        summary: "Shared services that bring rigor, operating rhythm, and better decisions.",
         bullets: [
           "Finance, planning, cashflow, and modeling.",
           "Operations, ERP, tooling, and information flow.",
@@ -88,18 +87,12 @@ export const publicCopyEn: PublicCopy = {
       "Governance favors strong alignment, clarity, and pace before scale.",
     ],
     roles: [
-      {
-        title: "Ally",
-        summary: "Production, service, sales, quality, and leadership of the core team.",
-      },
+      { title: "Ally", summary: "Production, service, sales, quality, and leadership of the core team." },
       {
         title: "Cataliza Hub",
         summary: "Financial planning, operations, systems, legal-accounting-tax, marketing, and design.",
       },
-      {
-        title: "Management",
-        summary: "Vision, culture, milestones, business plan, coaching, and accountability.",
-      },
+      { title: "Management", summary: "Vision, culture, milestones, business plan, coaching, and accountability." },
     ],
   },
   process: {
@@ -109,7 +102,7 @@ export const publicCopyEn: PublicCopy = {
       "We choose slowly and then work quickly. The process is built to reveal quality, collaboration, revenue path, and measurable impact.",
     stages: [
       {
-        title: "Stage 0 — Application",
+        title: "Stage 0 - Application",
         timing: "Annual window",
         bullets: [
           "Story of the craft or project.",
@@ -120,7 +113,7 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
       {
-        title: "Stage 1 — Interview & references",
+        title: "Stage 1 - Interview and references",
         timing: "1 to 2 weeks",
         bullets: [
           "Conversation about values and working style.",
@@ -128,7 +121,7 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
       {
-        title: "Stage 2 — Clarity sprint",
+        title: "Stage 2 - Clarity sprint",
         timing: "2 weeks",
         bullets: [
           "One-pager on vision and culture.",
@@ -138,7 +131,7 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
       {
-        title: "Stage 3 — Investment / Partnership Committee",
+        title: "Stage 3 - Investment / Partnership Committee",
         timing: "Final decision",
         bullets: [
           "Quality + craft.",
@@ -149,7 +142,7 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
       {
-        title: "Stage 4 — Onboarding",
+        title: "Stage 4 - Onboarding",
         timing: "30 to 60 days",
         bullets: [
           "Financial and accounting setup.",
@@ -194,7 +187,7 @@ export const publicCopyEn: PublicCopy = {
     eyebrow: "Portfolio",
     title: "A small-by-design portfolio with early signals of excellence.",
     summary:
-      "Cataliza prioritizes operating density over volume. These profiles illustrate the type of ally we are built to support.",
+      "Cataliza prioritizes operating density over volume. These profiles illustrate the kind of ally we are built to support.",
     items: [
       {
         title: "Culinary craft house",
@@ -234,7 +227,7 @@ export const publicCopyEn: PublicCopy = {
         summary: "Universities, fairs, clusters, and platforms that expand reach, talent, and legitimacy.",
       },
       {
-        title: "Speaking & thought leadership",
+        title: "Speaking and thought leadership",
         summary: "Position Cataliza projects as visible voices across Mexico, Latin America, and the United States.",
       },
     ],
@@ -243,52 +236,38 @@ export const publicCopyEn: PublicCopy = {
     eyebrow: "Operating values",
     title: "Care, calm, craft, culture, curiosity, and continuity.",
     values: [
-      {
-        title: "Care",
-        summary: "We protect both people and standards at the same time.",
-      },
-      {
-        title: "Calm",
-        summary: "We choose clarity over chaos and operational drama.",
-      },
-      {
-        title: "Craft",
-        summary: "Excellence in the work matters as much as the financial outcome.",
-      },
-      {
-        title: "Culture",
-        summary: "What inspires people can lift a wider environment.",
-      },
-      {
-        title: "Curiosity",
-        summary: "Better questions help us learn faster and waste fewer months.",
-      },
-      {
-        title: "Continuity",
-        summary: "We play a long game with consistency, not episodic hype.",
-      },
+      { title: "Care", summary: "We protect both people and standards at the same time." },
+      { title: "Calm", summary: "We choose clarity over chaos and operational drama." },
+      { title: "Craft", summary: "Excellence in the work matters as much as the financial outcome." },
+      { title: "Culture", summary: "What inspires people can lift a wider environment." },
+      { title: "Curiosity", summary: "Better questions help us learn faster and waste fewer months." },
+      { title: "Continuity", summary: "We play a long game with consistency, not episodic hype." },
     ],
   },
   form: {
-    heading: "Contact / Application",
+    heading: "Contact / application",
     intro:
       "Tell us who you are, what you are building, and why Cataliza should look with you at the next chapter.",
-    submit: "Submit application",
-    success: "Application sent. We will review the information and follow up by email.",
-    error: "We could not send the application. Please verify your details or try again later.",
-    honeypot: "Do not complete this field",
-    fields: {
-      name: "Name",
-      email: "Email",
-      location: "Location",
-      projectName: "Project name",
-      craft: "Craft / discipline",
-      website: "Website or portfolio",
-      summary: "What are you building and who do you serve",
-      traction: "Current traction",
-      economics: "Current economics",
-      mission: "Mission and impact",
-      references: "References or key links",
-    },
+    lead: "The application is built to start a serious conversation, not to generate noise.",
+    primaryCta: "Open application",
+    externalCta: "Open in a new tab",
+    embedOpen: "Preview here",
+    embedClose: "Hide preview",
+    embedTitle: "Application preview",
+    embedSummary:
+      "If you prefer to review the questions without leaving the site, you can open the embedded version below.",
+    checklistTitle: "What helps to have ready",
+    checklist: [
+      "The story of the project and why it matters.",
+      "Your current offer, customer, and evidence of quality.",
+      "Current economics, next milestones, and the impact you want to sustain.",
+    ],
+    fallbackEyebrow: "Next intake",
+    fallbackTitle: "Applications opening soon",
+    fallbackSummary:
+      "We are preparing the next application window. In the meantime, you can review the profile we seek and prepare your story carefully.",
+    fallbackNote:
+      "When the window is active, this section will open the full application or the corresponding contact channel.",
+    fallbackCta: "Review the ally profile",
   },
 };

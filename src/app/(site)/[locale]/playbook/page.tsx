@@ -5,6 +5,7 @@ import { PlaybookPageClient } from "@/components/playbook-page-client";
 import { getPlaybookCopy } from "@/content/playbook";
 import { isLocale } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
+import { buildLocaleMetadata } from "@/lib/seo";
 
 type PlaybookPageProps = {
   params: Promise<{ locale: string }> | { locale: string };
@@ -22,10 +23,13 @@ export async function generateMetadata({
   }
 
   const copy = getPlaybookCopy(locale);
-  return {
+
+  return buildLocaleMetadata({
+    locale,
     title: copy.meta.title,
     description: copy.meta.description,
-  };
+    path: `/${locale}/playbook`,
+  });
 }
 
 export default async function PlaybookPage({ params }: PlaybookPageProps) {
@@ -37,5 +41,5 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
 
   const copy = getPlaybookCopy(locale);
 
-  return <PlaybookPageClient locale={locale} copy={copy} />;
+  return <PlaybookPageClient copy={copy} locale={locale} />;
 }

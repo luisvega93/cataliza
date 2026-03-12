@@ -4,30 +4,31 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { defaultLocale } from "@/lib/i18n";
+import { getLocaleLabel, resolvePreferredLocale } from "@/lib/i18n";
 
 export function RootRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(`/${defaultLocale}`);
+    const nextLocale = resolvePreferredLocale();
+    router.replace(`/${nextLocale}`);
   }, [router]);
 
   return (
     <section className="access-panel">
       <div className="feature-card access-card">
         <span className="eyebrow">Cataliza Capital</span>
-        <h1>Choosing your default language...</h1>
+        <h1>Choose language / Elige idioma</h1>
         <p>
-          If the automatic redirect does not happen, continue to the default Spanish experience or switch to
-          English.
+          We remember your preferred language on this browser and default to Spanish when we do not have a
+          clear signal yet.
         </p>
         <div className="cta-row">
           <Link className="cta-button primary" href="/es">
-            Ir a Espanol
+            {getLocaleLabel("es")}
           </Link>
           <Link className="cta-button secondary" href="/en">
-            Go to English
+            {getLocaleLabel("en")}
           </Link>
         </div>
       </div>

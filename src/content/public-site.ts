@@ -4,7 +4,6 @@ import { publicCopyEn } from "@/content/public-site.en";
 import { publicCopyEs } from "@/content/public-site.es";
 
 export type PublicSection = {
-  id: string;
   eyebrow: string;
   title: string;
   summary: string;
@@ -44,23 +43,20 @@ export type EcosystemItem = {
 export type FormCopy = {
   heading: string;
   intro: string;
-  submit: string;
-  success: string;
-  error: string;
-  honeypot: string;
-  fields: {
-    name: string;
-    email: string;
-    location: string;
-    projectName: string;
-    craft: string;
-    website: string;
-    summary: string;
-    traction: string;
-    economics: string;
-    mission: string;
-    references: string;
-  };
+  lead: string;
+  primaryCta: string;
+  externalCta: string;
+  embedOpen: string;
+  embedClose: string;
+  embedTitle: string;
+  embedSummary: string;
+  checklistTitle: string;
+  checklist: string[];
+  fallbackEyebrow: string;
+  fallbackTitle: string;
+  fallbackSummary: string;
+  fallbackNote: string;
+  fallbackCta: string;
 };
 
 export type PublicCopy = {

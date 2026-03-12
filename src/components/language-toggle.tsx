@@ -1,9 +1,9 @@
 "use client";
 
 import { useTransition } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-import { getAltLocale, getLocaleLabel, type Locale } from "@/lib/i18n";
+import { getAltLocale, getLocaleLabel, rememberLocale, type Locale } from "@/lib/i18n";
 import { siteBasePath } from "@/lib/site-config";
 
 type LanguageToggleProps = {
@@ -13,7 +13,6 @@ type LanguageToggleProps = {
 export function LanguageToggle({ locale }: LanguageToggleProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
   const otherLocale = getAltLocale(locale);
@@ -26,29 +25,33 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
     const segments = withoutBasePath.split("/").filter(Boolean);
     const nextPath =
       segments.length === 0 ? `/${targetLocale}` : `/${[targetLocale, ...segments.slice(1)].join("/")}`;
-    const query = searchParams.toString();
+    const query = typeof window !== "undefined" ? window.location.search : "";
     const hash = typeof window !== "undefined" ? window.location.hash : "";
 
+    rememberLocale(targetLocale);
+
     startTransition(() => {
-      router.push(`${nextPath}${query ? `?${query}` : ""}${hash}`);
+      router.push(`${nextPath}${query}${hash}`);
     });
   };
 
   return (
-    <div className="language-toggle" aria-label="Language switcher">
+    <div aria-label="Language switcher" className="language-toggle" role="group">
       <button
+        aria-pressed={locale === "es"}
         className={`language-pill${locale === "es" ? " active" : ""}`}
+        disabled={isPending}
         onClick={() => handleSwitch("es")}
         type="button"
-        disabled={isPending}
       >
         {getLocaleLabel("es")}
       </button>
       <button
+        aria-pressed={locale === "en"}
         className={`language-pill${locale === "en" ? " active" : ""}`}
+        disabled={isPending}
         onClick={() => handleSwitch("en")}
         type="button"
-        disabled={isPending}
       >
         {getLocaleLabel("en")}
       </button>

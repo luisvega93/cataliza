@@ -4,7 +4,7 @@ export const publicCopyEs: PublicCopy = {
   meta: {
     title: "Cataliza Capital | Plataforma para aliados de alto oficio",
     description:
-      "Cataliza Capital identifica líderes de proyecto con alto oficio, les suma un hub operativo y financiamiento catalítico, y construye negocios sanos con impacto real.",
+      "Cataliza Capital identifica líderes de proyecto con alto oficio, suma un hub operativo y financiamiento catalítico, y construye negocios sanos con impacto real.",
   },
   hero: {
     eyebrow: "Cataliza Capital",
@@ -14,7 +14,7 @@ export const publicCopyEs: PublicCopy = {
     thesis: [
       "Hay personas con la capacidad de elevar primero su entorno y luego su cultura.",
       "Con la plataforma, el fondeo y el acompañamiento correctos, esa capacidad se vuelve más probable y sostenible.",
-      "Buscamos oficio real, cercanía con el cliente y hambre por construir negocio sano.",
+      "Buscamos oficio real, cercanía con el cliente y hambre por construir un negocio sano.",
       "No apostamos por volumen; apostamos por alineación profunda y execution density.",
       "Un aliado por año. Un estándar alto. Un juego largo.",
     ],
@@ -27,17 +27,16 @@ export const publicCopyEs: PublicCopy = {
     ],
   },
   search: {
-    id: "que-buscamos",
     eyebrow: "Qué buscamos",
     title: "Elegimos personas y proyectos con vocación, craft y disciplina comercial.",
     summary:
-      "El mejor aliado para Cataliza vive diariamente su oficio, inspira a otros, y mantiene la honestidad intelectual para iterar junto a un hub compartido.",
+      "El mejor aliado para Cataliza vive diariamente su oficio, inspira a otros y conserva la honestidad intelectual para iterar junto a un hub compartido.",
     points: [
       "Personas que aman lo que hacen, lo hacen muy bien, es monetizable y el mundo lo necesita.",
       "Alta habilidad técnica o creativa con capacidad comprobable de elevar cultura y entorno.",
       "Liderazgo cercano al cliente para cerrar la distancia entre productor y consumidor.",
-      "Colaboración real con coaching, claridad y velocidad; evitamos el rigidez del my way or the highway.",
-      "Proyectos con un camino claro hacia ingresos, milestones visibles y ambición de negocio sano.",
+      "Colaboración real con coaching, claridad y velocidad; evitamos la rigidez del my way or the highway.",
+      "Proyectos con un camino claro hacia ingresos, hitos visibles y ambición de negocio sano.",
     ],
   },
   offer: {
@@ -48,7 +47,7 @@ export const publicCopyEs: PublicCopy = {
     cards: [
       {
         title: "Plataforma",
-        summary: "Shared services para resolver negocio con rigor y ritmo.",
+        summary: "Shared services para resolver negocio con rigor, ritmo y claridad.",
         bullets: [
           "Finanzas, planeación, cashflow y modelaje.",
           "Operaciones, ERP, herramientas y flujo de información.",
@@ -62,12 +61,12 @@ export const publicCopyEs: PublicCopy = {
         bullets: [
           "Grant de hasta USD 100,000 para desarrollar idea, proyecto o producto.",
           "Línea de crédito revolvente de hasta USD 100,000 para crecimiento operativo.",
-          "Milestones claros para mantener vivo el crédito y reducir dependencia progresivamente.",
+          "Hitos claros para mantener vivo el crédito y reducir dependencia progresivamente.",
         ],
       },
       {
         title: "Comunidad",
-        summary: "Acceso a una red alineada a misión, craft y reach.",
+        summary: "Acceso a una red alineada con misión, craft y reach.",
         bullets: [
           "Consejo de advisors con visión, impacto y alcance global.",
           "Cohort, profesores y aliados con mentalidad de juego largo.",
@@ -94,11 +93,11 @@ export const publicCopyEs: PublicCopy = {
       },
       {
         title: "Hub Cataliza",
-        summary: "Planeación financiera, operaciones, sistemas, legal-contable-fiscal, marketing y design.",
+        summary: "Planeación financiera, operaciones, sistemas, legal-contable-fiscal, marketing y diseño.",
       },
       {
         title: "Management",
-        summary: "Visión, cultura, milestones, business plan, coaching y accountability.",
+        summary: "Visión, cultura, hitos, business plan, coaching y accountability.",
       },
     ],
   },
@@ -109,7 +108,7 @@ export const publicCopyEs: PublicCopy = {
       "Elegimos lentamente y trabajamos rápido. El proceso busca claridad sobre calidad, colaboración, ruta a ingresos e impacto medible.",
     stages: [
       {
-        title: "Etapa 0 — Aplicación",
+        title: "Etapa 0 - Aplicación",
         timing: "Ventana anual",
         bullets: [
           "Historia del oficio o proyecto.",
@@ -120,7 +119,7 @@ export const publicCopyEs: PublicCopy = {
         ],
       },
       {
-        title: "Etapa 1 — Entrevista & referencias",
+        title: "Etapa 1 - Entrevista y referencias",
         timing: "1 a 2 semanas",
         bullets: [
           "Conversación sobre valores y estilo de colaboración.",
@@ -128,17 +127,17 @@ export const publicCopyEs: PublicCopy = {
         ],
       },
       {
-        title: "Etapa 2 — Sprint de claridad",
+        title: "Etapa 2 - Sprint de claridad",
         timing: "2 semanas",
         bullets: [
           "One-pager de visión y cultura.",
           "Hipótesis comercial y pricing inicial.",
           "Primer modelo simple de unit economics.",
-          "Roadmap de 12 meses con cinco milestones.",
+          "Roadmap de 12 meses con cinco hitos.",
         ],
       },
       {
-        title: "Etapa 3 — Investment / Partnership Committee",
+        title: "Etapa 3 - Investment / Partnership Committee",
         timing: "Decisión final",
         bullets: [
           "Calidad + craft.",
@@ -149,7 +148,7 @@ export const publicCopyEs: PublicCopy = {
         ],
       },
       {
-        title: "Etapa 4 — Onboarding",
+        title: "Etapa 4 - Onboarding",
         timing: "30 a 60 días",
         bullets: [
           "Setup financiero y contable.",
@@ -161,7 +160,7 @@ export const publicCopyEs: PublicCopy = {
     ],
   },
   team: {
-    eyebrow: "Equipo & Consejo",
+    eyebrow: "Equipo y Consejo",
     title: "Un consejo distribuido entre visión, impacto y reach.",
     summary:
       "Cataliza combina operadores con personas capaces de abrir perspectiva, legitimidad y conexiones estratégicas. El consejo reta hipótesis, eleva estándares y amplía alcance.",
@@ -234,7 +233,7 @@ export const publicCopyEs: PublicCopy = {
         summary: "Universidades, ferias, clusters y plataformas que expanden reach y talento.",
       },
       {
-        title: "Speaking & thought leadership",
+        title: "Speaking y thought leadership",
         summary: "Proyectos Cataliza como voces visibles del ecosistema en México, Latinoamérica y Estados Unidos.",
       },
     ],
@@ -243,52 +242,38 @@ export const publicCopyEs: PublicCopy = {
     eyebrow: "Valores operativos",
     title: "Care, calm, craft, culture, curiosity y continuity.",
     values: [
-      {
-        title: "Care",
-        summary: "Cuidamos personas y estándares al mismo tiempo.",
-      },
-      {
-        title: "Calm",
-        summary: "Preferimos claridad por encima del caos y del drama operacional.",
-      },
-      {
-        title: "Craft",
-        summary: "La excelencia en oficio importa tanto como el resultado financiero.",
-      },
-      {
-        title: "Culture",
-        summary: "Lo inspirador eleva el entorno y abre aspiración para otros.",
-      },
-      {
-        title: "Curiosity",
-        summary: "Preguntar mejor permite aprender más rápido y desperdiciar menos meses.",
-      },
-      {
-        title: "Continuity",
-        summary: "Jugamos a largo plazo con consistencia, no con hype episódico.",
-      },
+      { title: "Care", summary: "Cuidamos personas y estándares al mismo tiempo." },
+      { title: "Calm", summary: "Preferimos claridad por encima del caos y del drama operacional." },
+      { title: "Craft", summary: "La excelencia en oficio importa tanto como el resultado financiero." },
+      { title: "Culture", summary: "Lo inspirador eleva el entorno y abre aspiración para otros." },
+      { title: "Curiosity", summary: "Preguntar mejor permite aprender más rápido y desperdiciar menos meses." },
+      { title: "Continuity", summary: "Jugamos a largo plazo con consistencia, no con hype episódico." },
     ],
   },
   form: {
-    heading: "Contacto / Aplicación",
+    heading: "Contacto / aplicación",
     intro:
       "Cuéntanos quién eres, qué construyes y por qué Cataliza debería mirar contigo el próximo capítulo.",
-    submit: "Enviar aplicación",
-    success: "Aplicación enviada. Revisaremos la información y volveremos contigo por correo.",
-    error: "No pudimos enviar la aplicación. Verifica tus datos o intenta de nuevo más tarde.",
-    honeypot: "No completar este campo",
-    fields: {
-      name: "Nombre",
-      email: "Correo",
-      location: "Ubicación",
-      projectName: "Nombre del proyecto",
-      craft: "Oficio / disciplina",
-      website: "Sitio o portafolio",
-      summary: "Qué construyes y a quién sirves",
-      traction: "Tracción actual",
-      economics: "Economía actual",
-      mission: "Misión e impacto",
-      references: "Referencias o links clave",
-    },
+    lead: "La aplicación está pensada para abrir una conversación seria, no para sumar ruido.",
+    primaryCta: "Abrir aplicación",
+    externalCta: "Abrir en una pestaña nueva",
+    embedOpen: "Ver aquí mismo",
+    embedClose: "Ocultar vista previa",
+    embedTitle: "Aplicación abierta",
+    embedSummary:
+      "Si prefieres revisar las preguntas sin salir del sitio, puedes abrir la versión embebida a continuación.",
+    checklistTitle: "Qué conviene tener a la mano",
+    checklist: [
+      "La historia del proyecto y por qué importa.",
+      "Oferta actual, cliente y evidencia de calidad.",
+      "Economía actual, próximos hitos e impacto que buscas sostener.",
+    ],
+    fallbackEyebrow: "Próxima ventana",
+    fallbackTitle: "Aplicaciones abriendo pronto",
+    fallbackSummary:
+      "Estamos afinando la próxima ventana de aplicación. Mientras tanto, puedes revisar el perfil que buscamos y preparar tu historia con calma.",
+    fallbackNote:
+      "Cuando la ventana esté activa, esta sección abrirá la aplicación completa o el canal de contacto correspondiente.",
+    fallbackCta: "Revisar perfil de aliado",
   },
 };

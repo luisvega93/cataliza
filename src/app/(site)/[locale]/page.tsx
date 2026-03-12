@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ApplicationForm } from "@/components/application-form";
 import { getPublicCopy } from "@/content/public-site";
+import { getPublicSectionHash, getPublicSectionId } from "@/content/site-sections";
 import { isLocale } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
 
@@ -18,23 +19,28 @@ export default async function PublicPage({ params }: PublicPageProps) {
   }
 
   const copy = getPublicCopy(locale);
-  const offerId = locale === "es" ? "que-ofrecemos" : "what-we-offer";
-  const workId = locale === "es" ? "como-trabajamos" : "how-we-work";
-  const processId = locale === "es" ? "proceso" : "process";
-  const contactId = locale === "es" ? "contacto" : "contact";
+  const searchId = getPublicSectionId(locale, "search");
+  const offerId = getPublicSectionId(locale, "offer");
+  const workId = getPublicSectionId(locale, "work");
+  const processId = getPublicSectionId(locale, "process");
+  const teamId = getPublicSectionId(locale, "team");
+  const portfolioId = getPublicSectionId(locale, "portfolio");
+  const ecosystemId = getPublicSectionId(locale, "ecosystem");
+  const valuesId = getPublicSectionId(locale, "values");
+  const applicationId = getPublicSectionId(locale, "application");
 
   return (
     <div className="page-stack">
-      <section className="hero-panel" id="home">
+      <section className="hero-panel anchor-section" id={getPublicSectionId(locale, "home")}>
         <div className="hero-copy">
           <span className="eyebrow">{copy.hero.eyebrow}</span>
           <h1>{copy.hero.title}</h1>
           <p className="hero-summary">{copy.hero.summary}</p>
           <div className="cta-row">
-            <Link className="cta-button primary" href={`#${contactId}`}>
+            <Link className="cta-button primary" href={getPublicSectionHash(locale, "application")}>
               {copy.hero.primaryCta}
             </Link>
-            <Link className="cta-button secondary" href={`#${copy.search.id}`}>
+            <Link className="cta-button secondary" href={getPublicSectionHash(locale, "search")}>
               {copy.hero.secondaryCta}
             </Link>
           </div>
@@ -57,7 +63,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </aside>
       </section>
 
-      <section className="feature-section" id={copy.search.id}>
+      <section className="feature-section anchor-section" id={searchId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.search.eyebrow}</span>
           <h2>{copy.search.title}</h2>
@@ -72,7 +78,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section" id={offerId}>
+      <section className="feature-section anchor-section" id={offerId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.offer.eyebrow}</span>
           <h2>{copy.offer.title}</h2>
@@ -93,7 +99,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section" id={workId}>
+      <section className="feature-section anchor-section" id={workId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.work.eyebrow}</span>
           <h2>{copy.work.title}</h2>
@@ -119,7 +125,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section" id={processId}>
+      <section className="feature-section anchor-section" id={processId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.process.eyebrow}</span>
           <h2>{copy.process.title}</h2>
@@ -142,7 +148,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section">
+      <section className="feature-section anchor-section" id={teamId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.team.eyebrow}</span>
           <h2>{copy.team.title}</h2>
@@ -163,7 +169,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section">
+      <section className="feature-section anchor-section" id={portfolioId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.portfolio.eyebrow}</span>
           <h2>{copy.portfolio.title}</h2>
@@ -187,7 +193,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section">
+      <section className="feature-section anchor-section" id={ecosystemId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.ecosystem.eyebrow}</span>
           <h2>{copy.ecosystem.title}</h2>
@@ -203,7 +209,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section soft" id={contactId}>
+      <section className="feature-section soft anchor-section" id={valuesId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.values.eyebrow}</span>
           <h2>{copy.values.title}</h2>
@@ -218,7 +224,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section application-panel">
+      <section className="feature-section application-panel anchor-section" id={applicationId}>
         <div className="section-heading">
           <span className="eyebrow">{copy.form.heading}</span>
           <h2>{copy.form.heading}</h2>

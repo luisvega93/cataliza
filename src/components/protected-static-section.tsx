@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
-import { buildAccessHref, hasGrantedAccess } from "@/lib/auth";
+import { buildAccessHref, clearGrantedAccess, getAccessGrant, hasGrantedAccess } from "@/lib/auth";
 import type { Locale } from "@/lib/i18n";
 
 type ProtectedStaticSectionProps = {
@@ -24,9 +24,12 @@ export function ProtectedStaticSection({
 }: ProtectedStaticSectionProps) {
   const [isReady, setIsReady] = useState(false);
   const [isGranted, setIsGranted] = useState(false);
+  const [grantedAt, setGrantedAt] = useState<string | null>(null);
 
   useEffect(() => {
+    const grant = getAccessGrant();
     setIsGranted(hasGrantedAccess());
+    setGrantedAt(grant?.grantedAt ?? null);
     setIsReady(true);
   }, []);
 
@@ -46,26 +49,53 @@ export function ProtectedStaticSection({
     return (
       <section className="access-panel">
         <div className="feature-card access-card">
-          <span className="eyebrow">{locale === "es" ? "Acceso protegido" : "Protected access"}</span>
+          <span className="eyebrow">{locale === "es" ? "Acceso temporal" : "Session access"}</span>
           <h1>{title}</h1>
           <p>{summary}</p>
           <div className="cta-row">
             <Link className="cta-button primary" href={buildAccessHref(locale, nextPath)}>
-              {locale === "es" ? "Desbloquear" : "Unlock"}
+              {locale === "es" ? "Ir a acceso" : "Go to access"}
             </Link>
             <Link className="cta-button secondary" href={`/${locale}`}>
-              {locale === "es" ? "Volver al sitio publico" : "Back to public site"}
+              {locale === "es" ? "Volver al sitio" : "Back to site"}
             </Link>
           </div>
           <p className="protected-note">
             {locale === "es"
-              ? "En GitHub Pages esta proteccion solo oculta contenido en el navegador; no es seguridad real."
-              : "On GitHub Pages this protection only obscures content in the browser; it is not real security."}
+              ? "El contenido se desbloquea por sesi\u00f3n en este navegador."
+              : "Content unlocks for this browser session."}
           </p>
         </div>
       </section>
     );
   }
 
-  return <>{children}</>;
+  return (
+    <div className="protected-layout">
+      <section className="protected-toolbar">
+        <div>
+          <div className="access-status-pill success">
+            {locale === "es" ? "Acceso activo" : "Access active"}
+          </div>
+          <p className="protected-note">
+            {locale === "es"
+              ? `Sesi\u00f3n desbloqueada${grantedAt ? ` el ${new Date(grantedAt).toLocaleString("es-MX")}` : ""}.`
+              : `Session unlocked${grantedAt ? ` on ${new Date(grantedAt).toLocaleString("en-US")}` : ""}.`}
+          </p>
+        </div>
+        <button
+          className="cta-button secondary"
+          onClick={() => {
+            clearGrantedAccess();
+            setIsGranted(false);
+            setGrantedAt(null);
+          }}
+          type="button"
+        >
+          {locale === "es" ? "Cerrar acceso" : "Lock again"}
+        </button>
+      </section>
+      {children}
+    </div>
+  );
 }

@@ -24,3 +24,24 @@ export function formatPercent(value: number, locale: Locale, maximumFractionDigi
     maximumFractionDigits,
   }).format(value);
 }
+
+export function formatSignedCurrency(value: number, locale: Locale) {
+  const formatted = formatCurrency(Math.abs(value), locale);
+  return value > 0 ? `+${formatted}` : value < 0 ? `-${formatted}` : formatted;
+}
+
+export function formatRunway(value: number, locale: Locale, fallback: string) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  return `${formatNumber(value, locale, 1)} ${locale === "es" ? "meses" : "months"}`;
+}
+
+export function formatDscr(value: number | null, locale: Locale, fallback: string) {
+  if (value === null) {
+    return fallback;
+  }
+
+  return `${formatNumber(value, locale, 2)}x`;
+}

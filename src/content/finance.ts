@@ -18,9 +18,13 @@ export type FinanceLabels = {
     headcount: string;
     opex: string;
     grants: string;
-    loan: string;
     metrics: string;
     outlook: string;
+    comparison: string;
+  };
+  actions: {
+    reset: string;
+    exportCsv: string;
   };
   fields: {
     openingCash: string;
@@ -33,7 +37,7 @@ export type FinanceLabels = {
     interestRate: string;
     repaymentYears: string;
     officeMonthly: string;
-    softwareMonthly: string;
+    softwareMonthlyPerHead: string;
     launchesPerYear: string;
   };
   roles: Record<RoleKey, string>;
@@ -44,6 +48,22 @@ export type FinanceLabels = {
     dscr: string;
     grossMargin: string;
     cash: string;
+  };
+  comparison: {
+    title: string;
+    summary: string;
+    base: string;
+    downside: string;
+    delta: string;
+  };
+  charts: {
+    cash: string;
+    revenue: string;
+    burn: string;
+  };
+  states: {
+    unlimited: string;
+    notApplicable: string;
   };
   table: {
     year: string;
@@ -87,10 +107,10 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       description:
         "Modelo financiero interactivo con escenarios base y downside para headcount, opex, grants, crédito y métricas de salud.",
     },
-    eyebrow: "10-year financial model",
+    eyebrow: "Modelo financiero a 10 años",
     title: "Modelo operativo-financiero a 10 años",
     summary:
-      "Este modelo asume una Cataliza pequeña, selectiva y disciplinada. Puedes ajustar drivers clave y ver cómo cambian burn, runway, margen y capacidad de servicio de deuda.",
+      "Este modelo asume una Cataliza pequeña, selectiva y disciplinada. Ajusta drivers clave y compara cómo cambian burn, runway, margen y capacidad de servicio de deuda.",
     scenarios: {
       base: "Base",
       downside: "Downside: sin ventas los primeros 2 años",
@@ -99,10 +119,14 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       inputs: "Inputs",
       headcount: "Headcount",
       opex: "Opex",
-      grants: "Grants",
-      loan: "Loan",
-      metrics: "Metrics",
-      outlook: "Consolidado a 10 años",
+      grants: "Grants y crédito",
+      metrics: "KPIs",
+      outlook: "Tabla anual",
+      comparison: "Comparación de escenarios",
+    },
+    actions: {
+      reset: "Restablecer defaults",
+      exportCsv: "Exportar CSV",
     },
     fields: {
       openingCash: "Caja inicial",
@@ -115,14 +139,14 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       interestRate: "Tasa de interés",
       repaymentYears: "Años de repago",
       officeMonthly: "Oficina mensual base",
-      softwareMonthly: "Software mensual por persona",
+      softwareMonthlyPerHead: "Software mensual por persona",
       launchesPerYear: "Proyectos nuevos",
     },
     roles: {
       leadership: "Liderazgo",
       operators: "Operaciones",
       finance: "Finanzas / legal",
-      creative: "Marketing / design",
+      creative: "Marketing / diseño",
     },
     cards: {
       revenue: "Ingresos año 10",
@@ -131,6 +155,22 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       dscr: "DSCR año 10",
       grossMargin: "Margen bruto promedio",
       cash: "Caja final",
+    },
+    comparison: {
+      title: "Base vs downside",
+      summary: "Compara el escenario esperado contra el escenario sin ventas durante los primeros dos años.",
+      base: "Base",
+      downside: "Downside",
+      delta: "Brecha",
+    },
+    charts: {
+      cash: "Caja",
+      revenue: "Ingresos",
+      burn: "Burn",
+    },
+    states: {
+      unlimited: "Sin límite",
+      notApplicable: "N/A",
     },
     table: {
       year: "Año",
@@ -156,7 +196,7 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
     eyebrow: "10-year financial model",
     title: "A 10-year operating and financial model",
     summary:
-      "This model assumes a small, selective, disciplined Cataliza. Adjust the core drivers and watch burn, runway, margin, and debt-service capacity change in real time.",
+      "This model assumes a small, selective, disciplined Cataliza. Adjust the core drivers and compare how burn, runway, margin, and debt-service capacity move.",
     scenarios: {
       base: "Base",
       downside: "Downside: no sales in the first 2 years",
@@ -165,10 +205,14 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       inputs: "Inputs",
       headcount: "Headcount",
       opex: "Opex",
-      grants: "Grants",
-      loan: "Loan",
-      metrics: "Metrics",
-      outlook: "10-year outlook",
+      grants: "Grants and credit",
+      metrics: "KPIs",
+      outlook: "Yearly table",
+      comparison: "Scenario comparison",
+    },
+    actions: {
+      reset: "Reset defaults",
+      exportCsv: "Export CSV",
     },
     fields: {
       openingCash: "Opening cash",
@@ -181,7 +225,7 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       interestRate: "Interest rate",
       repaymentYears: "Repayment years",
       officeMonthly: "Base monthly office cost",
-      softwareMonthly: "Monthly software per head",
+      softwareMonthlyPerHead: "Monthly software per head",
       launchesPerYear: "New projects",
     },
     roles: {
@@ -197,6 +241,22 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       dscr: "Year 10 DSCR",
       grossMargin: "Average gross margin",
       cash: "Ending cash",
+    },
+    comparison: {
+      title: "Base vs downside",
+      summary: "Compare the expected case against the no-sales-in-years-one-and-two scenario.",
+      base: "Base",
+      downside: "Downside",
+      delta: "Delta",
+    },
+    charts: {
+      cash: "Cash balance",
+      revenue: "Revenue",
+      burn: "Burn",
+    },
+    states: {
+      unlimited: "Unlimited",
+      notApplicable: "N/A",
     },
     table: {
       year: "Year",

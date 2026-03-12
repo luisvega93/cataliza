@@ -18,7 +18,7 @@ export type FinanceYear = {
   debtService: number;
   burn: number;
   cashBalance: number;
-  dscr: number;
+  dscr: number | null;
 };
 
 export type FinanceSummary = {
@@ -28,7 +28,7 @@ export type FinanceSummary = {
   startingRunwayMonths: number;
   averageGrossMargin: number;
   yearTenRevenue: number;
-  yearTenDscr: number;
+  yearTenDscr: number | null;
 };
 
 const roleKeys: RoleKey[] = ["leadership", "operators", "finance", "creative"];
@@ -119,7 +119,7 @@ export function calculateFinanceSummary(
     cashBalance += netCashFlow;
 
     const ebitdaLike = grossProfit - opex;
-    const dscr = debtService > 0 ? ebitdaLike / debtService : 0;
+    const dscr = debtService > 0 ? ebitdaLike / debtService : null;
 
     years.push({
       year: assumptions.startYear + yearIndex,
@@ -148,8 +148,10 @@ export function calculateFinanceSummary(
     firstYearBurn > 0 ? Math.round((assumptions.openingCash / (firstYearBurn / 12)) * 10) / 10 : Infinity;
   const finalYear = years[years.length - 1];
   const averageGrossMargin =
-    years.reduce((sum, year) => sum + (year.revenue > 0 ? year.grossProfit / year.revenue : assumptions.grossMargin), 0) /
-    years.length;
+    years.reduce(
+      (sum, year) => sum + (year.revenue > 0 ? year.grossProfit / year.revenue : assumptions.grossMargin),
+      0,
+    ) / years.length;
 
   return {
     years,
@@ -158,6 +160,6 @@ export function calculateFinanceSummary(
     startingRunwayMonths,
     averageGrossMargin,
     yearTenRevenue: finalYear?.revenue ?? 0,
-    yearTenDscr: finalYear?.dscr ?? 0,
+    yearTenDscr: finalYear?.dscr ?? null,
   };
 }

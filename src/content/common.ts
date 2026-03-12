@@ -1,12 +1,17 @@
+import type { PublicNavSectionKey } from "@/content/site-sections";
 import type { Locale } from "@/lib/i18n";
 
 export type NavItem = {
-  href: string;
+  section: PublicNavSectionKey;
   label: string;
 };
 
 export type ShellCopy = {
   brandDeck: string;
+  skipLink: string;
+  navLabel: string;
+  menuLabel: string;
+  closeMenuLabel: string;
   nav: NavItem[];
   utilities: {
     playbook: string;
@@ -22,13 +27,17 @@ export type ShellCopy = {
 export const shellCopy: Record<Locale, ShellCopy> = {
   es: {
     brandDeck: "Plataforma operativa, crédito catalítico y comunidad para proyectos que elevan cultura y entorno.",
+    skipLink: "Saltar al contenido",
+    navLabel: "Navegación principal",
+    menuLabel: "Abrir menú",
+    closeMenuLabel: "Cerrar menú",
     nav: [
-      { href: "#home", label: "Inicio" },
-      { href: "#que-buscamos", label: "Qué buscamos" },
-      { href: "#que-ofrecemos", label: "Qué ofrecemos" },
-      { href: "#como-trabajamos", label: "Cómo trabajamos" },
-      { href: "#proceso", label: "Proceso" },
-      { href: "#contacto", label: "Aplicación" },
+      { section: "home", label: "Inicio" },
+      { section: "search", label: "Qué buscamos" },
+      { section: "offer", label: "Qué ofrecemos" },
+      { section: "work", label: "Cómo trabajamos" },
+      { section: "process", label: "Proceso" },
+      { section: "application", label: "Aplicación" },
     ],
     utilities: {
       playbook: "Playbook interno",
@@ -43,13 +52,17 @@ export const shellCopy: Record<Locale, ShellCopy> = {
   en: {
     brandDeck:
       "Operating platform, catalytic credit, and community for projects that raise culture and community.",
+    skipLink: "Skip to content",
+    navLabel: "Primary navigation",
+    menuLabel: "Open menu",
+    closeMenuLabel: "Close menu",
     nav: [
-      { href: "#home", label: "Home" },
-      { href: "#what-we-seek", label: "What we seek" },
-      { href: "#what-we-offer", label: "What we offer" },
-      { href: "#how-we-work", label: "How we work" },
-      { href: "#process", label: "Process" },
-      { href: "#contact", label: "Apply" },
+      { section: "home", label: "Home" },
+      { section: "search", label: "What we seek" },
+      { section: "offer", label: "What we offer" },
+      { section: "work", label: "How we work" },
+      { section: "process", label: "Process" },
+      { section: "application", label: "Apply" },
     ],
     utilities: {
       playbook: "Internal playbook",

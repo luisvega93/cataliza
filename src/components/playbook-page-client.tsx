@@ -1,10 +1,9 @@
 "use client";
 
+import { ProtectedStaticSection } from "@/components/protected-static-section";
 import type { PlaybookCopy } from "@/content/playbook";
 import { formatCurrency } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
-
-import { ProtectedStaticSection } from "@/components/protected-static-section";
 
 type PlaybookPageClientProps = {
   locale: Locale;
@@ -16,12 +15,12 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
     <ProtectedStaticSection
       locale={locale}
       nextPath={`/${locale}/playbook`}
-      title={locale === "es" ? "Entrar al playbook interno" : "Enter the internal playbook"}
       summary={
         locale === "es"
-          ? "El playbook se desbloquea con una contrasena compartida guardada solo en esta sesion del navegador."
+          ? "El playbook se desbloquea con una contraseña compartida guardada solo en esta sesión del navegador."
           : "The playbook unlocks with a shared password stored only in this browser session."
       }
+      title={locale === "es" ? "Entrar al playbook interno" : "Enter the internal playbook"}
     >
       <div className="page-stack">
         <section className="hero-panel tight">
@@ -48,7 +47,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
           </div>
           <div className="split-grid">
             <article className="feature-card">
-              <h3>Shared services</h3>
+              <h3>{locale === "es" ? "Servicios compartidos" : "Shared services"}</h3>
               <div className="stack-list">
                 {copy.operatingModel.sharedServices.map((service) => (
                   <div className="stack-item" key={service.title}>
@@ -84,7 +83,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
                 <tr>
                   <th>{locale === "es" ? "Cadencia" : "Cadence"}</th>
                   <th>{locale === "es" ? "Foco" : "Focus"}</th>
-                  <th>Owner</th>
+                  <th>{locale === "es" ? "Responsable" : "Owner"}</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,7 +152,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
             <article className="feature-card">
-              <h3>Budget snapshot</h3>
+              <h3>{locale === "es" ? "Snapshot de presupuesto" : "Budget snapshot"}</h3>
               <div className="budget-list">
                 {copy.dashboard.budgetRows.map((row) => (
                   <div className="budget-row" key={row.label}>

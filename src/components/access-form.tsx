@@ -1,20 +1,23 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
 
 import { grantAccess, validateSharedPassword } from "@/lib/auth";
 import type { Locale } from "@/lib/i18n";
 
 type AccessFormProps = {
   locale: Locale;
-  nextPath: string;
+  onSuccess: () => void;
 };
 
-export function AccessForm({ locale, nextPath }: AccessFormProps) {
-  const router = useRouter();
+type MessageState = {
+  tone: "idle" | "error" | "success";
+  text: string;
+};
+
+export function AccessForm({ locale, onSuccess }: AccessFormProps) {
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<MessageState>({ tone: "idle", text: "" });
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,16 +29,34 @@ export function AccessForm({ locale, nextPath }: AccessFormProps) {
           const isValid = await validateSharedPassword(password);
 
           if (!isValid) {
-            setMessage(locale === "es" ? "Contrasena invalida." : "Invalid password.");
+            setMessage({
+              tone: "error",
+              text:
+                locale === "es"
+                  ? "Contrase\u00f1a inv\u00e1lida. Intenta de nuevo."
+                  : "Invalid password. Please try again.",
+            });
             return;
           }
 
           grantAccess();
-          setMessage("");
-          router.replace(nextPath);
-          router.refresh();
+          setPassword("");
+          setMessage({
+            tone: "success",
+            text:
+              locale === "es"
+                ? "Acceso desbloqueado para esta sesi\u00f3n."
+                : "Access unlocked for this session.",
+          });
+          onSuccess();
         } catch {
-          setMessage(locale === "es" ? "No pudimos validar el acceso." : "We could not validate access.");
+          setMessage({
+            tone: "error",
+            text:
+              locale === "es"
+                ? "No pudimos validar el acceso en este momento."
+                : "We could not validate access right now.",
+          });
         }
       })();
     });
@@ -44,27 +65,31 @@ export function AccessForm({ locale, nextPath }: AccessFormProps) {
   return (
     <form className="access-form" onSubmit={handleSubmit}>
       <label className="field">
-        <span>{locale === "es" ? "Contrasena compartida" : "Shared password"}</span>
+        <span>{locale === "es" ? "Contrase\u00f1a compartida" : "Shared password"}</span>
         <input
+          aria-describedby="access-status"
           autoComplete="current-password"
           name="password"
           onChange={(event) => {
             setPassword(event.target.value);
-            setMessage("");
+            setMessage({ tone: "idle", text: "" });
           }}
           required
           type="password"
           value={password}
         />
       </label>
-      <button className="cta-button primary" type="submit" disabled={isPending}>
-        {isPending ? (locale === "es" ? "Validando..." : "Checking...") : locale === "es" ? "Entrar" : "Enter"}
+      <button className="cta-button primary" disabled={isPending} type="submit">
+        {isPending ? (locale === "es" ? "Validando..." : "Checking...") : locale === "es" ? "Desbloquear" : "Unlock"}
       </button>
-      {message ? (
-        <p className="form-message error" role="status">
-          {message}
-        </p>
-      ) : null}
+      <p
+        aria-live="polite"
+        className={`form-message${message.text ? ` ${message.tone}` : ""}`}
+        id="access-status"
+        role="status"
+      >
+        {message.text || "\u00A0"}
+      </p>
     </form>
   );
 }

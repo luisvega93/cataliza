@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
+import "@/app/globals.css";
+
 import { SiteShell } from "@/components/site-shell";
 import { getPublicCopy } from "@/content/public-site";
+import { display, sans } from "@/lib/fonts";
 import { isLocale, locales } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
+import { buildLocaleMetadata } from "@/lib/seo";
+import { siteOrigin } from "@/lib/site-config";
 
 type LocaleLayoutProps = {
   children: ReactNode;
@@ -26,8 +31,13 @@ export async function generateMetadata({
   const copy = getPublicCopy(locale);
 
   return {
-    title: copy.meta.title,
-    description: copy.meta.description,
+    metadataBase: new URL(siteOrigin),
+    ...buildLocaleMetadata({
+      locale,
+      title: copy.meta.title,
+      description: copy.meta.description,
+      path: `/${locale}`,
+    }),
   };
 }
 
@@ -42,5 +52,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     notFound();
   }
 
-  return <SiteShell locale={locale}>{children}</SiteShell>;
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${display.variable} ${sans.variable}`}>
+        <SiteShell locale={locale}>{children}</SiteShell>
+      </body>
+    </html>
+  );
 }
