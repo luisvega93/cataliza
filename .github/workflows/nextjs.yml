@@ -27,9 +27,6 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
@@ -40,7 +37,7 @@ jobs:
         run: touch ./out/.nojekyll
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 
