@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { FinancialModelView } from "@/components/financial-model-view";
+import { ProtectedStaticSection } from "@/components/protected-static-section";
 import { financeLabels } from "@/content/finance";
 import { isLocale } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
@@ -31,5 +32,18 @@ export default async function FinancialModelPage({ params }: FinancialModelPageP
     notFound();
   }
 
-  return <FinancialModelView locale={locale} />;
+  return (
+    <ProtectedStaticSection
+      locale={locale}
+      nextPath={`/${locale}/financial-model`}
+      title={locale === "es" ? "Entrar al modelo financiero" : "Enter the financial model"}
+      summary={
+        locale === "es"
+          ? "El modelo financiero se desbloquea con la misma contrasena compartida usada para el playbook."
+          : "The financial model unlocks with the same shared password used for the playbook."
+      }
+    >
+      <FinancialModelView locale={locale} />
+    </ProtectedStaticSection>
+  );
 }

@@ -37,7 +37,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     },
     footer: {
       line: "Cataliza Capital selecciona un aliado por año para construir negocio sano, elevar cultura y sostener impacto real.",
-      note: "Diseñado para Vercel, contenido local y colaboración bilingüe.",
+      note: "Diseñado para GitHub Pages, contenido local y colaboración bilingüe.",
     },
   },
   en: {
@@ -58,7 +58,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     },
     footer: {
       line: "Cataliza Capital selects one ally per year to build healthy businesses, lift culture, and sustain real impact.",
-      note: "Designed for Vercel, local content, and bilingual collaboration.",
+      note: "Designed for GitHub Pages, local content, and bilingual collaboration.",
     },
   },
 };

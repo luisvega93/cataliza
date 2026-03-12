@@ -1,29 +1,15 @@
 # Cataliza Capital Webapp
 
-Next.js App Router project for the Cataliza Capital public site, internal playbook, and 10-year financial model.
+Static-export `Next.js` project for the Cataliza Capital public site, internal playbook, and 10-year financial model, deployed to GitHub Pages.
 
 ## What is included
 
 - Bilingual `es` / `en` routing with a persistent language toggle
 - Public investor-facing landing page
-- Protected internal playbook and financial model routes
-- Shared-password gate with cookie-based access
-- Native application form with validation, honeypot spam protection, and SMTP email delivery
+- Client-side gated internal playbook and financial model routes
 - Interactive client-side financial model with base and downside scenarios
-
-## Environment
-
-Copy `.env.example` to `.env.local` and configure:
-
-- `CATALIZA_SHARED_PASSWORD`
-- `CATALIZA_INBOX_TO`
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_USER`
-- `SMTP_PASS`
-- `SMTP_FROM`
-
-In local non-production mode, if SMTP is missing the application form will simulate delivery and log the payload to the server console.
+- Google Forms-based application flow prepared for static hosting
+- Repo-owned GitHub Pages workflow that deploys the static export from `main`
 
 ## Run
 
@@ -32,15 +18,22 @@ npm install
 npm run dev
 ```
 
+For the exported Pages build, use:
+
+```bash
+npm run build
+```
+
 ## Structure
 
 - `src/app/[locale]` contains the main routes
 - `src/content` contains bilingual copy and finance assumptions
 - `src/components` contains the UI building blocks
-- `src/lib` contains auth, validation, mail, and finance calculation logic
+- `src/lib/site-config.ts` contains GitHub Pages base-path config, the client access gate hash, and Google Form URLs
 
 ## Notes
 
-- The source Word document remains in the workspace as the original content reference.
-- The financial model uses local client state in v1; there is no persistence layer.
-- GitHub Pages is not a valid deployment target for this app because it uses middleware, API routes, and protected server flows. Deploy it on a platform such as Vercel instead.
+- The deployed URL is `https://luisvega93.github.io/cataliza/`
+- The internal areas are obscured only in the browser; GitHub Pages cannot provide real server-side protection
+- Add the real Google Form `openUrl` and `embedUrl` in `src/lib/site-config.ts` before the public application flow is fully live
+- The source Word document remains in the workspace as the original content reference

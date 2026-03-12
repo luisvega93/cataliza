@@ -17,7 +17,7 @@ const sans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cataliza-capital.vercel.app"),
+  metadataBase: new URL("https://luisvega93.github.io/cataliza/"),
   title: "Cataliza Capital",
   description:
     "Cataliza Capital backs craft-led operators with a modern operating hub, catalytic grants, revolving credit, and an impact-minded community.",

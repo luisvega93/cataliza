@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
+import { grantAccess, validateSharedPassword } from "@/lib/auth";
 import type { Locale } from "@/lib/i18n";
 
 type AccessFormProps = {
@@ -22,21 +23,16 @@ export function AccessForm({ locale, nextPath }: AccessFormProps) {
     startTransition(() => {
       void (async () => {
         try {
-          const response = await fetch("/api/access", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ password }),
-          });
+          const isValid = await validateSharedPassword(password);
 
-          if (!response.ok) {
-            setMessage(locale === "es" ? "Contraseña inválida." : "Invalid password.");
+          if (!isValid) {
+            setMessage(locale === "es" ? "Contrasena invalida." : "Invalid password.");
             return;
           }
 
+          grantAccess();
           setMessage("");
-          router.push(nextPath);
+          router.replace(nextPath);
           router.refresh();
         } catch {
           setMessage(locale === "es" ? "No pudimos validar el acceso." : "We could not validate access.");
@@ -48,7 +44,7 @@ export function AccessForm({ locale, nextPath }: AccessFormProps) {
   return (
     <form className="access-form" onSubmit={handleSubmit}>
       <label className="field">
-        <span>{locale === "es" ? "Contraseña compartida" : "Shared password"}</span>
+        <span>{locale === "es" ? "Contrasena compartida" : "Shared password"}</span>
         <input
           autoComplete="current-password"
           name="password"

@@ -5,21 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next dev",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "latest",
-    "nodemailer": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "zod": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@eslint/eslintrc": "latest",
     "@types/node": "latest",
-    "@types/nodemailer": "^7.0.11",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",

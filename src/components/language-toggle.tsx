@@ -4,6 +4,7 @@ import { useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { getAltLocale, getLocaleLabel, type Locale } from "@/lib/i18n";
+import { siteBasePath } from "@/lib/site-config";
 
 type LanguageToggleProps = {
   locale: Locale;
@@ -18,10 +19,13 @@ export function LanguageToggle({ locale }: LanguageToggleProps) {
   const otherLocale = getAltLocale(locale);
 
   const handleSwitch = (targetLocale: Locale) => {
-    const segments = pathname.split("/");
-    segments[1] = targetLocale;
-
-    const nextPath = segments.join("/") || `/${targetLocale}`;
+    const withoutBasePath =
+      pathname.startsWith(siteBasePath) && siteBasePath.length > 0
+        ? pathname.slice(siteBasePath.length) || "/"
+        : pathname;
+    const segments = withoutBasePath.split("/").filter(Boolean);
+    const nextPath =
+      segments.length === 0 ? `/${targetLocale}` : `/${[targetLocale, ...segments.slice(1)].join("/")}`;
     const query = searchParams.toString();
     const hash = typeof window !== "undefined" ? window.location.hash : "";
 

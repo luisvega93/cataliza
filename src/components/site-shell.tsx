@@ -6,11 +6,11 @@ import type { Locale } from "@/lib/i18n";
 
 import { LanguageToggle } from "@/components/language-toggle";
 
-function LanguageToggleFallback() {
+function LanguageToggleFallback({ locale }: { locale: Locale }) {
   return (
     <div className="language-toggle" aria-hidden="true">
-      <span className="language-pill active">Español</span>
-      <span className="language-pill">English</span>
+      <span className={`language-pill${locale === "es" ? " active" : ""}`}>Espanol</span>
+      <span className={`language-pill${locale === "en" ? " active" : ""}`}>English</span>
     </div>
   );
 }
@@ -49,8 +49,10 @@ export function SiteShell({ locale, children }: SiteShellProps) {
             <Link className="utility-link" href={`/${locale}/financial-model`}>
               {copy.utilities.financialModel}
             </Link>
-            <span className="access-chip">{copy.utilities.access}</span>
-            <Suspense fallback={<LanguageToggleFallback />}>
+            <Link className="access-chip" href={`/${locale}/access`}>
+              {copy.utilities.access}
+            </Link>
+            <Suspense fallback={<LanguageToggleFallback locale={locale} />}>
               <LanguageToggle locale={locale} />
             </Suspense>
           </div>
