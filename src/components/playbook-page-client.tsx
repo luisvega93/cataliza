@@ -10,6 +10,25 @@ type PlaybookPageClientProps = {
   copy: PlaybookCopy;
 };
 
+type SectionLeadProps = {
+  title: string;
+  summary?: string;
+  level?: "h1" | "h2";
+  summaryClassName?: string;
+};
+
+function SectionLead({ title, summary, level = "h2", summaryClassName = "section-summary" }: SectionLeadProps) {
+  const Heading = level;
+
+  return (
+    <div className="section-heading compact">
+      <span className="eyebrow">{title}</span>
+      <Heading className="sr-only">{title}</Heading>
+      {summary ? <p className={summaryClassName}>{summary}</p> : null}
+    </div>
+  );
+}
+
 export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
   const cadenceLabels = copy.cadence.labels;
 
@@ -27,9 +46,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
       <div className="page-stack">
         <section className="hero-panel tight">
           <div className="hero-copy">
-            <span className="eyebrow">{copy.hero.eyebrow}</span>
-            <h1>{copy.hero.title}</h1>
-            <p className="hero-summary">{copy.hero.summary}</p>
+            <SectionLead level="h1" summaryClassName="hero-summary" title={copy.hero.title} summary={copy.hero.summary} />
           </div>
           <div className="stat-grid">
             {copy.hero.stats.map((stat) => (
@@ -42,11 +59,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="section-heading">
-            <span className="eyebrow">{copy.operatingModel.title}</span>
-            <h2>{copy.operatingModel.title}</h2>
-            <p className="section-summary">{copy.operatingModel.summary}</p>
-          </div>
+          <SectionLead title={copy.operatingModel.title} summary={copy.operatingModel.summary} />
           <div className="split-grid">
             <article className="feature-card">
               <h3>{locale === "es" ? "Servicios compartidos" : "Shared services"}</h3>
@@ -74,11 +87,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="section-heading">
-            <span className="eyebrow">{copy.cadence.title}</span>
-            <h2>{copy.cadence.title}</h2>
-            <p className="section-summary">{copy.cadence.summary}</p>
-          </div>
+          <SectionLead title={copy.cadence.title} summary={copy.cadence.summary} />
           <div className="table-wrap playbook-cadence-wrap">
             <table className="data-table cadence-table">
               <caption className="sr-only">{copy.cadence.title}</caption>
@@ -105,9 +114,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         <section className="feature-section">
           <div className="feature-grid">
             <article className="feature-card">
-              <span className="eyebrow">{copy.incentives.title}</span>
-              <h2>{copy.incentives.title}</h2>
-              <p>{copy.incentives.summary}</p>
+              <SectionLead title={copy.incentives.title} summary={copy.incentives.summary} />
               <div className="stack-list">
                 {copy.incentives.levers.map((lever) => (
                   <div className="stack-item" key={lever.title}>
@@ -119,9 +126,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
             </article>
 
             <article className="feature-card">
-              <span className="eyebrow">{copy.milestones.title}</span>
-              <h2>{copy.milestones.title}</h2>
-              <p>{copy.milestones.summary}</p>
+              <SectionLead title={copy.milestones.title} summary={copy.milestones.summary} />
               <div className="stack-list">
                 {copy.milestones.items.map((item) => (
                   <div className="stack-item" key={item.quarter}>
@@ -137,11 +142,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="section-heading">
-            <span className="eyebrow">{copy.council.title}</span>
-            <h2>{copy.council.title}</h2>
-            <p className="section-summary">{copy.council.summary}</p>
-          </div>
+          <SectionLead title={copy.council.title} summary={copy.council.summary} />
           <div className="feature-grid three-up">
             {copy.council.pillars.map((pillar) => (
               <article className="feature-card" key={pillar.title}>
@@ -158,11 +159,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="section-heading">
-            <span className="eyebrow">{copy.ecosystem.title}</span>
-            <h2>{copy.ecosystem.title}</h2>
-            <p className="section-summary">{copy.ecosystem.summary}</p>
-          </div>
+          <SectionLead title={copy.ecosystem.title} summary={copy.ecosystem.summary} />
           <article className="feature-card">
             <ul className="card-list">
               {copy.ecosystem.prompts.map((prompt) => (
@@ -173,15 +170,12 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="section-heading">
-            <span className="eyebrow">{copy.dashboard.title}</span>
-            <h2>{copy.dashboard.title}</h2>
-            <p className="section-summary">{copy.dashboard.summary}</p>
-          </div>
-          <div className="split-grid">
+          <SectionLead title={copy.dashboard.title} summary={copy.dashboard.summary} />
+          <div className="feature-grid">
             <article className="feature-card">
-              <h3>{copy.dashboard.sampleProject}</h3>
-              <div className="mini-kpi-grid">
+              <h3>{copy.dashboard.snapshotTitle}</h3>
+              <p>{copy.dashboard.sampleProject}</p>
+              <div className="mini-kpi-grid wide">
                 {copy.dashboard.metrics.map((metric) => (
                   <div className="mini-kpi" key={metric.label}>
                     <span>{metric.label}</span>
@@ -191,7 +185,18 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
             <article className="feature-card">
-              <h3>{locale === "es" ? "Snapshot de presupuesto" : "Budget snapshot"}</h3>
+              <h3>{copy.dashboard.definitionsTitle}</h3>
+              <div className="stack-list">
+                {copy.dashboard.metrics.map((metric) => (
+                  <div className="stack-item" key={`${metric.label}-summary`}>
+                    <strong>{metric.label}</strong>
+                    <p>{metric.summary}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.dashboard.budgetTitle}</h3>
               <div className="budget-list">
                 {copy.dashboard.budgetRows.map((row) => (
                   <div className="budget-row" key={row.label}>

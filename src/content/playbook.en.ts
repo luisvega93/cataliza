@@ -4,60 +4,59 @@ export const playbookCopyEn: PlaybookCopy = {
   meta: {
     title: "Cataliza Capital | Internal playbook",
     description:
-      "Cataliza operating playbook covering shared services, cadence, incentives, council, and internal ecosystem planning.",
+      "Cataliza operating playbook covering the operating model, cadence, incentives, council, ecosystem planning, and project dashboard.",
   },
   hero: {
-    eyebrow: "Internal playbook",
-    title: "How Cataliza executes with consistency, calm, and accountability.",
+    title: "Internal playbook",
     summary:
-      "This playbook translates the thesis into day-to-day operations. The goal is not only to help the ally, but to build a system where the Hub and the core can learn, measure, and course-correct together.",
+      "This playbook translates the thesis into day-to-day operations.",
     stats: [
       { label: "Shared services", value: "4 functions" },
       { label: "Cadences", value: "monthly / quarterly / yearly" },
-      { label: "Hub bonus", value: "KPI-aligned" },
+      { label: "Dashboard", value: "monthly tracking" },
     ],
   },
   operatingModel: {
     title: "Operating model",
     summary:
-      "Cataliza runs a shared-services model that frees the ally from critical administrative work without disconnecting them from the customer or from operating truth.",
+      "The ally leads the core operation and the Hub runs the business. Management defines vision, culture, and business plan.",
     sharedServices: [
       {
-        title: "Finance and planning",
-        summary: "Cashflow, budgeting, unit economics, receivables/payables, and funding structure.",
+        title: "Financial planning",
+        summary: "Funding, cashflow, receivables/payables, modeling, and controls.",
       },
       {
         title: "Operations and systems",
-        summary: "ERP, processes, automations, reporting, and information governance.",
+        summary: "ERP, processes, information flow, and technology tools.",
       },
       {
-        title: "Legal, tax, and accounting",
-        summary: "Compliance, regularization, and minimum viable controls.",
+        title: "Legal, accounting, and tax",
+        summary: "Regularization and compliance with authorities.",
       },
       {
         title: "Marketing and design",
-        summary: "Brand system, sales materials, funnel, and sales narrative.",
+        summary: "Branding, sales materials, and digital media.",
       },
     ],
     governance: [
       {
         title: "Ally",
-        summary: "Owns the craft, leads the core team, listens to the customer, and drives sales or delivery.",
+        summary: "Leads the core operation: production/service and sales where applicable.",
       },
       {
         title: "Cataliza manager",
-        summary: "Leads the Hub, synchronizes shared services, and keeps execution rhythm.",
+        summary: "Leads the Hub day to day and coordinates shared services.",
       },
       {
-        title: "Management table",
-        summary: "Translates vision, culture, business plan, priorities, and capital decisions.",
+        title: "Management",
+        summary: "Ally + Cataliza managers. Defines vision, culture, and business plan.",
       },
     ],
   },
   cadence: {
     title: "Cadence",
     summary:
-      "Cadence exists to prevent chronic improvisation. Each rhythm has a specific purpose and clear owners.",
+      "Monthly, quarterly, and yearly rhythms to review operations, decisions, and follow-up.",
     labels: {
       cadence: "Cadence",
       focus: "Focus",
@@ -72,7 +71,7 @@ export const playbookCopyEn: PlaybookCopy = {
       {
         cadence: "Quarterly",
         focus: "Reforecast, milestone review, credit decisions, and team health.",
-        owner: "Management table",
+        owner: "Management",
       },
       {
         cadence: "Yearly",
@@ -83,8 +82,7 @@ export const playbookCopyEn: PlaybookCopy = {
   },
   incentives: {
     title: "Incentives and bonuses",
-    summary:
-      "Incentives should reward disciplined results, not volume without quality. The Hub wins when the ally wins in a healthy way.",
+    summary: "Incentives aligned to the results of the ally and the Hub.",
     levers: [
       {
         title: "Financial health bonus",
@@ -95,15 +93,14 @@ export const playbookCopyEn: PlaybookCopy = {
         summary: "Rewards delivery against the quarterly commercial and operating roadmap.",
       },
       {
-        title: "Systems quality bonus",
-        summary: "Recognizes reliable reporting, timely closes, and adoption of critical tools.",
+        title: "Impact generated bonus",
+        summary: "Recognizes measurable progress toward the project's defined impact goal.",
       },
     ],
   },
   milestones: {
     title: "Milestones per project",
-    summary:
-      "Each project lands a minimum sequence that moves it from early clarity into operating repeatability.",
+    summary: "12-month roadmap with clear milestones to keep execution ordered.",
     items: [
       { quarter: "Q1", target: "Financial setup and base brand", signal: "Operating budget and commercial messaging ready" },
       { quarter: "Q2", target: "Disciplined offer and funnel", signal: "Measured pipeline and validated pricing" },
@@ -154,8 +151,11 @@ export const playbookCopyEn: PlaybookCopy = {
   dashboard: {
     title: "Dashboard",
     summary:
-      "Sample dashboard for a Cataliza seed project. It should be readable in 10 minutes and guide decisions, not merely report numbers.",
-    sampleProject: "Sample ally 2026 - Casa Taller",
+      "Monthly view of budget, cash, conversion, and impact defined per project.",
+    sampleProject: "Example project dashboard",
+    snapshotTitle: "Operating snapshot",
+    budgetTitle: "Budget",
+    definitionsTitle: "How to read the metrics",
     budgetRows: [
       { label: "Revenue", amount: 280000 },
       { label: "Direct cost", amount: -98000 },
@@ -165,10 +165,31 @@ export const playbookCopyEn: PlaybookCopy = {
       { label: "Operating cash flow", amount: 74000 },
     ],
     metrics: [
-      { label: "Monthly burn", value: "USD 9,500" },
-      { label: "Runway", value: "14 months" },
-      { label: "Gross margin", value: "65%" },
-      { label: "Lead-to-close", value: "21%" },
+      {
+        label: "Monthly burn",
+        value: "USD 9,500",
+        summary: "Net cash the project consumes each month when outflows exceed inflows.",
+      },
+      {
+        label: "Runway",
+        value: "14 months",
+        summary: "Months the project can operate with available cash at the current burn rate.",
+      },
+      {
+        label: "Gross margin",
+        value: "65%",
+        summary: "Revenue minus direct cost, before payroll and operating expenses.",
+      },
+      {
+        label: "Lead-to-close",
+        value: "21%",
+        summary: "Percentage of leads that convert into closed sales.",
+      },
+      {
+        label: "Impact KPI (defined per project)",
+        value: "To be defined",
+        summary: "Set per project according to the change each project seeks to create and measure.",
+      },
     ],
   },
 };

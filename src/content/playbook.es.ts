@@ -4,60 +4,59 @@ export const playbookCopyEs: PlaybookCopy = {
   meta: {
     title: "Cataliza Capital | Playbook interno",
     description:
-      "Playbook operativo de Cataliza: servicios compartidos, cadencias, incentivos, consejo y ecosistema interno.",
+      "Playbook operativo de Cataliza: modelo operativo, cadencias, incentivos, consejo, ecosistema y dashboard por proyecto.",
   },
   hero: {
-    eyebrow: "Playbook interno",
-    title: "C\u00f3mo ejecuta Cataliza con consistencia, calma y accountability.",
+    title: "Playbook interno",
     summary:
-      "Este playbook traduce la tesis en operaci\u00f3n diaria. El objetivo no es solo ayudar al aliado, sino construir un sistema donde el Hub y el core puedan aprender, medir y corregir rumbo juntos.",
+      "Este playbook traduce la tesis en operaci\u00f3n diaria.",
     stats: [
       { label: "Servicios compartidos", value: "4 funciones" },
       { label: "Cadencias", value: "mensual / trimestral / anual" },
-      { label: "Bono Hub", value: "alineado a KPIs" },
+      { label: "Dashboard", value: "seguimiento mensual" },
     ],
   },
   operatingModel: {
     title: "Modelo operativo",
     summary:
-      "Cataliza corre un modelo de servicios compartidos para liberar al aliado del trabajo administrativo cr\u00edtico sin desconectarlo del cliente ni de la verdad operacional.",
+      "El aliado lidera la operaci\u00f3n core y el Hub opera el negocio. Management define visi\u00f3n, cultura y business plan.",
     sharedServices: [
       {
-        title: "Finanzas y planeaci\u00f3n",
-        summary: "Cashflow, presupuesto, unit economics, receivables/payables y estructura de fondeo.",
+        title: "Planeaci\u00f3n financiera",
+        summary: "Fondeo, cashflow, receivables/payables, modelaje y controles.",
       },
       {
         title: "Operaciones y sistemas",
-        summary: "ERP, procesos, automatizaciones, reporting y gobierno de informaci\u00f3n.",
+        summary: "ERP, procesos, flujo de info y herramientas tecnol\u00f3gicas.",
       },
       {
-        title: "Legal, fiscal y contable",
-        summary: "Cumplimiento, regularizaci\u00f3n y dise\u00f1o de controles m\u00ednimos viables.",
+        title: "Legal, contable y fiscal",
+        summary: "Regularizaci\u00f3n y cumplimiento con autoridades.",
       },
       {
         title: "Marketing y dise\u00f1o",
-        summary: "Brand system, materiales comerciales, funnel y narrativa de ventas.",
+        summary: "Branding, materiales de venta y digital media.",
       },
     ],
     governance: [
       {
         title: "Aliado",
-        summary: "Define craft, lidera equipo core, escucha al cliente y empuja ventas o delivery.",
+        summary: "Lidera la operaci\u00f3n core: producci\u00f3n/servicio y ventas cuando aplica.",
       },
       {
         title: "Manager Cataliza",
-        summary: "Conduce el Hub, sincroniza shared services y asegura ritmo de ejecuci\u00f3n.",
+        summary: "Lidera el Hub en el d\u00eda a d\u00eda y coordina los servicios compartidos.",
       },
       {
-        title: "Management table",
-        summary: "Aterriza visi\u00f3n, cultura, business plan, prioridades y decisiones de capital.",
+        title: "Management",
+        summary: "Aliado + managers de Cataliza. Define visi\u00f3n, cultura y business plan.",
       },
     ],
   },
   cadence: {
     title: "Cadencia",
     summary:
-      "La cadencia existe para evitar improvisaci\u00f3n cr\u00f3nica. Cada ritmo tiene un prop\u00f3sito espec\u00edfico y responsables claros.",
+      "Ritmos mensuales, trimestrales y anuales para revisar operaci\u00f3n, decisiones y seguimiento.",
     labels: {
       cadence: "Cadencia",
       focus: "Foco",
@@ -72,7 +71,7 @@ export const playbookCopyEs: PlaybookCopy = {
       {
         cadence: "Trimestral",
         focus: "Reforecast, revisi\u00f3n de milestones, decisiones de cr\u00e9dito y salud del equipo.",
-        owner: "Management table",
+        owner: "Management",
       },
       {
         cadence: "Anual",
@@ -83,8 +82,7 @@ export const playbookCopyEs: PlaybookCopy = {
   },
   incentives: {
     title: "Incentivos y bonos",
-    summary:
-      "Los incentivos deben premiar resultado con disciplina, no volumen sin calidad. El Hub gana cuando el aliado gana de forma saludable.",
+    summary: "Incentivos alineados entre resultados del aliado y del Hub.",
     levers: [
       {
         title: "Bono por salud financiera",
@@ -95,15 +93,14 @@ export const playbookCopyEs: PlaybookCopy = {
         summary: "Premia el cumplimiento de roadmap comercial y operativo por trimestre.",
       },
       {
-        title: "Bono por calidad de sistema",
-        summary: "Reconoce reporting confiable, cierres a tiempo y adopci\u00f3n de herramientas cr\u00edticas.",
+        title: "Bono por impacto generado",
+        summary: "Reconoce avance medible en el objetivo de impacto definido para el proyecto.",
       },
     ],
   },
   milestones: {
     title: "Hitos por proyecto",
-    summary:
-      "Cada proyecto aterriza una secuencia m\u00ednima para pasar de claridad inicial a repetibilidad operativa.",
+    summary: "Roadmap de 12 meses con milestones claros para ordenar la ejecuci\u00f3n.",
     items: [
       { quarter: "Q1", target: "Setup financiero y marca base", signal: "Presupuesto operativo y mensajes comerciales listos" },
       { quarter: "Q2", target: "Oferta y funnel disciplinados", signal: "Embudo medido y pricing validado" },
@@ -154,8 +151,11 @@ export const playbookCopyEs: PlaybookCopy = {
   dashboard: {
     title: "Dashboard",
     summary:
-      "Ejemplo de dashboard para un proyecto semilla de Cataliza. Debe poder leerse en 10 minutos y orientar decisiones, no solo reportar n\u00fameros.",
-    sampleProject: "Aliado ejemplo 2026 - Casa Taller",
+      "Vista mensual de presupuesto, caja, conversi\u00f3n e impacto definido por proyecto.",
+    sampleProject: "Ejemplo de dashboard de proyecto",
+    snapshotTitle: "Snapshot operativo",
+    budgetTitle: "Presupuesto",
+    definitionsTitle: "C\u00f3mo leer las m\u00e9tricas",
     budgetRows: [
       { label: "Ingresos", amount: 280000 },
       { label: "Costo directo", amount: -98000 },
@@ -165,10 +165,31 @@ export const playbookCopyEs: PlaybookCopy = {
       { label: "Flujo operativo", amount: 74000 },
     ],
     metrics: [
-      { label: "Burn mensual", value: "USD 9,500" },
-      { label: "Runway", value: "14 meses" },
-      { label: "Margen bruto", value: "65%" },
-      { label: "Lead-to-close", value: "21%" },
+      {
+        label: "Burn mensual",
+        value: "USD 9,500",
+        summary: "Caja neta que consume el proyecto cada mes cuando los egresos superan los ingresos.",
+      },
+      {
+        label: "Runway",
+        value: "14 meses",
+        summary: "Meses que puede operar con la caja disponible al burn actual.",
+      },
+      {
+        label: "Margen bruto",
+        value: "65%",
+        summary: "Ingresos menos costo directo, antes de n\u00f3mina y gastos operativos.",
+      },
+      {
+        label: "Lead-to-close",
+        value: "21%",
+        summary: "Porcentaje de leads que se convierten en ventas cerradas.",
+      },
+      {
+        label: "KPI de impacto (definir por proyecto)",
+        value: "Por definir",
+        summary: "Se define seg\u00fan el cambio que cada proyecto busca lograr y c\u00f3mo lo mide.",
+      },
     ],
   },
 };

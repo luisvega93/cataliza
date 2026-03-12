@@ -9,7 +9,6 @@ export type PlaybookCopy = {
     description: string;
   };
   hero: {
-    eyebrow: string;
     title: string;
     summary: string;
     stats: Array<{ label: string; value: string }>;
@@ -54,8 +53,11 @@ export type PlaybookCopy = {
     title: string;
     summary: string;
     sampleProject: string;
+    snapshotTitle: string;
+    budgetTitle: string;
+    definitionsTitle: string;
     budgetRows: Array<{ label: string; amount: number }>;
-    metrics: Array<{ label: string; value: string }>;
+    metrics: Array<{ label: string; value: string; summary: string }>;
   };
 };
 
