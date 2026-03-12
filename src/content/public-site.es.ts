@@ -2,13 +2,13 @@ import type { PublicCopy } from "@/content/public-site";
 
 export const publicCopyEs: PublicCopy = {
   meta: {
-    title: "Cataliza Capital | Capital Capital.",
+    title: "Cataliza Capital | Cataliza Capital",
     description:
       "Cataliza busca aliarse e invertir en personas cuya vocaci\u00f3n ya transforma su comunidad. Seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y econ\u00f3micas.",
   },
   hero: {
     eyebrow: "Cataliza Capital",
-    title: "Capital Capital.",
+    title: "Cataliza Capital",
     summary:
       "Cataliza busca aliarse e invertir en personas cuya vocaci\u00f3n ya transforma su comunidad. Seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y econ\u00f3micas.",
     primaryCta: "Aplicar ahora",
