@@ -11,13 +11,15 @@ type PlaybookPageClientProps = {
 };
 
 export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
+  const cadenceLabels = copy.cadence.labels;
+
   return (
     <ProtectedStaticSection
       locale={locale}
       nextPath={`/${locale}/playbook`}
       summary={
         locale === "es"
-          ? "El playbook se desbloquea con una contraseña compartida guardada solo en esta sesión del navegador."
+          ? "El playbook se desbloquea con una contrase\u00f1a compartida guardada solo en esta sesi\u00f3n del navegador."
           : "The playbook unlocks with a shared password stored only in this browser session."
       }
       title={locale === "es" ? "Entrar al playbook interno" : "Enter the internal playbook"}
@@ -77,21 +79,22 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
             <h2>{copy.cadence.title}</h2>
             <p className="section-summary">{copy.cadence.summary}</p>
           </div>
-          <div className="table-wrap">
-            <table className="data-table">
+          <div className="table-wrap playbook-cadence-wrap">
+            <table className="data-table cadence-table">
+              <caption className="sr-only">{copy.cadence.title}</caption>
               <thead>
                 <tr>
-                  <th>{locale === "es" ? "Cadencia" : "Cadence"}</th>
-                  <th>{locale === "es" ? "Foco" : "Focus"}</th>
-                  <th>{locale === "es" ? "Responsable" : "Owner"}</th>
+                  <th scope="col">{cadenceLabels.cadence}</th>
+                  <th scope="col">{cadenceLabels.focus}</th>
+                  <th scope="col">{cadenceLabels.owner}</th>
                 </tr>
               </thead>
               <tbody>
                 {copy.cadence.rituals.map((ritual) => (
                   <tr key={ritual.cadence}>
-                    <td>{ritual.cadence}</td>
-                    <td>{ritual.focus}</td>
-                    <td>{ritual.owner}</td>
+                    <td data-label={cadenceLabels.cadence}>{ritual.cadence}</td>
+                    <td data-label={cadenceLabels.focus}>{ritual.focus}</td>
+                    <td data-label={cadenceLabels.owner}>{ritual.owner}</td>
                   </tr>
                 ))}
               </tbody>
@@ -131,6 +134,42 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
           </div>
+        </section>
+
+        <section className="feature-section">
+          <div className="section-heading">
+            <span className="eyebrow">{copy.council.title}</span>
+            <h2>{copy.council.title}</h2>
+            <p className="section-summary">{copy.council.summary}</p>
+          </div>
+          <div className="feature-grid three-up">
+            {copy.council.pillars.map((pillar) => (
+              <article className="feature-card" key={pillar.title}>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.summary}</p>
+                <ul className="card-list">
+                  {pillar.members.map((member) => (
+                    <li key={member}>{member}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="feature-section">
+          <div className="section-heading">
+            <span className="eyebrow">{copy.ecosystem.title}</span>
+            <h2>{copy.ecosystem.title}</h2>
+            <p className="section-summary">{copy.ecosystem.summary}</p>
+          </div>
+          <article className="feature-card">
+            <ul className="card-list">
+              {copy.ecosystem.prompts.map((prompt) => (
+                <li key={prompt}>{prompt}</li>
+              ))}
+            </ul>
+          </article>
         </section>
 
         <section className="feature-section">

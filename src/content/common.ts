@@ -26,18 +26,19 @@ export type ShellCopy = {
 
 export const shellCopy: Record<Locale, ShellCopy> = {
   es: {
-    brandDeck: "Plataforma operativa, crédito catalítico y comunidad para proyectos que elevan cultura y entorno.",
+    brandDeck: "Plataforma, fondeo y comunidad para personas cuya vocaci\u00f3n ya transforma su entorno.",
     skipLink: "Saltar al contenido",
-    navLabel: "Navegación principal",
-    menuLabel: "Abrir menú",
-    closeMenuLabel: "Cerrar menú",
+    navLabel: "Navegaci\u00f3n principal",
+    menuLabel: "Abrir men\u00fa",
+    closeMenuLabel: "Cerrar men\u00fa",
     nav: [
       { section: "home", label: "Inicio" },
-      { section: "search", label: "Qué buscamos" },
-      { section: "offer", label: "Qué ofrecemos" },
-      { section: "work", label: "Cómo trabajamos" },
+      { section: "thesis", label: "Nuestra tesis" },
+      { section: "search", label: "Qu\u00e9 buscamos" },
+      { section: "offer", label: "Qu\u00e9 recibe" },
+      { section: "work", label: "C\u00f3mo trabajamos" },
       { section: "process", label: "Proceso" },
-      { section: "application", label: "Aplicación" },
+      { section: "application", label: "Aplicaci\u00f3n" },
     ],
     utilities: {
       playbook: "Playbook interno",
@@ -45,21 +46,21 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       access: "Acceso protegido",
     },
     footer: {
-      line: "Cataliza Capital selecciona un aliado por año para construir negocio sano, elevar cultura y sostener impacto real.",
-      note: "Diseñado para GitHub Pages, contenido local y colaboración bilingüe.",
+      line: "Cataliza selecciona un aliado por a\u00f1o y construye con metas claras de impacto y econ\u00f3micas.",
+      note: "Sitio est\u00e1tico biling\u00fce desplegado en GitHub Pages.",
     },
   },
   en: {
-    brandDeck:
-      "Operating platform, catalytic credit, and community for projects that raise culture and community.",
+    brandDeck: "Platform, funding, and community for people whose vocation already transforms their surroundings.",
     skipLink: "Skip to content",
     navLabel: "Primary navigation",
     menuLabel: "Open menu",
     closeMenuLabel: "Close menu",
     nav: [
       { section: "home", label: "Home" },
+      { section: "thesis", label: "Our thesis" },
       { section: "search", label: "What we seek" },
-      { section: "offer", label: "What we offer" },
+      { section: "offer", label: "What the ally receives" },
       { section: "work", label: "How we work" },
       { section: "process", label: "Process" },
       { section: "application", label: "Apply" },
@@ -70,8 +71,8 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       access: "Protected access",
     },
     footer: {
-      line: "Cataliza Capital selects one ally per year to build healthy businesses, lift culture, and sustain real impact.",
-      note: "Designed for GitHub Pages, local content, and bilingual collaboration.",
+      line: "Cataliza selects one ally per year and builds with clear impact and economic goals.",
+      note: "Static bilingual site deployed on GitHub Pages.",
     },
   },
 };

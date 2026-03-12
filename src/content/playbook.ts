@@ -23,6 +23,11 @@ export type PlaybookCopy = {
   cadence: {
     title: string;
     summary: string;
+    labels: {
+      cadence: string;
+      focus: string;
+      owner: string;
+    };
     rituals: Array<{ cadence: string; focus: string; owner: string }>;
   };
   incentives: {
@@ -34,6 +39,16 @@ export type PlaybookCopy = {
     title: string;
     summary: string;
     items: Array<{ quarter: string; target: string; signal: string }>;
+  };
+  council: {
+    title: string;
+    summary: string;
+    pillars: Array<{ title: string; summary: string; members: string[] }>;
+  };
+  ecosystem: {
+    title: string;
+    summary: string;
+    prompts: string[];
   };
   dashboard: {
     title: string;

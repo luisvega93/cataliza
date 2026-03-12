@@ -2,18 +2,26 @@ import type { Locale } from "@/lib/i18n";
 
 export const publicSectionKeys = [
   "home",
+  "thesis",
   "search",
   "offer",
   "work",
   "process",
-  "team",
-  "portfolio",
-  "ecosystem",
+  "council",
+  "allies",
   "values",
   "application",
 ] as const;
 
-export const publicNavSectionKeys = ["home", "search", "offer", "work", "process", "application"] as const;
+export const publicNavSectionKeys = [
+  "home",
+  "thesis",
+  "search",
+  "offer",
+  "work",
+  "process",
+  "application",
+] as const;
 
 export type PublicSectionKey = (typeof publicSectionKeys)[number];
 export type PublicNavSectionKey = (typeof publicNavSectionKeys)[number];
@@ -21,25 +29,25 @@ export type PublicNavSectionKey = (typeof publicNavSectionKeys)[number];
 const publicSectionIds: Record<Locale, Record<PublicSectionKey, string>> = {
   es: {
     home: "home",
+    thesis: "nuestra-tesis",
     search: "que-buscamos",
-    offer: "que-ofrecemos",
+    offer: "que-recibe-el-aliado",
     work: "como-trabajamos",
     process: "proceso",
-    team: "equipo-consejo",
-    portfolio: "portafolio",
-    ecosystem: "ecosistema",
+    council: "consejo",
+    allies: "otros-aliados",
     values: "valores",
     application: "aplicacion",
   },
   en: {
     home: "home",
+    thesis: "our-thesis",
     search: "what-we-seek",
-    offer: "what-we-offer",
+    offer: "what-the-ally-receives",
     work: "how-we-work",
     process: "process",
-    team: "team-council",
-    portfolio: "portfolio",
-    ecosystem: "ecosystem",
+    council: "council",
+    allies: "other-allies",
     values: "values",
     application: "application",
   },

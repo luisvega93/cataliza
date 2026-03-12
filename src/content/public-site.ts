@@ -3,16 +3,19 @@ import type { Locale } from "@/lib/i18n";
 import { publicCopyEn } from "@/content/public-site.en";
 import { publicCopyEs } from "@/content/public-site.es";
 
-export type PublicSection = {
+export type SectionIntro = {
   eyebrow: string;
+  summary?: string;
+};
+
+export type SearchGroup = {
   title: string;
-  summary: string;
   points: string[];
 };
 
 export type OfferCard = {
   title: string;
-  summary: string;
+  summary?: string;
   bullets: string[];
 };
 
@@ -22,20 +25,12 @@ export type ProcessStage = {
   bullets: string[];
 };
 
-export type TeamPillar = {
+export type CouncilPillar = {
   title: string;
   summary: string;
-  members: string[];
 };
 
-export type PortfolioItem = {
-  title: string;
-  stage: string;
-  summary: string;
-  tags: string[];
-};
-
-export type EcosystemItem = {
+export type ValueItem = {
   title: string;
   summary: string;
 };
@@ -68,53 +63,34 @@ export type PublicCopy = {
     eyebrow: string;
     title: string;
     summary: string;
-    thesis: string[];
     primaryCta: string;
-    secondaryCta: string;
     stats: Array<{ value: string; label: string }>;
   };
-  search: PublicSection;
-  offer: {
+  thesis: {
     eyebrow: string;
-    title: string;
-    summary: string;
+    lines: string[];
+  };
+  search: SectionIntro & {
+    groups: SearchGroup[];
+  };
+  offer: SectionIntro & {
     cards: OfferCard[];
   };
-  work: {
-    eyebrow: string;
-    title: string;
-    summary: string;
-    model: string[];
-    roles: Array<{ title: string; summary: string }>;
+  work: SectionIntro & {
+    cards: OfferCard[];
   };
-  process: {
-    eyebrow: string;
-    title: string;
-    summary: string;
+  process: SectionIntro & {
     stages: ProcessStage[];
   };
-  team: {
-    eyebrow: string;
-    title: string;
-    summary: string;
-    pillars: TeamPillar[];
+  council: SectionIntro & {
+    pillars: CouncilPillar[];
   };
-  portfolio: {
-    eyebrow: string;
-    title: string;
-    summary: string;
-    items: PortfolioItem[];
+  allies: SectionIntro & {
+    emptyTitle: string;
+    emptySummary: string;
   };
-  ecosystem: {
-    eyebrow: string;
-    title: string;
-    summary: string;
-    items: EcosystemItem[];
-  };
-  values: {
-    eyebrow: string;
-    title: string;
-    values: Array<{ title: string; summary: string }>;
+  values: SectionIntro & {
+    items: ValueItem[];
   };
   form: FormCopy;
 };

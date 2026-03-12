@@ -2,146 +2,152 @@ import type { PublicCopy } from "@/content/public-site";
 
 export const publicCopyEs: PublicCopy = {
   meta: {
-    title: "Cataliza Capital | Plataforma para aliados de alto oficio",
+    title: "Cataliza Capital | Capital Capital.",
     description:
-      "Cataliza Capital identifica líderes de proyecto con alto oficio, suma un hub operativo y financiamiento catalítico, y construye negocios sanos con impacto real.",
+      "Cataliza busca aliarse e invertir en personas cuya vocaci\u00f3n ya transforma su comunidad. Seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y econ\u00f3micas.",
   },
   hero: {
     eyebrow: "Cataliza Capital",
-    title: "Capital paciente para quienes elevan cultura, oficio y entorno.",
+    title: "Capital Capital.",
     summary:
-      "Cataliza invierte tiempo, estructura y capital en personas cuya vocación ya transforma su comunidad. Seleccionamos un aliado por año y construimos con disciplina operativa.",
-    thesis: [
-      "Hay personas con la capacidad de elevar primero su entorno y luego su cultura.",
-      "Con la plataforma, el fondeo y el acompañamiento correctos, esa capacidad se vuelve más probable y sostenible.",
-      "Buscamos oficio real, cercanía con el cliente y hambre por construir un negocio sano.",
-      "No apostamos por volumen; apostamos por alineación profunda y execution density.",
-      "Un aliado por año. Un estándar alto. Un juego largo.",
-    ],
+      "Cataliza busca aliarse e invertir en personas cuya vocaci\u00f3n ya transforma su comunidad. Seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y econ\u00f3micas.",
     primaryCta: "Aplicar ahora",
-    secondaryCta: "Explorar tesis",
     stats: [
-      { value: "1", label: "aliado nuevo por año" },
-      { value: "USD 100k", label: "grant catalítico" },
-      { value: "USD 100k", label: "línea revolvente" },
+      { value: "1", label: "aliado por a\u00f1o" },
+      { value: "USD 100k", label: "grant" },
+      { value: "USD 100k", label: "l\u00ednea de cr\u00e9dito" },
+    ],
+  },
+  thesis: {
+    eyebrow: "Nuestra Tesis",
+    lines: [
+      "Hay personas con la capacidad de elevar primero su entorno y luego su cultura.",
+      "Con la plataforma, fondeo y el acompa\u00f1amiento necesario podemos maximizar las chances de que estas personas logren elevar un aspecto de su entorno/cultura.",
     ],
   },
   search: {
-    eyebrow: "Qué buscamos",
-    title: "Elegimos personas y proyectos con vocación, craft y disciplina comercial.",
+    eyebrow: "Qu\u00e9 buscamos",
     summary:
-      "El mejor aliado para Cataliza vive diariamente su oficio, inspira a otros y conserva la honestidad intelectual para iterar junto a un hub compartido.",
-    points: [
-      "Personas que aman lo que hacen, lo hacen muy bien, es monetizable y el mundo lo necesita.",
-      "Alta habilidad técnica o creativa con capacidad comprobable de elevar cultura y entorno.",
-      "Liderazgo cercano al cliente para cerrar la distancia entre productor y consumidor.",
-      "Colaboración real con coaching, claridad y velocidad; evitamos la rigidez del my way or the highway.",
-      "Proyectos con un camino claro hacia ingresos, hitos visibles y ambición de negocio sano.",
+      "Buscamos una persona l\u00edder de proyecto y un proyecto con camino claro para hacer dinero y elevar un aspecto de su entorno o cultura.",
+    groups: [
+      {
+        title: "En un aliado",
+        points: [
+          "Personas que vivan diariamente su vocaci\u00f3n: aman lo que hacen, lo hacen muy bien, es monetizable y el mundo lo necesita.",
+          "Alta habilidad y oficio.",
+          "Capacidad de inspirar, transformar entorno y elevar cultura.",
+          "Capacidad de colaborar con un hub, recibir coaching e iterar r\u00e1pido. Evitamos el my way or the highway.",
+          "Capacidad de liderar equipo comercial o t\u00e9cnico para cerrar la distancia productor consumidor.",
+        ],
+      },
+      {
+        title: "En un proyecto",
+        points: [
+          "El proyecto debe buscar hacer dinero y elevar un aspecto de su entorno o cultura. Ambas se deben reforzar mutuamente.",
+          "Camino claro hacia hacer dinero. Monetizable con milestones. Negocio sano, con disciplina y que busque elevar un aspecto de su cultura y entorno.",
+          "No buscamos proyectos que dependan de alguien m\u00e1s para ventas o producci\u00f3n. El aliado debe ser el m\u00e1s cercano al cliente para entender necesidad real.",
+        ],
+      },
     ],
   },
   offer: {
-    eyebrow: "Qué ofrecemos",
-    title: "Una combinación deliberada de plataforma, crédito y comunidad.",
+    eyebrow: "Qu\u00e9 recibe el aliado de Cataliza",
     summary:
-      "Cataliza no solo entrega dinero. Operamos como un hub moderno que resuelve los cuellos de botella más importantes para que el aliado pueda concentrarse en producción, ventas y liderazgo cultural.",
+      "Cada proyecto recibe un equipo t\u00e9cnico, una combinaci\u00f3n de grant y cr\u00e9dito revolvente, y acceso a la comunidad de advisors y al ecosistema de impacto social.",
     cards: [
       {
         title: "Plataforma",
-        summary: "Shared services para resolver negocio con rigor, ritmo y claridad.",
+        summary: "Shared Services Modern Hub dise\u00f1ado para resolver los principales temas de negocio.",
         bullets: [
-          "Finanzas, planeación, cashflow y modelaje.",
-          "Operaciones, ERP, herramientas y flujo de información.",
-          "Legal, fiscal y contable para cumplimiento ordenado.",
-          "Marketing, diseño y materiales comerciales.",
+          "Finanzas / planeaci\u00f3n / modelaje.",
+          "Operaciones y sistemas (ERP, flujos de informaci\u00f3n, herramientas).",
+          "Legal / fiscal / contable.",
+          "Marketing / dise\u00f1o / branding.",
         ],
       },
       {
-        title: "Crédito",
-        summary: "Capital catalítico diseñado para aprendizaje y disciplina.",
+        title: "Fondeo",
+        summary: "Grant de hasta USD 100,000 y l\u00ednea de cr\u00e9dito revolvente de hasta USD 100,000.",
         bullets: [
-          "Grant de hasta USD 100,000 para desarrollar idea, proyecto o producto.",
-          "Línea de crédito revolvente de hasta USD 100,000 para crecimiento operativo.",
-          "Hitos claros para mantener vivo el crédito y reducir dependencia progresivamente.",
+          "Grant: para financiar desarrollo de idea, proyecto o producto.",
+          "Cr\u00e9dito: para financiar crecimiento operativo y capital de trabajo.",
+          "Milestones claros para mantener el cr\u00e9dito vivo.",
         ],
       },
       {
-        title: "Comunidad",
-        summary: "Acceso a una red alineada con misión, craft y reach.",
+        title: "Comunidad y acceso",
+        summary: "Acceso a una red alineada a misi\u00f3n, consejo, aliados, cohort, profesores y reach global.",
         bullets: [
-          "Consejo de advisors con visión, impacto y alcance global.",
-          "Cohort, profesores y aliados con mentalidad de juego largo.",
-          "Posicionamiento en ecosistemas de cultura, impacto y emprendimiento.",
+          "Consejo con visi\u00f3n, impacto y alcance global.",
+          "Comunidad alineada a misi\u00f3n y oficio.",
+          "Acceso a ecosistema de impacto social.",
         ],
       },
     ],
   },
   work: {
-    eyebrow: "Cómo trabajamos",
-    title: "El aliado lidera el core; Cataliza opera el negocio alrededor.",
-    summary:
-      "El operating model separa quién conduce producto, servicio y ventas, y quién instala estructura, control y sistema. Los incentivos se alinean con resultados reales.",
-    model: [
-      "Management compartido entre aliado y managers de Cataliza para definir visión, cultura y business plan.",
-      "El aliado lleva el día a día del core operativo, comercial o creativo.",
-      "El hub de Cataliza lleva el día a día financiero, sistémico, contable y de soporte comercial.",
-      "La gobernanza privilegia consenso fuerte, claridad y velocidad antes de escalar.",
-    ],
-    roles: [
-      {
-        title: "Aliado",
-        summary: "Producción, servicio, ventas, calidad y liderazgo del equipo core.",
-      },
-      {
-        title: "Hub Cataliza",
-        summary: "Planeación financiera, operaciones, sistemas, legal-contable-fiscal, marketing y diseño.",
-      },
+    eyebrow: "C\u00f3mo trabajamos",
+    summary: "El aliado lidera la operaci\u00f3n core y el Hub opera el negocio.",
+    cards: [
       {
         title: "Management",
-        summary: "Visión, cultura, hitos, business plan, coaching y accountability.",
+        bullets: [
+          "Aliado + managers de Cataliza.",
+          "Definen visi\u00f3n, cultura y business plan.",
+          "El aliado lidera a su equipo en el d\u00eda a d\u00eda.",
+          "El m\u00e1nager de Cataliza lidera el Hub en el d\u00eda a d\u00eda.",
+        ],
+      },
+      {
+        title: "Hub",
+        bullets: [
+          "Planeaci\u00f3n financiera: fondeo, cashflow, receivables/payables, modelaje y controles.",
+          "Operaciones y sistemas: ERP, procesos, flujo de informaci\u00f3n y herramientas tecnol\u00f3gicas.",
+          "Legal-contable-fiscal: regularizaci\u00f3n y cumplimiento con autoridades.",
+          "Marketing-design: branding, materiales de venta y digital media.",
+        ],
       },
     ],
   },
   process: {
-    eyebrow: "Proceso de selección",
-    title: "Un proceso tipo YC, adaptado a valores, craft y colaboración.",
-    summary:
-      "Elegimos lentamente y trabajamos rápido. El proceso busca claridad sobre calidad, colaboración, ruta a ingresos e impacto medible.",
+    eyebrow: "Proceso de selecci\u00f3n",
+    summary: "Definimos una ventana de aplicaci\u00f3n por a\u00f1o y avanzamos por etapas claras.",
     stages: [
       {
-        title: "Etapa 0 - Aplicación",
+        title: "Etapa 0 - Aplicaci\u00f3n",
         timing: "Ventana anual",
         bullets: [
           "Historia del oficio o proyecto.",
           "Producto o servicio y cliente actual.",
-          "Evidencia de calidad y portafolio.",
-          "Economía actual: precios, costos y márgenes aproximados.",
-          "Misión social: qué cambia y cómo se mide.",
+          "Evidencia de calidad.",
+          "Econom\u00eda actual: precios, costos y m\u00e1rgenes aproximados.",
+          "Misi\u00f3n social: qu\u00e9 cambia y c\u00f3mo se mide.",
         ],
       },
       {
         title: "Etapa 1 - Entrevista y referencias",
         timing: "1 a 2 semanas",
         bullets: [
-          "Conversación sobre valores y estilo de colaboración.",
-          "Dos o tres referencias sobre calidad, confianza y consistencia.",
+          "Conversaci\u00f3n sobre valores y estilo de colaboraci\u00f3n.",
+          "2 a 3 referencias sobre calidad, confianza y consistencia.",
         ],
       },
       {
         title: "Etapa 2 - Sprint de claridad",
         timing: "2 semanas",
         bullets: [
-          "One-pager de visión y cultura.",
-          "Hipótesis comercial y pricing inicial.",
+          "One-pager de visi\u00f3n y cultura.",
+          "Hip\u00f3tesis comercial: qui\u00e9n compra, por qu\u00e9 y a qu\u00e9 precio.",
           "Primer modelo simple de unit economics.",
-          "Roadmap de 12 meses con cinco hitos.",
+          "Roadmap de 12 meses con 5 milestones.",
         ],
       },
       {
         title: "Etapa 3 - Investment / Partnership Committee",
-        timing: "Decisión final",
+        timing: "Decisi\u00f3n",
         bullets: [
           "Calidad + craft.",
-          "Confianza + colaboración.",
+          "Confianza + colaboraci\u00f3n.",
           "Ruta a ingresos.",
           "Impacto medible.",
           "Fit con Cataliza.",
@@ -149,131 +155,78 @@ export const publicCopyEs: PublicCopy = {
       },
       {
         title: "Etapa 4 - Onboarding",
-        timing: "30 a 60 días",
+        timing: "30 a 60 d\u00edas",
         bullets: [
           "Setup financiero y contable.",
-          "Operación y sistemas mínimos.",
-          "Brand kit y funnel comercial básico.",
+          "Operaci\u00f3n y sistemas m\u00ednimos.",
+          "Brand kit y funnel comercial b\u00e1sico.",
           "Dashboard mensual.",
         ],
       },
     ],
   },
-  team: {
-    eyebrow: "Equipo y Consejo",
-    title: "Un consejo distribuido entre visión, impacto y reach.",
-    summary:
-      "Cataliza combina operadores con personas capaces de abrir perspectiva, legitimidad y conexiones estratégicas. El consejo reta hipótesis, eleva estándares y amplía alcance.",
+  council: {
+    eyebrow: "Consejo",
+    summary: "Consejo en tres pilares para visi\u00f3n, impacto y alcance global.",
     pillars: [
       {
-        title: "Vision / Estrategia",
-        summary: "Consejo para visión, positioning y decisiones de largo plazo.",
-        members: ["Benjamin Beja", "Mauricio Fabre", "Javier Arrigunaga"],
+        title: "Visi\u00f3n / Estrategia",
+        summary: "Consejo para visi\u00f3n, posicionamiento y decisiones de largo plazo.",
       },
       {
-        title: "Impact / Cultura",
-        summary: "Personas que entienden impacto real, cultura y craft.",
-        members: [
-          "Ricardo López C",
-          "Bárbara Sánchez-Kane",
-          "Elena Reygadas",
-          "Natalia Lafourcade",
-          "Regina Sara Ryan",
-          "Julio Amezcua",
-        ],
+        title: "Impacto / Cultura",
+        summary: "Personas que entienden impacto real, cultura y oficio.",
       },
       {
-        title: "Reach / Alcance global",
-        summary: "Puentes a cohorts, profesores y redes internacionales.",
-        members: ["EMBA cohort members & professors", "Aunnie Patton Power"],
+        title: "Reach / Alcance Global",
+        summary: "Puentes a cohort, profesores y redes internacionales.",
       },
     ],
   },
-  portfolio: {
-    eyebrow: "Portafolio",
-    title: "Un portafolio pequeño por diseño, con señales tempranas de excelencia.",
-    summary:
-      "Cataliza prioriza densidad operativa por encima de volumen. Estos perfiles ilustran el tipo de aliado que puede integrarse al portafolio.",
-    items: [
-      {
-        title: "Casa de oficio culinario",
-        stage: "Selección objetivo",
-        summary:
-          "Un líder gastronómico con craft de nivel mundial, negocio repetible y capacidad de elevar cultura alimentaria local.",
-        tags: ["Hospitality", "Craft", "Culture"],
-      },
-      {
-        title: "Estudio de diseño aplicado",
-        stage: "Pipeline curado",
-        summary:
-          "Práctica creativa con excelencia técnica y espacio claro para ordenar operaciones, pricing y funnel comercial.",
-        tags: ["Design", "Brand", "Systems"],
-      },
-      {
-        title: "Plataforma de educación experta",
-        stage: "Ejemplo de tesis",
-        summary:
-          "Proyecto liderado por un operador con oficio que convierte conocimiento profundo en un servicio premium con impacto medible.",
-        tags: ["Education", "Premium", "Impact"],
-      },
-    ],
-  },
-  ecosystem: {
-    eyebrow: "Ecosistema",
-    title: "Premios, speaking y alianzas para aumentar reach sin burocracia.",
-    summary:
-      "La estrategia de ecosistema conecta a Cataliza y a cada aliado con instituciones, escenarios y comunidades que aceleran reputación, aprendizaje y oportunidad.",
-    items: [
-      {
-        title: "Impact ecosystem en México",
-        summary: "Mapeo y priorización de redes donde el fit cultural y operativo sea real, no performativo.",
-      },
-      {
-        title: "Alianzas institucionales",
-        summary: "Universidades, ferias, clusters y plataformas que expanden reach y talento.",
-      },
-      {
-        title: "Speaking y thought leadership",
-        summary: "Proyectos Cataliza como voces visibles del ecosistema en México, Latinoamérica y Estados Unidos.",
-      },
-    ],
+  allies: {
+    eyebrow: "Otros aliados de Cataliza",
+    summary: "Por ahora no hay otros aliados por anunciar p\u00fablicamente.",
+    emptyTitle: "Sin aliados adicionales por ahora",
+    emptySummary: "Cataliza elige un aliado por a\u00f1o. Cuando haya otros aliados por compartir, aparecer\u00e1n aqu\u00ed.",
   },
   values: {
-    eyebrow: "Valores operativos",
-    title: "Care, calm, craft, culture, curiosity y continuity.",
-    values: [
-      { title: "Care", summary: "Cuidamos personas y estándares al mismo tiempo." },
-      { title: "Calm", summary: "Preferimos claridad por encima del caos y del drama operacional." },
-      { title: "Craft", summary: "La excelencia en oficio importa tanto como el resultado financiero." },
-      { title: "Culture", summary: "Lo inspirador eleva el entorno y abre aspiración para otros." },
-      { title: "Curiosity", summary: "Preguntar mejor permite aprender más rápido y desperdiciar menos meses." },
-      { title: "Continuity", summary: "Jugamos a largo plazo con consistencia, no con hype episódico." },
+    eyebrow: "Valores",
+    summary: "Care, Calm, Craft, Culture, Curiosity y Continuity.",
+    items: [
+      { title: "Care", summary: "Cuidamos personas y est\u00e1ndares." },
+      { title: "Calm", summary: "Claridad por encima del caos." },
+      { title: "Craft", summary: "Excelencia en oficio." },
+      { title: "Culture", summary: "Lo inspirador eleva el entorno." },
+      { title: "Curiosity", summary: "Preguntar mejor, aprender r\u00e1pido." },
+      { title: "Continuity", summary: "Juego largo y consistencia." },
     ],
   },
   form: {
-    heading: "Contacto / aplicación",
+    heading: "Contacto / aplicaci\u00f3n",
     intro:
-      "Cuéntanos quién eres, qué construyes y por qué Cataliza debería mirar contigo el próximo capítulo.",
-    lead: "La aplicación está pensada para abrir una conversación seria, no para sumar ruido.",
-    primaryCta: "Abrir aplicación",
-    externalCta: "Abrir en una pestaña nueva",
-    embedOpen: "Ver aquí mismo",
+      "La aplicaci\u00f3n pide historia del oficio o proyecto, producto o servicio actual, evidencia de calidad, econom\u00eda actual y misi\u00f3n social.",
+    lead: "Definimos una ventana de aplicaci\u00f3n por a\u00f1o.",
+    primaryCta: "Abrir aplicaci\u00f3n",
+    externalCta: "Abrir en una pesta\u00f1a nueva",
+    embedOpen: "Ver aqu\u00ed mismo",
     embedClose: "Ocultar vista previa",
-    embedTitle: "Aplicación abierta",
+    embedTitle: "Aplicaci\u00f3n",
     embedSummary:
-      "Si prefieres revisar las preguntas sin salir del sitio, puedes abrir la versión embebida a continuación.",
-    checklistTitle: "Qué conviene tener a la mano",
+      "Si prefieres revisar las preguntas sin salir del sitio, puedes abrir la versi\u00f3n embebida a continuaci\u00f3n.",
+    checklistTitle: "Qu\u00e9 conviene preparar",
     checklist: [
-      "La historia del proyecto y por qué importa.",
-      "Oferta actual, cliente y evidencia de calidad.",
-      "Economía actual, próximos hitos e impacto que buscas sostener.",
+      "Historia del oficio o proyecto.",
+      "Producto o servicio y cliente actual.",
+      "Evidencia de calidad.",
+      "Econom\u00eda actual.",
+      "Misi\u00f3n social.",
     ],
-    fallbackEyebrow: "Próxima ventana",
-    fallbackTitle: "Aplicaciones abriendo pronto",
+    fallbackEyebrow: "Ventana anual",
+    fallbackTitle: "Aplicaciones pr\u00f3ximamente",
     fallbackSummary:
-      "Estamos afinando la próxima ventana de aplicación. Mientras tanto, puedes revisar el perfil que buscamos y preparar tu historia con calma.",
+      "La pr\u00f3xima ventana de aplicaci\u00f3n se anunciar\u00e1 aqu\u00ed. Mientras tanto, puedes revisar qu\u00e9 buscamos y preparar tu informaci\u00f3n base.",
     fallbackNote:
-      "Cuando la ventana esté activa, esta sección abrirá la aplicación completa o el canal de contacto correspondiente.",
-    fallbackCta: "Revisar perfil de aliado",
+      "Cuando la ventana est\u00e9 activa, esta secci\u00f3n abrir\u00e1 la aplicaci\u00f3n completa o el canal de contacto correspondiente.",
+    fallbackCta: "Ver qu\u00e9 buscamos",
   },
 };
