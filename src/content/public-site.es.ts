@@ -11,14 +11,19 @@ export const publicCopyEs: PublicCopy = {
     title: "Cataliza Capital",
     summary:
       "Cataliza se al\u00eda e invierte en personas que ya transforman su comunidad: seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y desempe\u00f1o econ\u00f3mico; cada aliado seleccionado tiene acceso a USD 100k en grant y otros USD 100k en l\u00ednea de cr\u00e9dito.",
-    summaryParts: [
-      { text: "Cataliza se al\u00eda e invierte en personas que ya transforman su comunidad: seleccionamos " },
-      { text: "1 aliado por a\u00f1o", emphasis: true },
-      { text: " y construimos con metas claras de impacto y desempe\u00f1o econ\u00f3mico; cada aliado seleccionado tiene acceso a " },
-      { text: "USD 100k en grant", emphasis: true },
-      { text: " y otros " },
-      { text: "USD 100k en l\u00ednea de cr\u00e9dito", emphasis: true },
-      { text: "." },
+    summaryBlocks: [
+      [
+        { text: "Cataliza se al\u00eda e invierte en personas que ya transforman su comunidad: seleccionamos " },
+        { text: "1 aliado por a\u00f1o", emphasis: true },
+        { text: " y construimos con metas claras de impacto y desempe\u00f1o econ\u00f3mico; " },
+      ],
+      [
+        { text: "cada aliado seleccionado tiene acceso a " },
+        { text: "USD 100k en grant", emphasis: true },
+        { text: " y otros " },
+        { text: "USD 100k en l\u00ednea de cr\u00e9dito", emphasis: true },
+        { text: "." },
+      ],
     ],
     primaryCta: "Aplicar ahora",
   },

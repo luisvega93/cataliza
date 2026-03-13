@@ -11,14 +11,19 @@ export const publicCopyEn: PublicCopy = {
     title: "Cataliza Capital",
     summary:
       "Cataliza partners with and invests in people who are already transforming their community: we select one ally per year and build with clear impact and economic performance goals; each selected ally has access to USD 100k in grant funding and another USD 100k in credit line.",
-    summaryParts: [
-      { text: "Cataliza partners with and invests in people who are already transforming their community: we select " },
-      { text: "1 ally per year", emphasis: true },
-      { text: " and build with clear impact and economic performance goals; each selected ally has access to " },
-      { text: "USD 100k in grant funding", emphasis: true },
-      { text: " and another " },
-      { text: "USD 100k in credit line", emphasis: true },
-      { text: "." },
+    summaryBlocks: [
+      [
+        { text: "Cataliza partners with and invests in people who are already transforming their community: we select " },
+        { text: "1 ally per year", emphasis: true },
+        { text: " and build with clear impact and economic performance goals; " },
+      ],
+      [
+        { text: "each selected ally has access to " },
+        { text: "USD 100k in grant funding", emphasis: true },
+        { text: " and another " },
+        { text: "USD 100k in credit line", emphasis: true },
+        { text: "." },
+      ],
     ],
     primaryCta: "Apply now",
   },

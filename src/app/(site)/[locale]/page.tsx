@@ -51,14 +51,18 @@ export default async function PublicPage({ params }: PublicPageProps) {
           <span className="eyebrow">{copy.hero.eyebrow}</span>
           <h1>{copy.hero.title}</h1>
           <p className="hero-summary">
-            {copy.hero.summaryParts?.length
-              ? copy.hero.summaryParts.map((part, index) =>
-                  part.emphasis ? (
-                    <strong key={`${part.text}-${index}`}>{part.text}</strong>
-                  ) : (
-                    <span key={`${part.text}-${index}`}>{part.text}</span>
-                  ),
-                )
+            {copy.hero.summaryBlocks?.length
+              ? copy.hero.summaryBlocks.map((block, blockIndex) => (
+                  <span className="hero-summary-block" key={`hero-block-${blockIndex}`}>
+                    {block.map((part, partIndex) =>
+                      part.emphasis ? (
+                        <strong key={`${part.text}-${blockIndex}-${partIndex}`}>{part.text}</strong>
+                      ) : (
+                        <span key={`${part.text}-${blockIndex}-${partIndex}`}>{part.text}</span>
+                      ),
+                    )}
+                  </span>
+                ))
               : copy.hero.summary}
           </p>
           {copy.hero.explainer?.length ? (

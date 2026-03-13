@@ -366,11 +366,17 @@ main {
   max-width: 62ch;
   margin: 18px 0 0;
   font-size: 1.05rem;
+  text-wrap: pretty;
 }
 
 .hero-summary strong {
   color: var(--ink);
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.hero-summary-block {
+  display: inline;
 }
 
 .hero-explainer {
@@ -384,6 +390,20 @@ main {
 .hero-explainer strong {
   color: var(--ink);
   font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .hero-summary {
+    max-width: 58ch;
+  }
+
+  .hero-summary-block {
+    display: block;
+  }
+
+  .hero-summary-block + .hero-summary-block {
+    margin-top: 0.35rem;
+  }
 }
 
 .eyebrow,
