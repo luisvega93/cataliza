@@ -312,6 +312,11 @@ main {
   grid-template-columns: 1fr;
 }
 
+.hero-panel-lean.tight {
+  width: min(100%, 920px);
+  margin-inline: auto;
+}
+
 .hero-panel-lean .hero-aside {
   display: grid;
   align-content: end;
