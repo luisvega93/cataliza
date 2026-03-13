@@ -63,8 +63,9 @@ export type PublicCopy = {
     eyebrow: string;
     title: string;
     summary: string;
+    summaryParts?: Array<{ text: string; emphasis?: boolean }>;
     primaryCta: string;
-    explainer: Array<{ text: string; emphasis?: boolean }>;
+    explainer?: Array<{ text: string; emphasis?: boolean }>;
   };
   thesis: {
     eyebrow: string;

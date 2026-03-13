@@ -50,12 +50,24 @@ export default async function PublicPage({ params }: PublicPageProps) {
         <div className="hero-copy">
           <span className="eyebrow">{copy.hero.eyebrow}</span>
           <h1>{copy.hero.title}</h1>
-          <p className="hero-summary">{copy.hero.summary}</p>
-          <p className="hero-explainer">
-            {copy.hero.explainer.map((part, index) =>
-              part.emphasis ? <strong key={`${part.text}-${index}`}>{part.text}</strong> : <span key={`${part.text}-${index}`}>{part.text}</span>,
-            )}
+          <p className="hero-summary">
+            {copy.hero.summaryParts?.length
+              ? copy.hero.summaryParts.map((part, index) =>
+                  part.emphasis ? (
+                    <strong key={`${part.text}-${index}`}>{part.text}</strong>
+                  ) : (
+                    <span key={`${part.text}-${index}`}>{part.text}</span>
+                  ),
+                )
+              : copy.hero.summary}
           </p>
+          {copy.hero.explainer?.length ? (
+            <p className="hero-explainer">
+              {copy.hero.explainer.map((part, index) =>
+                part.emphasis ? <strong key={`${part.text}-${index}`}>{part.text}</strong> : <span key={`${part.text}-${index}`}>{part.text}</span>,
+              )}
+            </p>
+          ) : null}
           <div className="cta-row">
             <Link className="cta-button primary" href={getPublicSectionHash(locale, "application")}>
               {copy.hero.primaryCta}

@@ -4,23 +4,23 @@ export const publicCopyEn: PublicCopy = {
   meta: {
     title: "Cataliza Capital | Cataliza Capital",
     description:
-      "Cataliza seeks to partner with and invest in people whose vocation already transforms their community. We select one ally per year and build with clear impact and economic goals.",
+      "Cataliza partners with and invests in people who are already transforming their community: we select one ally per year and build with clear impact and economic performance goals; each selected ally has access to USD 100k in grant funding and another USD 100k in credit line.",
   },
   hero: {
     eyebrow: "Cataliza Capital",
     title: "Cataliza Capital",
     summary:
-      "Cataliza seeks to partner with and invest in people whose vocation already transforms their community. We select one ally per year and build with clear impact and economic goals.",
-    primaryCta: "Apply now",
-    explainer: [
-      { text: "The base structure includes " },
+      "Cataliza partners with and invests in people who are already transforming their community: we select one ally per year and build with clear impact and economic performance goals; each selected ally has access to USD 100k in grant funding and another USD 100k in credit line.",
+    summaryParts: [
+      { text: "Cataliza partners with and invests in people who are already transforming their community: we select " },
       { text: "1 ally per year", emphasis: true },
-      { text: ", " },
-      { text: "USD 100k grant", emphasis: true },
-      { text: ", and " },
-      { text: "USD 100k credit line", emphasis: true },
+      { text: " and build with clear impact and economic performance goals; each selected ally has access to " },
+      { text: "USD 100k in grant funding", emphasis: true },
+      { text: " and another " },
+      { text: "USD 100k in credit line", emphasis: true },
       { text: "." },
     ],
+    primaryCta: "Apply now",
   },
   thesis: {
     eyebrow: "Our Thesis",

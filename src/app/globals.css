@@ -368,6 +368,11 @@ main {
   font-size: 1.05rem;
 }
 
+.hero-summary strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .hero-explainer {
   max-width: 62ch;
   margin: 16px 0 0;
