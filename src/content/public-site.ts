@@ -64,7 +64,7 @@ export type PublicCopy = {
     title: string;
     summary: string;
     primaryCta: string;
-    stats: Array<{ value: string; label: string }>;
+    explainer: Array<{ text: string; emphasis?: boolean }>;
   };
   thesis: {
     eyebrow: string;

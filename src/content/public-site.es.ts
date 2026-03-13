@@ -12,10 +12,14 @@ export const publicCopyEs: PublicCopy = {
     summary:
       "Cataliza busca aliarse e invertir en personas cuya vocaci\u00f3n ya transforma su comunidad. Seleccionamos un aliado por a\u00f1o y construimos con metas claras de impacto y econ\u00f3micas.",
     primaryCta: "Aplicar ahora",
-    stats: [
-      { value: "1", label: "aliado por a\u00f1o" },
-      { value: "USD 100k", label: "grant" },
-      { value: "USD 100k", label: "l\u00ednea de cr\u00e9dito" },
+    explainer: [
+      { text: "La estructura base contempla " },
+      { text: "1 aliado por a\u00f1o", emphasis: true },
+      { text: ", " },
+      { text: "USD 100k grant", emphasis: true },
+      { text: " y " },
+      { text: "USD 100k l\u00ednea de cr\u00e9dito", emphasis: true },
+      { text: "." },
     ],
   },
   thesis: {

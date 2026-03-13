@@ -363,6 +363,19 @@ main {
   font-size: 1.05rem;
 }
 
+.hero-explainer {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.hero-explainer strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .eyebrow,
 .micro-label {
   display: inline-flex;

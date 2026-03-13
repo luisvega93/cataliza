@@ -12,10 +12,14 @@ export const publicCopyEn: PublicCopy = {
     summary:
       "Cataliza seeks to partner with and invest in people whose vocation already transforms their community. We select one ally per year and build with clear impact and economic goals.",
     primaryCta: "Apply now",
-    stats: [
-      { value: "1", label: "ally per year" },
-      { value: "USD 100k", label: "grant" },
-      { value: "USD 100k", label: "credit line" },
+    explainer: [
+      { text: "The base structure includes " },
+      { text: "1 ally per year", emphasis: true },
+      { text: ", " },
+      { text: "USD 100k grant", emphasis: true },
+      { text: ", and " },
+      { text: "USD 100k credit line", emphasis: true },
+      { text: "." },
     ],
   },
   thesis: {

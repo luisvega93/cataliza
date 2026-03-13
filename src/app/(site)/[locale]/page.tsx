@@ -46,28 +46,22 @@ export default async function PublicPage({ params }: PublicPageProps) {
 
   return (
     <div className="page-stack">
-      <section className="hero-panel hero-panel-lean anchor-section" id={getPublicSectionId(locale, "home")}>
+      <section className="hero-panel hero-panel-lean tight anchor-section" id={getPublicSectionId(locale, "home")}>
         <div className="hero-copy">
           <span className="eyebrow">{copy.hero.eyebrow}</span>
           <h1>{copy.hero.title}</h1>
           <p className="hero-summary">{copy.hero.summary}</p>
+          <p className="hero-explainer">
+            {copy.hero.explainer.map((part, index) =>
+              part.emphasis ? <strong key={`${part.text}-${index}`}>{part.text}</strong> : <span key={`${part.text}-${index}`}>{part.text}</span>,
+            )}
+          </p>
           <div className="cta-row">
             <Link className="cta-button primary" href={getPublicSectionHash(locale, "application")}>
               {copy.hero.primaryCta}
             </Link>
           </div>
         </div>
-
-        <aside className="hero-aside">
-          <div className="stat-grid">
-            {copy.hero.stats.map((stat) => (
-              <div className="stat-card" key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </aside>
       </section>
 
       <section className="feature-section anchor-section" id={thesisId}>
