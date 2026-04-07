@@ -6,6 +6,7 @@ import { getPublicCopy, type RichText } from "@/content/public-site";
 import { getPublicSectionHash, getPublicSectionId } from "@/content/site-sections";
 import { isLocale } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
+import { siteBasePath } from "@/lib/site-config";
 
 type PublicPageProps = {
   params: Promise<{ locale: string }> | { locale: string };
@@ -52,6 +53,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
   const modelId = getPublicSectionId(locale, "model");
   const searchId = getPublicSectionId(locale, "search");
   const processId = getPublicSectionId(locale, "process");
+  const howId = getPublicSectionId(locale, "how");
   const applicationId = getPublicSectionId(locale, "application");
 
   return (
@@ -132,6 +134,18 @@ export default async function PublicPage({ params }: PublicPageProps) {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="feature-section anchor-section" id={howId}>
+        <SectionIntro label={copy.how.eyebrow} summary={copy.how.summary} />
+        <figure className="diagram-figure">
+          <img
+            alt={copy.how.image.alt}
+            className="diagram-image"
+            loading="lazy"
+            src={`${siteBasePath}${copy.how.image.src}`}
+          />
+        </figure>
       </section>
 
       <section className="feature-section anchor-section" id={processId}>

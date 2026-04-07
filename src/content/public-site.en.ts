@@ -128,7 +128,6 @@ export const publicCopyEn: PublicCopy = {
             { text: "vocation", emphasis: true },
             { text: " every day: they love what they do, do it very well, it is monetizable, and the world needs it." },
           ],
-          [{ text: "High skill and craft.", emphasis: true }],
           [
             { text: "People who combine " },
             { text: "creative excellence", emphasis: true },
@@ -162,9 +161,9 @@ export const publicCopyEn: PublicCopy = {
         points: [
           [
             { text: "The project should seek to " },
-            { text: "make money", emphasis: true },
-            { text: " and elevate one aspect of its " },
-            { text: "surroundings or culture", emphasis: true },
+            { text: "have social impact", emphasis: true },
+            { text: " and " },
+            { text: "generate revenue", emphasis: true },
             { text: ". Both should reinforce each other." },
           ],
           [
@@ -196,6 +195,13 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
     ],
+  },
+  how: {
+    eyebrow: "How it works",
+    image: {
+      src: "/cataliza-como-funciona.jpg",
+      alt: "Cataliza Capital operating diagram with advisors, management, hybrid funding, and shared services.",
+    },
   },
   process: {
     eyebrow: "Selection process",

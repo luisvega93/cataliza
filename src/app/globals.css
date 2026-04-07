@@ -418,6 +418,22 @@ main {
   font-size: 1.15rem;
 }
 
+.diagram-figure {
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-lg) - 4px);
+  background: rgba(255, 251, 245, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.diagram-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-md) - 4px);
+}
+
 .maxim-card,
 .structure-map-panel {
   border: 1px solid var(--line);

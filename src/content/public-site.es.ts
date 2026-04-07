@@ -128,7 +128,6 @@ export const publicCopyEs: PublicCopy = {
             { text: "vocación", emphasis: true },
             { text: ": aman lo que hacen, lo hacen muy bien, es monetizable y el mundo lo necesita." },
           ],
-          [{ text: "Alta habilidad y oficio.", emphasis: true }],
           [
             { text: "Personas que combinan " },
             { text: "excelencia creativa", emphasis: true },
@@ -162,9 +161,9 @@ export const publicCopyEs: PublicCopy = {
         points: [
           [
             { text: "El proyecto debe buscar " },
-            { text: "hacer dinero", emphasis: true },
-            { text: " y elevar un aspecto de su " },
-            { text: "entorno o cultura", emphasis: true },
+            { text: "tener impacto social", emphasis: true },
+            { text: " y " },
+            { text: "generar dinero", emphasis: true },
             { text: ". Ambas se deben reforzar mutuamente." },
           ],
           [
@@ -196,6 +195,13 @@ export const publicCopyEs: PublicCopy = {
         ],
       },
     ],
+  },
+  how: {
+    eyebrow: "Cómo funciona",
+    image: {
+      src: "/cataliza-como-funciona.jpg",
+      alt: "Mapa operativo de Cataliza Capital con board of advisors, management, fondeo híbrido y shared services modern hub.",
+    },
   },
   process: {
     eyebrow: "Proceso de selección",

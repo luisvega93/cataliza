@@ -5,6 +5,7 @@ export const publicSectionKeys = [
   "thesis",
   "search",
   "model",
+  "how",
   "process",
   "application",
 ] as const;
@@ -14,6 +15,7 @@ export const publicNavSectionKeys = [
   "thesis",
   "search",
   "model",
+  "how",
   "process",
   "application",
 ] as const;
@@ -27,6 +29,7 @@ const publicSectionIds: Record<Locale, Record<PublicSectionKey, string>> = {
     thesis: "nuestra-tesis",
     search: "que-buscamos",
     model: "que-recibe-el-aliado",
+    how: "como-funciona",
     process: "proceso",
     application: "aplicacion",
   },
@@ -35,6 +38,7 @@ const publicSectionIds: Record<Locale, Record<PublicSectionKey, string>> = {
     thesis: "our-thesis",
     search: "what-we-seek",
     model: "what-the-ally-receives",
+    how: "how-it-works",
     process: "process",
     application: "application",
   },

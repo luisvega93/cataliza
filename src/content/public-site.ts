@@ -26,6 +26,13 @@ export type OfferCard = {
   bullets: RichText[];
 };
 
+export type ImageSection = SectionIntro & {
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
 export type ProcessStage = {
   title: string;
   timing: string;
@@ -74,6 +81,7 @@ export type PublicCopy = {
   model: SectionIntro & {
     cards: OfferCard[];
   };
+  how: ImageSection;
   process: SectionIntro & {
     stages: ProcessStage[];
   };
