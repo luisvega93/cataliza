@@ -34,8 +34,8 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     nav: [
       { section: "home", label: "Inicio" },
       { section: "thesis", label: "Nuestra tesis" },
+      { section: "model", label: "Como funciona" },
       { section: "search", label: "Qu\u00e9 buscamos" },
-      { section: "offer", label: "Qu\u00e9 recibe" },
       { section: "work", label: "C\u00f3mo trabajamos" },
       { section: "process", label: "Proceso" },
       { section: "application", label: "Aplicaci\u00f3n" },
@@ -59,8 +59,8 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     nav: [
       { section: "home", label: "Home" },
       { section: "thesis", label: "Our thesis" },
+      { section: "model", label: "How it works" },
       { section: "search", label: "What we seek" },
-      { section: "offer", label: "What the ally receives" },
       { section: "work", label: "How we work" },
       { section: "process", label: "Process" },
       { section: "application", label: "Apply" },

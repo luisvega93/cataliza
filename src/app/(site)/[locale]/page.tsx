@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ApplicationForm } from "@/components/application-form";
+import { StructureMap } from "@/components/structure-map";
 import { getPublicCopy } from "@/content/public-site";
 import { getPublicSectionHash, getPublicSectionId } from "@/content/site-sections";
 import { isLocale } from "@/lib/i18n";
@@ -35,12 +36,11 @@ export default async function PublicPage({ params }: PublicPageProps) {
 
   const copy = getPublicCopy(locale);
   const thesisId = getPublicSectionId(locale, "thesis");
+  const modelId = getPublicSectionId(locale, "model");
   const searchId = getPublicSectionId(locale, "search");
-  const offerId = getPublicSectionId(locale, "offer");
   const workId = getPublicSectionId(locale, "work");
   const processId = getPublicSectionId(locale, "process");
   const councilId = getPublicSectionId(locale, "council");
-  const alliesId = getPublicSectionId(locale, "allies");
   const valuesId = getPublicSectionId(locale, "values");
   const applicationId = getPublicSectionId(locale, "application");
 
@@ -82,11 +82,42 @@ export default async function PublicPage({ params }: PublicPageProps) {
 
       <section className="feature-section anchor-section" id={thesisId}>
         <SectionIntro label={copy.thesis.eyebrow} />
-        <article className="thesis-card">
-          {copy.thesis.lines.map((line) => (
-            <p key={line}>{line}</p>
+        <div className="stack-list">
+          <article className="thesis-card">
+            {copy.thesis.lines.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </article>
+          <div className="definition-grid">
+            {copy.thesis.definitions.map((item) => (
+              <article className="feature-card definition-card" key={item.term}>
+                <h3>{item.term}</h3>
+                <p>{item.definition}</p>
+              </article>
+            ))}
+          </div>
+          <article className="maxim-card">
+            <span className="eyebrow">{copy.thesis.maximLabel}</span>
+            <p>{copy.thesis.maxim}</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="feature-section anchor-section" id={modelId}>
+        <SectionIntro label={copy.model.eyebrow} summary={copy.model.summary} />
+        <div className="feature-grid auto-fit">
+          {copy.model.cards.map((card) => (
+            <article className="feature-card" key={card.title}>
+              <h3>{card.title}</h3>
+              {card.summary ? <p>{card.summary}</p> : null}
+              <ul className="card-list">
+                {card.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           ))}
-        </article>
+        </div>
       </section>
 
       <section className="feature-section anchor-section" id={searchId}>
@@ -98,23 +129,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
               <ul className="card-list">
                 {group.points.map((point) => (
                   <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="feature-section anchor-section" id={offerId}>
-        <SectionIntro label={copy.offer.eyebrow} summary={copy.offer.summary} />
-        <div className="feature-grid">
-          {copy.offer.cards.map((card) => (
-            <article className="feature-card" key={card.title}>
-              <h3>{card.title}</h3>
-              {card.summary ? <p>{card.summary}</p> : null}
-              <ul className="card-list">
-                {card.bullets.map((item) => (
-                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
@@ -137,6 +151,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
             </article>
           ))}
         </div>
+        <StructureMap copy={copy.work.structure} />
       </section>
 
       <section className="feature-section soft anchor-section" id={valuesId}>
@@ -180,14 +195,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="feature-section anchor-section" id={alliesId}>
-        <SectionIntro label={copy.allies.eyebrow} summary={copy.allies.summary} />
-        <article className="feature-card">
-          <h3>{copy.allies.emptyTitle}</h3>
-          <p>{copy.allies.emptySummary}</p>
-        </article>
       </section>
 
       <section className="feature-section application-panel anchor-section" id={applicationId}>

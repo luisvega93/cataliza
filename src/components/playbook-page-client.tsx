@@ -1,6 +1,7 @@
 "use client";
 
 import { ProtectedStaticSection } from "@/components/protected-static-section";
+import { StructureMap } from "@/components/structure-map";
 import type { PlaybookCopy } from "@/content/playbook";
 import { formatCurrency } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
@@ -38,7 +39,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
       nextPath={`/${locale}/playbook`}
       summary={
         locale === "es"
-          ? "El playbook se desbloquea con una contrase\u00f1a compartida guardada solo en esta sesi\u00f3n del navegador."
+          ? "El playbook se desbloquea con una contrasena compartida guardada solo en esta sesion del navegador."
           : "The playbook unlocks with a shared password stored only in this browser session."
       }
       title={locale === "es" ? "Entrar al playbook interno" : "Enter the internal playbook"}
@@ -73,12 +74,74 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
             <article className="feature-card">
-              <h3>{locale === "es" ? "Gobernanza" : "Governance"}</h3>
+              <h3>{locale === "es" ? "Estructura de decision" : "Decision structure"}</h3>
               <div className="stack-list">
                 {copy.operatingModel.governance.map((item) => (
                   <div className="stack-item" key={item.title}>
                     <strong>{item.title}</strong>
                     <p>{item.summary}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+          <StructureMap copy={copy.operatingModel.structure} />
+        </section>
+
+        <section className="feature-section">
+          <SectionLead title={copy.values.title} summary={copy.values.summary} />
+          <div className="feature-grid three-up">
+            {copy.values.items.map((item) => (
+              <article className="feature-card" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+              </article>
+            ))}
+          </div>
+          <div className="split-grid">
+            <article className="feature-card">
+              <h3>{copy.values.transformTitle}</h3>
+              <p>{copy.values.transformSummary}</p>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.values.behaviorsTitle}</h3>
+              <ul className="card-list">
+                {copy.values.behaviors.map((behavior) => (
+                  <li key={behavior}>{behavior}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section className="feature-section">
+          <SectionLead title={copy.strategy.title} summary={copy.strategy.summary} />
+          <div className="split-grid">
+            <article className="feature-card">
+              <h3>{copy.strategy.chainTitle}</h3>
+              <ul className="card-list">
+                {copy.strategy.chain.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="stack-list">
+                <div className="stack-item">
+                  <strong>{copy.strategy.riskTitle}</strong>
+                  <p>{copy.strategy.riskSummary}</p>
+                </div>
+                <div className="stack-item">
+                  <strong>{copy.strategy.responseTitle}</strong>
+                  <p>{copy.strategy.responseSummary}</p>
+                </div>
+              </div>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.strategy.fieldsTitle}</h3>
+              <div className="stack-list">
+                {copy.strategy.fields.map((field) => (
+                  <div className="stack-item" key={field.title}>
+                    <strong>{field.title}</strong>
+                    <p>{field.summary}</p>
                   </div>
                 ))}
               </div>
@@ -142,6 +205,35 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
+          <SectionLead title={copy.benchmarks.title} summary={copy.benchmarks.summary} />
+          <div className="benchmark-grid">
+            {copy.benchmarks.cases.map((item) => (
+              <article className="feature-card benchmark-card" key={item.title}>
+                <h3>{item.title}</h3>
+                <div className="stack-list compact">
+                  <div className="stack-item">
+                    <strong>{copy.benchmarks.labels.mechanism}</strong>
+                    <p>{item.mechanism}</p>
+                  </div>
+                  <div className="stack-item">
+                    <strong>{copy.benchmarks.labels.environment}</strong>
+                    <p>{item.environment}</p>
+                  </div>
+                  <div className="stack-item">
+                    <strong>{copy.benchmarks.labels.culture}</strong>
+                    <p>{item.culture}</p>
+                  </div>
+                  <div className="stack-item">
+                    <strong>{copy.benchmarks.labels.takeaway}</strong>
+                    <p>{item.takeaway}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="feature-section">
           <SectionLead title={copy.council.title} summary={copy.council.summary} />
           <div className="feature-grid three-up">
             {copy.council.pillars.map((pillar) => (
@@ -159,13 +251,119 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
+          <SectionLead title={copy.aiNative.title} summary={copy.aiNative.summary} />
+          <div className="split-grid">
+            <article className="feature-card">
+              <h3>{copy.aiNative.automateTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.automate.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.humanTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.human.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+          <div className="split-grid">
+            <article className="feature-card">
+              <h3>{copy.aiNative.ruleLabel}</h3>
+              <p>{copy.aiNative.rule}</p>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.ritualsTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.rituals.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section className="feature-section">
           <SectionLead title={copy.ecosystem.title} summary={copy.ecosystem.summary} />
+          <div className="feature-grid">
+            <article className="feature-card">
+              <h3>{copy.ecosystem.signalsTitle}</h3>
+              <div className="stack-list">
+                {copy.ecosystem.signals.map((group) => (
+                  <div className="stack-item" key={group.title}>
+                    <strong>{group.title}</strong>
+                    <ul className="card-list">
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.ecosystem.ecosystemsTitle}</h3>
+              <div className="stack-list">
+                {copy.ecosystem.ecosystems.map((group) => (
+                  <div className="stack-item" key={group.title}>
+                    <strong>{group.title}</strong>
+                    <p>{group.items.join(" · ")}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.ecosystem.partnershipsTitle}</h3>
+              <p>{copy.ecosystem.partnershipsSummary}</p>
+              <div className="stack-list">
+                {copy.ecosystem.partnerships.map((group) => (
+                  <div className="stack-item" key={group.title}>
+                    <strong>{group.title}</strong>
+                    <p>{group.items.join(" · ")}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
           <article className="feature-card">
-            <ul className="card-list">
-              {copy.ecosystem.prompts.map((prompt) => (
-                <li key={prompt}>{prompt}</li>
-              ))}
-            </ul>
+            <h3>{copy.ecosystem.speakerTitle}</h3>
+            <div className="split-grid">
+              <div className="stack-list">
+                <div className="stack-item">
+                  <strong>{copy.ecosystem.speakerTopicsTitle}</strong>
+                  <ul className="card-list">
+                    {copy.ecosystem.speakerTopics.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="stack-item">
+                  <strong>{locale === "es" ? "Cadencia" : "Cadence"}</strong>
+                  <p>{copy.ecosystem.speakerCadence}</p>
+                </div>
+              </div>
+              <div className="stack-list">
+                <div className="stack-item">
+                  <strong>{copy.ecosystem.speakerKitTitle}</strong>
+                  <ul className="card-list">
+                    {copy.ecosystem.speakerKit.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="stack-item">
+                  <strong>{copy.ecosystem.speakerKpisTitle}</strong>
+                  <ul className="card-list">
+                    {copy.ecosystem.speakerKpis.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </article>
         </section>
 

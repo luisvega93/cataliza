@@ -28,95 +28,159 @@ export const publicCopyEn: PublicCopy = {
     primaryCta: "Apply now",
   },
   thesis: {
-    eyebrow: "Our Thesis",
+    eyebrow: "Our thesis",
     lines: [
       "There are people with the capacity to elevate their surroundings first and then their culture.",
       "With the platform, funding, and support required, we can maximize the chances that these people elevate one aspect of their surroundings or culture.",
+    ],
+    definitions: [
+      {
+        term: "Elevate",
+        definition:
+          "The capacity of a person and their project to raise the floor of quality and professionalization in a field: standards, product or experience design, collaboration rules, talent formation, and public legitimacy.",
+      },
+      {
+        term: "Surroundings",
+        definition:
+          "Effects on community and local economy: employment, income, market access, multi-actor partnerships, and social infrastructure.",
+      },
+      {
+        term: "Culture",
+        definition:
+          "Effects on practices, identity, and narratives: pride, memory, intergenerational transmission, and symbolic resignification.",
+      },
+    ],
+    maximLabel: "Core maxim",
+    maxim:
+      "We seek projects where elevating surroundings and culture strengthens the business, and where a stronger business increases the capacity to elevate those surroundings.",
+  },
+  model: {
+    eyebrow: "How Cataliza works",
+    summary: "General model: 1 ally per year + Hub + grant + credit + council + ecosystem.",
+    cards: [
+      {
+        title: "1 ally per year",
+        summary: "Cataliza selects a single ally per year to build with focus, proximity, and clear goals.",
+        bullets: [
+          "Annual selection process with close accompaniment.",
+          "Capital and time concentrated on one build per cohort.",
+        ],
+      },
+      {
+        title: "Shared Hub",
+        summary: "A technical team to run the business and professionalize key functions.",
+        bullets: [
+          "Finance and planning.",
+          "Operations and systems.",
+          "Legal, tax, and accounting.",
+          "Marketing, design, and Inclusion & Impact.",
+        ],
+      },
+      {
+        title: "Grant + credit line",
+        summary: "Grant of up to USD 100,000 and revolving credit line of up to USD 100,000.",
+        bullets: [
+          "Grant for development of an idea, project, or product.",
+          "Credit for operating growth and working capital.",
+          "Clear milestones to keep credit alive.",
+        ],
+      },
+      {
+        title: "Council",
+        summary: "Support across vision, impact, and global reach for long-term decisions.",
+        bullets: [
+          "Vision / Strategy.",
+          "Impact / Culture.",
+          "Reach / Global reach.",
+        ],
+      },
+      {
+        title: "Ecosystem",
+        summary: "Community, partnerships, and reach to open visibility, legitimacy, and access.",
+        bullets: [
+          "Council, allies, cohort, and professors.",
+          "Relevant events, ecosystems, and stages.",
+          "Impact, capital, and visibility connections.",
+        ],
+      },
     ],
   },
   search: {
     eyebrow: "What we seek",
     summary:
-      "We look for a project leader and a project with a clear path to making money while elevating one aspect of their surroundings or culture.",
+      "We seek creative excellence, territorial impact, and a clear route to higher-value markets without losing identity.",
     groups: [
       {
         title: "In an ally",
         points: [
           "People who live their vocation every day: they love what they do, do it very well, it is monetizable, and the world needs it.",
           "High skill and craft.",
+          "People who combine creative excellence with territorial impact.",
           "Ability to inspire, transform their surroundings, and elevate culture.",
-          "Ability to collaborate with a hub, receive coaching, and iterate quickly. We avoid a my way or the highway mindset.",
-          "Ability to lead a commercial or technical team and stay close to the customer.",
+          "Ability to collaborate with the Hub, receive coaching, and iterate quickly. We avoid the my way or the highway mindset.",
+          "Ability to lead a commercial or technical team and close the producer-customer distance.",
         ],
       },
       {
         title: "In a project",
         points: [
           "The project should seek to make money and elevate one aspect of its surroundings or culture. Both should reinforce each other.",
-          "A clear path to making money. Monetizable with milestones. A healthy, disciplined business that seeks to elevate one aspect of its culture and surroundings.",
-          "We do not look for projects that depend on someone else for sales or production. The ally should be the person closest to the customer in order to understand real need.",
-        ],
-      },
-    ],
-  },
-  offer: {
-    eyebrow: "What the ally receives from Cataliza",
-    summary:
-      "Each project receives a technical team, a mix of grant and revolving credit, and access to our advisors and social-impact ecosystem.",
-    cards: [
-      {
-        title: "Platform",
-        summary: "A Shared Services Modern Hub designed to solve the main business needs.",
-        bullets: [
-          "Finance / planning / modeling.",
-          "Operations and systems (ERP, information flows, tools).",
-          "Legal / tax / accounting.",
-          "Marketing / design / branding.",
-        ],
-      },
-      {
-        title: "Funding",
-        summary: "A grant of up to USD 100,000 and a revolving credit line of up to USD 100,000.",
-        bullets: [
-          "Grant: to fund development of an idea, project, or product.",
-          "Credit: to fund operating growth and working capital.",
-          "Clear milestones to keep credit alive.",
-        ],
-      },
-      {
-        title: "Community and access",
-        summary: "Access to a network aligned with mission, advisors, allies, cohort, professors, and global reach.",
-        bullets: [
-          "A council across vision, impact, and global reach.",
-          "A community aligned with mission and craft.",
-          "Access to the social-impact ecosystem.",
+          "Three repeatable levers: standardization without loss of identity; platform or community building; governance with purpose.",
+          "Implicit route: strong craft, access to higher-value markets, and local pride and self-esteem.",
+          "Clear path to making money. Monetizable with milestones. A healthy, disciplined business built for the long game.",
+          "We do not look for projects that depend on someone else for sales or production. The ally should stay closest to the customer to understand real need.",
         ],
       },
     ],
   },
   work: {
     eyebrow: "How we work",
-    summary: "The ally leads the core operation and the Hub runs the business.",
+    summary: "Operating model: Ally + Management + Hub.",
     cards: [
       {
-        title: "Management",
+        title: "Ally",
+        summary:
+          "Project lead. Lives the craft, stays close to the customer, leads the core operation, and works in close coordination with the Hub.",
         bullets: [
-          "Ally + Cataliza managers.",
-          "They define vision, culture, and the business plan.",
-          "The ally leads their team day to day.",
-          "The Cataliza manager leads the Hub day to day.",
+          "Leads production, service, and sales where relevant.",
+          "Listens to the customer and protects the craft.",
+          "Makes day-to-day decisions together with Management.",
+        ],
+      },
+      {
+        title: "Management",
+        summary: "Ally + Cataliza managers.",
+        bullets: [
+          "Define vision, culture, and business plan.",
+          "Align priorities, capital decisions, and follow-through.",
+          "Translate the thesis into operating rhythm.",
         ],
       },
       {
         title: "Hub",
+        summary: "Runs the business through shared services and continuous follow-through.",
         bullets: [
-          "Financial planning: funding, cashflow, receivables/payables, modeling, and controls.",
-          "Operations and systems: ERP, processes, information flow, and technology tools.",
-          "Legal-accounting-tax: regularization and compliance with authorities.",
-          "Marketing-design: branding, sales materials, and digital media.",
+          "Financial planning and controls.",
+          "Operations and systems.",
+          "Legal, tax, and accounting.",
+          "Marketing, design, and Inclusion & Impact.",
         ],
       },
     ],
+    structure: {
+      title: "Operating structure",
+      intro: "Operating map that connects council, ecosystem, Cataliza, Management, ally, Hub, and teams led by the ally.",
+      note: "On desktop it reads as a layered sequence; on mobile it stacks by block without losing operating order.",
+      alt: "Cataliza Capital operating map showing council, ecosystem, Cataliza, management, ally, hub, and teams led by the ally.",
+      layers: [
+        { title: "Council / ecosystem", items: ["Council", "Ecosystem"] },
+        { title: "Cataliza", items: ["Cataliza Capital"] },
+        { title: "Management", items: ["Management"] },
+        { title: "Ally", items: ["Ally"] },
+        { title: "Hub", items: ["Hub"] },
+        { title: "Teams led by the ally", items: ["Production / service", "Sales", "Core team"] },
+      ],
+    },
   },
   process: {
     eyebrow: "Selection process",
@@ -129,7 +193,7 @@ export const publicCopyEn: PublicCopy = {
           "Story of the craft or project.",
           "Current product or service and customer.",
           "Evidence of quality.",
-          "Current economics: approximate pricing, costs, and margins.",
+          "Current economics: pricing, costs, and approximate margins.",
           "Social mission: what changes and how it is measured.",
         ],
       },
@@ -137,7 +201,7 @@ export const publicCopyEn: PublicCopy = {
         title: "Stage 1 - Interview and references",
         timing: "1 to 2 weeks",
         bullets: [
-          "Conversation about values and working style.",
+          "Conversation about values and collaboration style.",
           "2 to 3 references on quality, trust, and consistency.",
         ],
       },
@@ -187,25 +251,19 @@ export const publicCopyEn: PublicCopy = {
         summary: "People who understand real impact, culture, and craft.",
       },
       {
-        title: "Reach / Global Reach",
+        title: "Reach / Global reach",
         summary: "Bridges into cohort, professors, and international networks.",
       },
     ],
   },
-  allies: {
-    eyebrow: "Other Cataliza allies",
-    summary: "For now, there are no other allies to announce publicly.",
-    emptyTitle: "No additional allies yet",
-    emptySummary: "Cataliza selects one ally per year. When there are other allies to share, they will appear here.",
-  },
   values: {
     eyebrow: "Values",
-    summary: "Care, Calm, Craft, Culture, Curiosity, and Continuity.",
+    summary: "Care, Calm, Craft, Culture, Curiosity, and Continuity as concrete long-game practices.",
     items: [
       { title: "Care", summary: "We care for people and standards." },
       { title: "Calm", summary: "Clarity over chaos." },
       { title: "Craft", summary: "Excellence in the work." },
-      { title: "Culture", summary: "What inspires can elevate the environment." },
+      { title: "Culture", summary: "What inspires can elevate the surroundings." },
       { title: "Curiosity", summary: "Ask better questions, learn faster." },
       { title: "Continuity", summary: "Long game and consistency." },
     ],
