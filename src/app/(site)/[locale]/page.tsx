@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ApplicationForm } from "@/components/application-form";
-import { getPublicCopy } from "@/content/public-site";
+import { getPublicCopy, type RichText } from "@/content/public-site";
 import { getPublicSectionHash, getPublicSectionId } from "@/content/site-sections";
 import { isLocale } from "@/lib/i18n";
 import { resolveParams } from "@/lib/route-params";
@@ -13,15 +13,29 @@ type PublicPageProps = {
 
 type SectionIntroProps = {
   label: string;
-  summary?: string;
+  summary?: RichText;
 };
+
+function renderRichText(content: RichText, keyPrefix: string) {
+  if (typeof content === "string") {
+    return content;
+  }
+
+  return content.map((part, index) =>
+    part.emphasis ? (
+      <strong key={`${keyPrefix}-${index}`}>{part.text}</strong>
+    ) : (
+      <span key={`${keyPrefix}-${index}`}>{part.text}</span>
+    ),
+  );
+}
 
 function SectionIntro({ label, summary }: SectionIntroProps) {
   return (
     <div className="section-heading compact">
       <span className="eyebrow">{label}</span>
       <h2 className="sr-only">{label}</h2>
-      {summary ? <p className="section-summary">{summary}</p> : null}
+      {summary ? <p className="section-summary">{renderRichText(summary, `${label}-summary`)}</p> : null}
     </div>
   );
 }
@@ -80,8 +94,8 @@ export default async function PublicPage({ params }: PublicPageProps) {
         <SectionIntro label={copy.thesis.eyebrow} />
         <div className="stack-list">
           <article className="thesis-card">
-            {copy.thesis.lines.map((line) => (
-              <p key={line}>{line}</p>
+            {copy.thesis.lines.map((line, index) => (
+              <p key={`thesis-line-${index}`}>{renderRichText(line, `thesis-line-${index}`)}</p>
             ))}
           </article>
         </div>
@@ -93,10 +107,10 @@ export default async function PublicPage({ params }: PublicPageProps) {
           {copy.model.cards.map((card) => (
             <article className="feature-card" key={card.title}>
               <h3>{card.title}</h3>
-              {card.summary ? <p>{card.summary}</p> : null}
+              {card.summary ? <p>{renderRichText(card.summary, `${card.title}-summary`)}</p> : null}
               <ul className="card-list">
-                {card.bullets.map((item) => (
-                  <li key={item}>{item}</li>
+                {card.bullets.map((item, index) => (
+                  <li key={`${card.title}-bullet-${index}`}>{renderRichText(item, `${card.title}-bullet-${index}`)}</li>
                 ))}
               </ul>
             </article>
@@ -111,8 +125,8 @@ export default async function PublicPage({ params }: PublicPageProps) {
             <article className="feature-card" key={group.title}>
               <h3>{group.title}</h3>
               <ul className="card-list">
-                {group.points.map((point) => (
-                  <li key={point}>{point}</li>
+                {group.points.map((point, index) => (
+                  <li key={`${group.title}-point-${index}`}>{renderRichText(point, `${group.title}-point-${index}`)}</li>
                 ))}
               </ul>
             </article>

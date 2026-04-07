@@ -3,20 +3,27 @@ import type { Locale } from "@/lib/i18n";
 import { publicCopyEn } from "@/content/public-site.en";
 import { publicCopyEs } from "@/content/public-site.es";
 
+export type RichTextPart = {
+  text: string;
+  emphasis?: boolean;
+};
+
+export type RichText = string | RichTextPart[];
+
 export type SectionIntro = {
   eyebrow: string;
-  summary?: string;
+  summary?: RichText;
 };
 
 export type SearchGroup = {
   title: string;
-  points: string[];
+  points: RichText[];
 };
 
 export type OfferCard = {
   title: string;
-  summary?: string;
-  bullets: string[];
+  summary?: RichText;
+  bullets: RichText[];
 };
 
 export type ProcessStage = {
@@ -59,7 +66,7 @@ export type PublicCopy = {
   };
   thesis: {
     eyebrow: string;
-    lines: string[];
+    lines: RichText[];
   };
   search: SectionIntro & {
     groups: SearchGroup[];

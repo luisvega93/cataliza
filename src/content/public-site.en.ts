@@ -30,8 +30,28 @@ export const publicCopyEn: PublicCopy = {
   thesis: {
     eyebrow: "Our thesis",
     lines: [
-      "There are people with the capacity to elevate their surroundings first and then their culture.",
-      "With the platform, funding, and right support, these people and their projects can raise the quality and professionalization of their field, with concrete impacts on their surroundings: employment, income, market access, partnerships, and social infrastructure.",
+      [
+        { text: "There are people with the capacity to " },
+        { text: "elevate", emphasis: true },
+        { text: " their " },
+        { text: "surroundings", emphasis: true },
+        { text: " first and then their " },
+        { text: "culture", emphasis: true },
+        { text: "." },
+      ],
+      [
+        { text: "With the " },
+        { text: "platform", emphasis: true },
+        { text: ", " },
+        { text: "funding", emphasis: true },
+        { text: ", and " },
+        { text: "support", emphasis: true },
+        { text: ", these people and their projects can raise the " },
+        { text: "quality and professionalization", emphasis: true },
+        { text: " of their field, with concrete impacts on their surroundings: " },
+        { text: "employment, income, market access, partnerships, and social infrastructure", emphasis: true },
+        { text: "." },
+      ],
     ],
   },
   model: {
@@ -39,7 +59,11 @@ export const publicCopyEn: PublicCopy = {
     cards: [
       {
         title: "Shared Hub",
-        summary: "Technical team to run the business and professionalize key functions.",
+        summary: [
+          { text: "Technical team to run the business and " },
+          { text: "professionalize key functions", emphasis: true },
+          { text: "." },
+        ],
         bullets: [
           "Finance and planning.",
           "Operations and systems.",
@@ -50,7 +74,15 @@ export const publicCopyEn: PublicCopy = {
       },
       {
         title: "Grant + credit line",
-        summary: "Grant of up to MXN 2 million and revolving credit line of up to MXN 2 million.",
+        summary: [
+          { text: "Grant of up to " },
+          { text: "MXN 2 million", emphasis: true },
+          { text: " and " },
+          { text: "credit line", emphasis: true },
+          { text: " of up to " },
+          { text: "MXN 2 million", emphasis: true },
+          { text: "." },
+        ],
         bullets: [
           "Grant for development of an idea, project, or product.",
           "Credit line for operating growth and working capital.",
@@ -59,7 +91,15 @@ export const publicCopyEn: PublicCopy = {
       },
       {
         title: "Ecosystem",
-        summary: "Community, partnerships, and reach to open visibility, legitimacy, and access.",
+        summary: [
+          { text: "Community, partnerships, and reach to open " },
+          { text: "visibility", emphasis: true },
+          { text: ", " },
+          { text: "legitimacy", emphasis: true },
+          { text: ", and " },
+          { text: "access", emphasis: true },
+          { text: "." },
+        ],
         bullets: [
           "Community, allies, and relevant networks.",
           "Key events, ecosystems, and stages.",
@@ -70,35 +110,102 @@ export const publicCopyEn: PublicCopy = {
   },
   search: {
     eyebrow: "What we seek",
-    summary:
-      "We seek creative excellence, territorial impact, and a clear route to higher-value markets without losing identity.",
+    summary: [
+      { text: "We seek " },
+      { text: "creative excellence", emphasis: true },
+      { text: ", " },
+      { text: "territorial impact", emphasis: true },
+      { text: ", and a clear route to " },
+      { text: "higher-value markets", emphasis: true },
+      { text: " without losing identity." },
+    ],
     groups: [
       {
         title: "In an ally",
         points: [
-          "People who live their vocation every day: they love what they do, do it very well, it is monetizable, and the world needs it.",
-          "High skill and craft.",
-          "People who combine creative excellence with territorial impact.",
-          "Ability to inspire, transform their surroundings, and elevate culture.",
-          "Ability to collaborate with the Hub, receive coaching, and iterate quickly. We avoid the my way or the highway mindset.",
-          "Ability to lead a commercial or technical team and close the producer-customer distance.",
+          [
+            { text: "People who live their " },
+            { text: "vocation", emphasis: true },
+            { text: " every day: they love what they do, do it very well, it is monetizable, and the world needs it." },
+          ],
+          [{ text: "High skill and craft.", emphasis: true }],
+          [
+            { text: "People who combine " },
+            { text: "creative excellence", emphasis: true },
+            { text: " with " },
+            { text: "territorial impact", emphasis: true },
+            { text: "." },
+          ],
+          [
+            { text: "Ability to inspire, transform their surroundings, and " },
+            { text: "elevate culture", emphasis: true },
+            { text: "." },
+          ],
+          [
+            { text: "Ability to collaborate with the " },
+            { text: "Hub", emphasis: true },
+            { text: ", receive " },
+            { text: "coaching", emphasis: true },
+            { text: ", and " },
+            { text: "iterate quickly", emphasis: true },
+            { text: ". We avoid the my way or the highway mindset." },
+          ],
+          [
+            { text: "Ability to lead a " },
+            { text: "commercial or technical team", emphasis: true },
+            { text: " and close the producer-customer distance." },
+          ],
         ],
       },
       {
         title: "In a project",
         points: [
-          "The project should seek to make money and elevate one aspect of its surroundings or culture. Both should reinforce each other.",
-          "Three repeatable levers: standardization without loss of identity; platform or community building; governance with purpose.",
-          "Implicit route: strong craft, access to higher-value markets, and local pride and self-esteem.",
-          "Clear path to making money. Monetizable through milestones. A healthy, disciplined business built for the long game.",
-          "We do not look for projects that depend on someone else for sales or production. The ally should stay closest to the customer to understand real need.",
+          [
+            { text: "The project should seek to " },
+            { text: "make money", emphasis: true },
+            { text: " and elevate one aspect of its " },
+            { text: "surroundings or culture", emphasis: true },
+            { text: ". Both should reinforce each other." },
+          ],
+          [
+            { text: "Three repeatable levers: " },
+            { text: "standardization without loss of identity", emphasis: true },
+            { text: "; " },
+            { text: "platform or community building", emphasis: true },
+            { text: "; " },
+            { text: "governance with purpose", emphasis: true },
+            { text: "." },
+          ],
+          [
+            { text: "Implicit route: " },
+            { text: "strong craft", emphasis: true },
+            { text: ", access to " },
+            { text: "higher-value markets", emphasis: true },
+            { text: ", and local pride and self-esteem." },
+          ],
+          [
+            { text: "Clear path to making money. " },
+            { text: "Monetizable through milestones", emphasis: true },
+            { text: ". A healthy, disciplined business built for the long game." },
+          ],
+          [
+            { text: "We do not look for projects that depend on someone else for sales or production. The ally should stay " },
+            { text: "closest to the customer", emphasis: true },
+            { text: " to understand real need." },
+          ],
         ],
       },
     ],
   },
   process: {
     eyebrow: "Selection process",
-    summary: "We define one application window per year and move through clear stages.",
+    summary: [
+      { text: "We define one " },
+      { text: "application window per year", emphasis: true },
+      { text: " and move through " },
+      { text: "clear stages", emphasis: true },
+      { text: "." },
+    ],
     stages: [
       {
         title: "Stage 0 - Application",
