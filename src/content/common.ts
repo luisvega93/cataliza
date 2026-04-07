@@ -26,18 +26,18 @@ export type ShellCopy = {
 
 export const shellCopy: Record<Locale, ShellCopy> = {
   es: {
-    brandDeck: "Plataforma, fondeo y comunidad para personas cuya vocaci\u00f3n ya transforma su entorno.",
+    brandDeck: "Plataforma, fondeo y comunidad para personas cuya vocación ya transforma su entorno.",
     skipLink: "Saltar al contenido",
-    navLabel: "Navegaci\u00f3n principal",
-    menuLabel: "Abrir men\u00fa",
-    closeMenuLabel: "Cerrar men\u00fa",
+    navLabel: "Navegación principal",
+    menuLabel: "Abrir menú",
+    closeMenuLabel: "Cerrar menú",
     nav: [
       { section: "home", label: "Inicio" },
       { section: "thesis", label: "Nuestra tesis" },
-      { section: "model", label: "Cómo funciona" },
-      { section: "search", label: "Qu\u00e9 buscamos" },
+      { section: "search", label: "Qué buscamos" },
+      { section: "model", label: "Qué recibe el aliado" },
       { section: "process", label: "Proceso" },
-      { section: "application", label: "Aplicaci\u00f3n" },
+      { section: "application", label: "Aplicación" },
     ],
     utilities: {
       playbook: "Playbook interno",
@@ -46,7 +46,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     },
     footer: {
       line: "Cataliza selecciona 1 aliado por año y construye con metas claras de impacto y desempeño económico.",
-      note: "Sitio est\u00e1tico biling\u00fce desplegado en GitHub Pages.",
+      note: "Sitio estático bilingüe desplegado en GitHub Pages.",
     },
   },
   en: {
@@ -58,8 +58,8 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     nav: [
       { section: "home", label: "Home" },
       { section: "thesis", label: "Our thesis" },
-      { section: "model", label: "How it works" },
       { section: "search", label: "What we seek" },
+      { section: "model", label: "What the ally receives" },
       { section: "process", label: "Process" },
       { section: "application", label: "Apply" },
     ],

@@ -3,8 +3,8 @@ import type { Locale } from "@/lib/i18n";
 export const publicSectionKeys = [
   "home",
   "thesis",
-  "model",
   "search",
+  "model",
   "process",
   "application",
 ] as const;
@@ -12,8 +12,8 @@ export const publicSectionKeys = [
 export const publicNavSectionKeys = [
   "home",
   "thesis",
-  "model",
   "search",
+  "model",
   "process",
   "application",
 ] as const;
@@ -25,16 +25,16 @@ const publicSectionIds: Record<Locale, Record<PublicSectionKey, string>> = {
   es: {
     home: "home",
     thesis: "nuestra-tesis",
-    model: "como-funciona",
     search: "que-buscamos",
+    model: "que-recibe-el-aliado",
     process: "proceso",
     application: "aplicacion",
   },
   en: {
     home: "home",
     thesis: "our-thesis",
-    model: "how-it-works",
     search: "what-we-seek",
+    model: "what-the-ally-receives",
     process: "process",
     application: "application",
   },

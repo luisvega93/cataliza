@@ -55,7 +55,7 @@ export const publicCopyEs: PublicCopy = {
     ],
   },
   model: {
-    eyebrow: "Cómo funciona",
+    eyebrow: "Qué recibe el aliado de Cataliza",
     cards: [
       {
         title: "Hub compartido",

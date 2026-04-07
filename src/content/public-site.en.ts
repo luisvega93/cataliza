@@ -55,7 +55,7 @@ export const publicCopyEn: PublicCopy = {
     ],
   },
   model: {
-    eyebrow: "How it works",
+    eyebrow: "What a Cataliza ally receives",
     cards: [
       {
         title: "Shared Hub",

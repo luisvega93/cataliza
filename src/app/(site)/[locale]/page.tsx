@@ -101,6 +101,22 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
+      <section className="feature-section anchor-section" id={searchId}>
+        <SectionIntro label={copy.search.eyebrow} summary={copy.search.summary} />
+        <div className="split-grid">
+          {copy.search.groups.map((group) => (
+            <article className="feature-card" key={group.title}>
+              <h3>{group.title}</h3>
+              <ul className="card-list">
+                {group.points.map((point, index) => (
+                  <li key={`${group.title}-point-${index}`}>{renderRichText(point, `${group.title}-point-${index}`)}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="feature-section anchor-section" id={modelId}>
         <SectionIntro label={copy.model.eyebrow} summary={copy.model.summary} />
         <div className="feature-grid auto-fit">
@@ -111,22 +127,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
               <ul className="card-list">
                 {card.bullets.map((item, index) => (
                   <li key={`${card.title}-bullet-${index}`}>{renderRichText(item, `${card.title}-bullet-${index}`)}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="feature-section anchor-section" id={searchId}>
-        <SectionIntro label={copy.search.eyebrow} summary={copy.search.summary} />
-        <div className="split-grid">
-          {copy.search.groups.map((group) => (
-            <article className="feature-card" key={group.title}>
-              <h3>{group.title}</h3>
-              <ul className="card-list">
-                {group.points.map((point, index) => (
-                  <li key={`${group.title}-point-${index}`}>{renderRichText(point, `${group.title}-point-${index}`)}</li>
                 ))}
               </ul>
             </article>
