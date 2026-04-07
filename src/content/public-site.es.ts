@@ -31,24 +31,7 @@ export const publicCopyEs: PublicCopy = {
     eyebrow: "Nuestra tesis",
     lines: [
       "Hay personas con la capacidad de elevar primero su entorno y luego su cultura.",
-      "Con la plataforma, fondeo y el acompañamiento necesario podemos maximizar las chances de que estas personas logren elevar un aspecto de su entorno o cultura.",
-    ],
-    definitions: [
-      {
-        term: "Elevar",
-        definition:
-          "Capacidad de una persona y su proyecto de subir el piso de calidad y profesionalización de un campo: estándares, diseño de producto o experiencia, reglas de colaboración, formación de talento y legitimidad pública.",
-      },
-      {
-        term: "Entorno",
-        definition:
-          "Efectos en comunidad y economía local: empleo, ingresos, acceso a mercados, alianzas multi-actor e infraestructura social.",
-      },
-      {
-        term: "Cultura",
-        definition:
-          "Efectos en prácticas, identidad y narrativas: orgullo, memoria, transmisión intergeneracional y resignificación simbólica.",
-      },
+      "Con la plataforma, el fondeo y el acompañamiento adecuados, estas personas y sus proyectos pueden elevar la calidad y profesionalización de su campo, con impactos concretos en su entorno: empleo, ingresos, acceso a mercados, alianzas e infraestructura social.",
     ],
   },
   model: {

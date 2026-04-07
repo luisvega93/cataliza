@@ -84,14 +84,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
               <p key={line}>{line}</p>
             ))}
           </article>
-          <div className="definition-grid">
-            {copy.thesis.definitions.map((item) => (
-              <article className="feature-card definition-card" key={item.term}>
-                <h3>{item.term}</h3>
-                <p>{item.definition}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

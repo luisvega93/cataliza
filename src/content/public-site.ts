@@ -25,11 +25,6 @@ export type ProcessStage = {
   bullets: string[];
 };
 
-export type DefinitionItem = {
-  term: string;
-  definition: string;
-};
-
 export type FormCopy = {
   heading: string;
   intro: string;
@@ -65,7 +60,6 @@ export type PublicCopy = {
   thesis: {
     eyebrow: string;
     lines: string[];
-    definitions: DefinitionItem[];
   };
   search: SectionIntro & {
     groups: SearchGroup[];

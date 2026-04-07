@@ -31,24 +31,7 @@ export const publicCopyEn: PublicCopy = {
     eyebrow: "Our thesis",
     lines: [
       "There are people with the capacity to elevate their surroundings first and then their culture.",
-      "With the platform, funding, and support required, we can maximize the chances that these people elevate one aspect of their surroundings or culture.",
-    ],
-    definitions: [
-      {
-        term: "Elevate",
-        definition:
-          "The capacity of a person and their project to raise the floor of quality and professionalization in a field: standards, product or experience design, collaboration rules, talent formation, and public legitimacy.",
-      },
-      {
-        term: "Surroundings",
-        definition:
-          "Effects on community and local economy: employment, income, market access, multi-actor partnerships, and social infrastructure.",
-      },
-      {
-        term: "Culture",
-        definition:
-          "Effects on practices, identity, and narratives: pride, memory, intergenerational transmission, and symbolic resignification.",
-      },
+      "With the platform, funding, and right support, these people and their projects can raise the quality and professionalization of their field, with concrete impacts on their surroundings: employment, income, market access, partnerships, and social infrastructure.",
     ],
   },
   model: {
