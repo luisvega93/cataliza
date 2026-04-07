@@ -34,9 +34,8 @@ export const shellCopy: Record<Locale, ShellCopy> = {
     nav: [
       { section: "home", label: "Inicio" },
       { section: "thesis", label: "Nuestra tesis" },
-      { section: "model", label: "Como funciona" },
+      { section: "model", label: "Cómo funciona" },
       { section: "search", label: "Qu\u00e9 buscamos" },
-      { section: "work", label: "C\u00f3mo trabajamos" },
       { section: "process", label: "Proceso" },
       { section: "application", label: "Aplicaci\u00f3n" },
     ],
@@ -46,7 +45,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       access: "Acceso protegido",
     },
     footer: {
-      line: "Cataliza selecciona un aliado por a\u00f1o y construye con metas claras de impacto y econ\u00f3micas.",
+      line: "Cataliza selecciona 1 aliado por año y construye con metas claras de impacto y desempeño económico.",
       note: "Sitio est\u00e1tico biling\u00fce desplegado en GitHub Pages.",
     },
   },
@@ -61,7 +60,6 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       { section: "thesis", label: "Our thesis" },
       { section: "model", label: "How it works" },
       { section: "search", label: "What we seek" },
-      { section: "work", label: "How we work" },
       { section: "process", label: "Process" },
       { section: "application", label: "Apply" },
     ],

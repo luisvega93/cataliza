@@ -1,5 +1,4 @@
 import type { Locale } from "@/lib/i18n";
-import type { StructureMapCopy } from "@/content/structure-map";
 
 import { publicCopyEn } from "@/content/public-site.en";
 import { publicCopyEs } from "@/content/public-site.es";
@@ -29,16 +28,6 @@ export type ProcessStage = {
 export type DefinitionItem = {
   term: string;
   definition: string;
-};
-
-export type CouncilPillar = {
-  title: string;
-  summary: string;
-};
-
-export type ValueItem = {
-  title: string;
-  summary: string;
 };
 
 export type FormCopy = {
@@ -77,8 +66,6 @@ export type PublicCopy = {
     eyebrow: string;
     lines: string[];
     definitions: DefinitionItem[];
-    maximLabel: string;
-    maxim: string;
   };
   search: SectionIntro & {
     groups: SearchGroup[];
@@ -86,18 +73,8 @@ export type PublicCopy = {
   model: SectionIntro & {
     cards: OfferCard[];
   };
-  work: SectionIntro & {
-    cards: OfferCard[];
-    structure: StructureMapCopy;
-  };
   process: SectionIntro & {
     stages: ProcessStage[];
-  };
-  council: SectionIntro & {
-    pillars: CouncilPillar[];
-  };
-  values: SectionIntro & {
-    items: ValueItem[];
   };
   form: FormCopy;
 };

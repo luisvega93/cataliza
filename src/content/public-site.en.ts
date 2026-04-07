@@ -4,13 +4,13 @@ export const publicCopyEn: PublicCopy = {
   meta: {
     title: "Cataliza Capital | Cataliza Capital",
     description:
-      "Cataliza partners with and invests in people who are already transforming their community: we select one ally per year and build with clear impact and economic performance goals; each selected ally has access to USD 100k in grant funding and another USD 100k in credit line.",
+      "Cataliza partners with and invests in people who are already transforming their community: we select 1 ally per year and build with clear impact and economic performance goals; each selected ally has access to MXN 2 million in grant funding and another MXN 2 million in credit line.",
   },
   hero: {
     eyebrow: "Cataliza Capital",
     title: "Cataliza Capital",
     summary:
-      "Cataliza partners with and invests in people who are already transforming their community: we select one ally per year and build with clear impact and economic performance goals; each selected ally has access to USD 100k in grant funding and another USD 100k in credit line.",
+      "Cataliza partners with and invests in people who are already transforming their community: we select 1 ally per year and build with clear impact and economic performance goals; each selected ally has access to MXN 2 million in grant funding and another MXN 2 million in credit line.",
     summaryBlocks: [
       [
         { text: "Cataliza partners with and invests in people who are already transforming their community: we select " },
@@ -19,9 +19,9 @@ export const publicCopyEn: PublicCopy = {
       ],
       [
         { text: "each selected ally has access to " },
-        { text: "USD 100k in grant funding", emphasis: true },
+        { text: "MXN 2 million in grant funding", emphasis: true },
         { text: " and another " },
-        { text: "USD 100k in credit line", emphasis: true },
+        { text: "MXN 2 million in credit line", emphasis: true },
         { text: "." },
       ],
     ],
@@ -50,57 +50,37 @@ export const publicCopyEn: PublicCopy = {
           "Effects on practices, identity, and narratives: pride, memory, intergenerational transmission, and symbolic resignification.",
       },
     ],
-    maximLabel: "Core maxim",
-    maxim:
-      "We seek projects where elevating surroundings and culture strengthens the business, and where a stronger business increases the capacity to elevate those surroundings.",
   },
   model: {
-    eyebrow: "How Cataliza works",
-    summary: "General model: 1 ally per year + Hub + grant + credit + council + ecosystem.",
+    eyebrow: "How it works",
     cards: [
       {
-        title: "1 ally per year",
-        summary: "Cataliza selects a single ally per year to build with focus, proximity, and clear goals.",
-        bullets: [
-          "Annual selection process with close accompaniment.",
-          "Capital and time concentrated on one build per cohort.",
-        ],
-      },
-      {
         title: "Shared Hub",
-        summary: "A technical team to run the business and professionalize key functions.",
+        summary: "Technical team to run the business and professionalize key functions.",
         bullets: [
           "Finance and planning.",
           "Operations and systems.",
           "Legal, tax, and accounting.",
-          "Marketing, design, and Inclusion & Impact.",
+          "Marketing and design.",
+          "Inclusion & Impact.",
         ],
       },
       {
         title: "Grant + credit line",
-        summary: "Grant of up to USD 100,000 and revolving credit line of up to USD 100,000.",
+        summary: "Grant of up to MXN 2 million and revolving credit line of up to MXN 2 million.",
         bullets: [
           "Grant for development of an idea, project, or product.",
-          "Credit for operating growth and working capital.",
-          "Clear milestones to keep credit alive.",
-        ],
-      },
-      {
-        title: "Council",
-        summary: "Support across vision, impact, and global reach for long-term decisions.",
-        bullets: [
-          "Vision / Strategy.",
-          "Impact / Culture.",
-          "Reach / Global reach.",
+          "Credit line for operating growth and working capital.",
+          "Clear milestones to keep the credit line active.",
         ],
       },
       {
         title: "Ecosystem",
         summary: "Community, partnerships, and reach to open visibility, legitimacy, and access.",
         bullets: [
-          "Council, allies, cohort, and professors.",
-          "Relevant events, ecosystems, and stages.",
-          "Impact, capital, and visibility connections.",
+          "Community, allies, and relevant networks.",
+          "Key events, ecosystems, and stages.",
+          "Connections across impact, capital, and visibility.",
         ],
       },
     ],
@@ -127,60 +107,11 @@ export const publicCopyEn: PublicCopy = {
           "The project should seek to make money and elevate one aspect of its surroundings or culture. Both should reinforce each other.",
           "Three repeatable levers: standardization without loss of identity; platform or community building; governance with purpose.",
           "Implicit route: strong craft, access to higher-value markets, and local pride and self-esteem.",
-          "Clear path to making money. Monetizable with milestones. A healthy, disciplined business built for the long game.",
+          "Clear path to making money. Monetizable through milestones. A healthy, disciplined business built for the long game.",
           "We do not look for projects that depend on someone else for sales or production. The ally should stay closest to the customer to understand real need.",
         ],
       },
     ],
-  },
-  work: {
-    eyebrow: "How we work",
-    summary: "Operating model: Ally + Management + Hub.",
-    cards: [
-      {
-        title: "Ally",
-        summary:
-          "Project lead. Lives the craft, stays close to the customer, leads the core operation, and works in close coordination with the Hub.",
-        bullets: [
-          "Leads production, service, and sales where relevant.",
-          "Listens to the customer and protects the craft.",
-          "Makes day-to-day decisions together with Management.",
-        ],
-      },
-      {
-        title: "Management",
-        summary: "Ally + Cataliza managers.",
-        bullets: [
-          "Define vision, culture, and business plan.",
-          "Align priorities, capital decisions, and follow-through.",
-          "Translate the thesis into operating rhythm.",
-        ],
-      },
-      {
-        title: "Hub",
-        summary: "Runs the business through shared services and continuous follow-through.",
-        bullets: [
-          "Financial planning and controls.",
-          "Operations and systems.",
-          "Legal, tax, and accounting.",
-          "Marketing, design, and Inclusion & Impact.",
-        ],
-      },
-    ],
-    structure: {
-      title: "Operating structure",
-      intro: "Operating map that connects council, ecosystem, Cataliza, Management, ally, Hub, and teams led by the ally.",
-      note: "On desktop it reads as a layered sequence; on mobile it stacks by block without losing operating order.",
-      alt: "Cataliza Capital operating map showing council, ecosystem, Cataliza, management, ally, hub, and teams led by the ally.",
-      layers: [
-        { title: "Council / ecosystem", items: ["Council", "Ecosystem"] },
-        { title: "Cataliza", items: ["Cataliza Capital"] },
-        { title: "Management", items: ["Management"] },
-        { title: "Ally", items: ["Ally"] },
-        { title: "Hub", items: ["Hub"] },
-        { title: "Teams led by the ally", items: ["Production / service", "Sales", "Core team"] },
-      ],
-    },
   },
   process: {
     eyebrow: "Selection process",
@@ -216,7 +147,7 @@ export const publicCopyEn: PublicCopy = {
         ],
       },
       {
-        title: "Stage 3 - Investment / Partnership Committee",
+        title: "Stage 3 - Investment / partnership committee",
         timing: "Decision",
         bullets: [
           "Quality + craft.",
@@ -236,36 +167,6 @@ export const publicCopyEn: PublicCopy = {
           "Monthly dashboard.",
         ],
       },
-    ],
-  },
-  council: {
-    eyebrow: "Council",
-    summary: "Three pillars for vision, impact, and global reach.",
-    pillars: [
-      {
-        title: "Vision / Strategy",
-        summary: "Guidance on vision, positioning, and long-term decisions.",
-      },
-      {
-        title: "Impact / Culture",
-        summary: "People who understand real impact, culture, and craft.",
-      },
-      {
-        title: "Reach / Global reach",
-        summary: "Bridges into cohort, professors, and international networks.",
-      },
-    ],
-  },
-  values: {
-    eyebrow: "Values",
-    summary: "Care, Calm, Craft, Culture, Curiosity, and Continuity as concrete long-game practices.",
-    items: [
-      { title: "Care", summary: "We care for people and standards." },
-      { title: "Calm", summary: "Clarity over chaos." },
-      { title: "Craft", summary: "Excellence in the work." },
-      { title: "Culture", summary: "What inspires can elevate the surroundings." },
-      { title: "Curiosity", summary: "Ask better questions, learn faster." },
-      { title: "Continuity", summary: "Long game and consistency." },
     ],
   },
   form: {

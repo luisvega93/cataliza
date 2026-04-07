@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ApplicationForm } from "@/components/application-form";
-import { StructureMap } from "@/components/structure-map";
 import { getPublicCopy } from "@/content/public-site";
 import { getPublicSectionHash, getPublicSectionId } from "@/content/site-sections";
 import { isLocale } from "@/lib/i18n";
@@ -38,10 +37,7 @@ export default async function PublicPage({ params }: PublicPageProps) {
   const thesisId = getPublicSectionId(locale, "thesis");
   const modelId = getPublicSectionId(locale, "model");
   const searchId = getPublicSectionId(locale, "search");
-  const workId = getPublicSectionId(locale, "work");
   const processId = getPublicSectionId(locale, "process");
-  const councilId = getPublicSectionId(locale, "council");
-  const valuesId = getPublicSectionId(locale, "values");
   const applicationId = getPublicSectionId(locale, "application");
 
   return (
@@ -96,10 +92,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
               </article>
             ))}
           </div>
-          <article className="maxim-card">
-            <span className="eyebrow">{copy.thesis.maximLabel}</span>
-            <p>{copy.thesis.maxim}</p>
-          </article>
         </div>
       </section>
 
@@ -136,36 +128,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
         </div>
       </section>
 
-      <section className="feature-section anchor-section" id={workId}>
-        <SectionIntro label={copy.work.eyebrow} summary={copy.work.summary} />
-        <div className="split-grid">
-          {copy.work.cards.map((card) => (
-            <article className="feature-card" key={card.title}>
-              <h3>{card.title}</h3>
-              {card.summary ? <p>{card.summary}</p> : null}
-              <ul className="card-list">
-                {card.bullets.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-        <StructureMap copy={copy.work.structure} />
-      </section>
-
-      <section className="feature-section soft anchor-section" id={valuesId}>
-        <SectionIntro label={copy.values.eyebrow} summary={copy.values.summary} />
-        <div className="feature-grid">
-          {copy.values.items.map((value) => (
-            <article className="feature-card" key={value.title}>
-              <h3>{value.title}</h3>
-              <p>{value.summary}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="feature-section anchor-section" id={processId}>
         <SectionIntro label={copy.process.eyebrow} summary={copy.process.summary} />
         <div className="timeline">
@@ -180,18 +142,6 @@ export default async function PublicPage({ params }: PublicPageProps) {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="feature-section anchor-section" id={councilId}>
-        <SectionIntro label={copy.council.eyebrow} summary={copy.council.summary} />
-        <div className="feature-grid three-up">
-          {copy.council.pillars.map((pillar) => (
-            <article className="feature-card" key={pillar.title}>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.summary}</p>
             </article>
           ))}
         </div>
