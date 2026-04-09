@@ -331,7 +331,7 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
           </article>
           <article className="feature-card">
             <span className="eyebrow">{copy.sections.metrics}</span>
-            <div className="mini-kpi-grid">
+            <div className="mini-kpi-grid finance-kpi-grid">
               <div className="mini-kpi">
                 <span>{copy.cards.totalCost}</span>
                 <strong>{formatCurrency(summary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>

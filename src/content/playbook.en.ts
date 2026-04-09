@@ -24,10 +24,12 @@ export const playbookCopyEn: PlaybookCopy = {
       {
         value: "Double impact",
         label: "Profits and social impact",
+        note: "The model seeks to align healthy profits with verifiable social impact in the ally's surroundings.",
       },
       {
         value: "AI Native + human",
         label: "Operation",
+        note: "AI prepares, organizes, and removes friction; humans decide, validate, and protect judgment.",
       },
     ],
   },

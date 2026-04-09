@@ -24,10 +24,12 @@ export const playbookCopyEs: PlaybookCopy = {
       {
         value: "Doble impacto",
         label: "Utilidades e impacto social",
+        note: "El modelo busca alinear utilidades sanas con impacto social verificable en el entorno del aliado.",
       },
       {
         value: "AI Native + humana",
         label: "Operación",
+        note: "La IA prepara, ordena y reduce fricción; el humano decide, valida y cuida el criterio.",
       },
     ],
   },
