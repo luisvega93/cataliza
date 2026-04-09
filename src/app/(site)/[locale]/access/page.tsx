@@ -27,8 +27,8 @@ export async function generateMetadata({
     title: locale === "es" ? "Cataliza Capital | Acceso protegido" : "Cataliza Capital | Protected access",
     description:
       locale === "es"
-        ? "Desbloquea temporalmente el playbook interno y el modelo financiero de Cataliza."
-        : "Temporarily unlock the Cataliza internal playbook and financial model.",
+        ? "Desbloquea temporalmente el Playbook y el modelo financiero de Cataliza."
+        : "Temporarily unlock the Cataliza Playbook and financial model.",
     path: `/${locale}/access`,
   });
 }
@@ -44,7 +44,7 @@ export default async function AccessPage({ params }: AccessPageProps) {
     <section className="access-panel">
       <div className="feature-card access-card access-page-card">
         <span className="eyebrow">{locale === "es" ? "Áreas internas" : "Internal areas"}</span>
-        <h1>{locale === "es" ? "Entrar a playbook y modelo financiero" : "Enter playbook and financial model"}</h1>
+        <h1>{locale === "es" ? "Entrar a Playbook y modelo financiero" : "Enter Playbook and financial model"}</h1>
         <p>
           {locale === "es"
             ? "Usa la contraseña compartida para desbloquear estas rutas durante la sesión actual del navegador."

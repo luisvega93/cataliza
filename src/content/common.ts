@@ -41,7 +41,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       { section: "application", label: "Aplicación" },
     ],
     utilities: {
-      playbook: "Playbook interno",
+      playbook: "Playbook",
       financialModel: "Modelo financiero",
       access: "Acceso protegido",
     },
@@ -66,7 +66,7 @@ export const shellCopy: Record<Locale, ShellCopy> = {
       { section: "application", label: "Apply" },
     ],
     utilities: {
-      playbook: "Internal playbook",
+      playbook: "Playbook",
       financialModel: "Financial model",
       access: "Protected access",
     },

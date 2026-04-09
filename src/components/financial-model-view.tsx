@@ -4,43 +4,35 @@ import { useState } from "react";
 
 import {
   defaultFinanceAssumptions,
+  financeCostTypeKeys,
+  financeCurrency,
   financeLabels,
+  hubBranchKeys,
+  hubCostLevels,
+  hubPositions,
   type FinanceAssumptions,
-  type FinanceScenario,
-  type RoleKey,
+  type HubCostLevel,
+  type HubPositionId,
 } from "@/content/finance";
-import {
-  formatCurrency,
-  formatDscr,
-  formatNumber,
-  formatPercent,
-  formatRunway,
-  formatSignedCurrency,
-} from "@/lib/format";
+import { formatCurrency, formatNumber, formatRunway } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
-import { calculateFinanceSummary, type FinanceSummary } from "@/lib/finance-model";
+import { calculateFinanceSummary, type FinanceSummary, type FinanceYear } from "@/lib/finance-model";
 
 type FinancialModelViewProps = {
   locale: Locale;
 };
 
-const editableRoles: RoleKey[] = ["leadership", "operators", "finance", "creative"];
-
 const numericConstraints = {
-  openingCash: { min: 0, max: 10000000, step: 10000 },
-  projectRevenueYearOne: { min: 0, max: 2000000, step: 5000 },
-  grantPerProject: { min: 0, max: 250000, step: 5000 },
-  loanPerProject: { min: 0, max: 250000, step: 5000 },
-  repaymentYears: { min: 1, max: 10, step: 1 },
-  officeMonthly: { min: 0, max: 250000, step: 250 },
-  softwareMonthlyPerHead: { min: 0, max: 5000, step: 10 },
+  openingCash: { min: 0, max: 100000000, step: 50000 },
+  officeMonthly: { min: 0, max: 5000000, step: 5000 },
+  softwareMonthlyPerCoreHead: { min: 0, max: 250000, step: 500 },
+  otherOperatingMonthly: { min: 0, max: 5000000, step: 5000 },
 } as const;
 
-const percentConstraints = {
-  grossMargin: { min: 0, max: 100, step: 1 },
-  revenueGrowth: { min: 0, max: 100, step: 1 },
-  cacRate: { min: 0, max: 100, step: 1 },
-  interestRate: { min: 0, max: 50, step: 0.5 },
+const levelCostConstraints = {
+  min: 0,
+  max: 1000000,
+  step: 1000,
 } as const;
 
 function cloneAssumptions() {
@@ -56,39 +48,28 @@ function clampNumber(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-function updateListValue(list: number[], index: number, value: number) {
-  return list.map((currentValue, currentIndex) => (currentIndex === index ? value : currentValue));
-}
-
 function downloadCsv(locale: Locale, summary: FinanceSummary) {
+  const headers = [
+    "year",
+    "allies",
+    "coreHeadcount",
+    "totalCost",
+    ...hubBranchKeys,
+    ...financeCostTypeKeys,
+    "monthlyBurn",
+    "cashBalance",
+  ];
   const rows = [
-    [
-      "year",
-      "revenue",
-      "grossProfit",
-      "payroll",
-      "opex",
-      "grants",
-      "loanDeployments",
-      "repayments",
-      "debtService",
-      "cashBalance",
-      "burn",
-      "dscr",
-    ],
+    headers,
     ...summary.years.map((year) => [
       year.year,
-      year.revenue,
-      year.grossProfit,
-      year.payroll,
-      year.opex,
-      year.grants,
-      year.loanDeployments,
-      year.repayments,
-      year.debtService,
+      year.allies,
+      year.coreHeadcount,
+      year.totalCost,
+      ...hubBranchKeys.map((branch) => year.categoryCosts[branch]),
+      ...financeCostTypeKeys.map((type) => year.typeCosts[type]),
+      year.monthlyBurn,
       year.cashBalance,
-      year.burn,
-      year.dscr ?? "",
     ]),
   ];
   const csv = rows.map((row) => row.join(",")).join("\n");
@@ -96,7 +77,7 @@ function downloadCsv(locale: Locale, summary: FinanceSummary) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `cataliza-${locale}-financial-model.csv`;
+  link.download = `cataliza-hub-financial-model-${locale}.csv`;
   link.click();
   URL.revokeObjectURL(url);
 }
@@ -105,12 +86,10 @@ function TrendChartCard({
   title,
   locale,
   values,
-  formatter,
 }: {
   title: string;
   locale: Locale;
   values: number[];
-  formatter: (value: number, locale: Locale) => string;
 }) {
   const min = Math.min(...values);
   const max = Math.max(...values);
@@ -128,7 +107,7 @@ function TrendChartCard({
   return (
     <article className="feature-card chart-card">
       <span className="eyebrow">{title}</span>
-      <strong>{formatter(values[values.length - 1] ?? 0, locale)}</strong>
+      <strong>{formatCurrency(values[values.length - 1] ?? 0, locale, 0, financeCurrency)}</strong>
       <div className="chart-shell" aria-hidden="true">
         <svg className="chart-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
           <line className="chart-baseline" x1="0" x2="100" y1={zeroPosition} y2={zeroPosition} />
@@ -137,64 +116,101 @@ function TrendChartCard({
         </svg>
       </div>
       <div className="trend-meta">
-        <span>{formatter(values[0] ?? 0, locale)}</span>
-        <span>{formatter(values[values.length - 1] ?? 0, locale)}</span>
+        <span>{formatCurrency(values[0] ?? 0, locale, 0, financeCurrency)}</span>
+        <span>{formatCurrency(values[values.length - 1] ?? 0, locale, 0, financeCurrency)}</span>
       </div>
     </article>
   );
 }
 
-function ComparisonCard({
-  baseLabel,
-  downsideLabel,
-  label,
-  baseValue,
-  downsideValue,
-  deltaValue,
+function StackedBarsCard({
+  title,
+  locale,
+  bars,
 }: {
-  baseLabel: string;
-  downsideLabel: string;
-  label: string;
-  baseValue: string;
-  downsideValue: string;
-  deltaValue: string;
+  title: string;
+  locale: Locale;
+  bars: Array<{
+    label: string;
+    total: number;
+    segments: Array<{ label: string; value: number }>;
+  }>;
 }) {
+  const legend = bars[0]?.segments ?? [];
+
   return (
-    <article className="comparison-card">
-      <span>{label}</span>
-      <div className="comparison-values">
-        <div>
-          <small>{baseLabel}</small>
-          <strong>{baseValue}</strong>
-        </div>
-        <div>
-          <small>{downsideLabel}</small>
-          <strong>{downsideValue}</strong>
-        </div>
+    <article className="feature-card chart-card">
+      <span className="eyebrow">{title}</span>
+      <div className="chart-legend">
+        {legend.map((segment, index) => (
+          <div className="legend-item" key={segment.label}>
+            <span className={`legend-swatch tone-${index + 1}`} />
+            <span>{segment.label}</span>
+          </div>
+        ))}
       </div>
-      <p>{deltaValue}</p>
+      <div className="stacked-bars">
+        {bars.map((bar) => (
+          <div className="stacked-bar-row" key={bar.label}>
+            <div className="stacked-bar-meta">
+              <strong>{bar.label}</strong>
+              <span>{formatCurrency(bar.total, locale, 0, financeCurrency)}</span>
+            </div>
+            <div className="stacked-bar-track" aria-hidden="true">
+              {bar.total > 0
+                ? bar.segments.map((segment, index) => (
+                    <span
+                      className={`stacked-segment tone-${index + 1}`}
+                      key={`${bar.label}-${segment.label}`}
+                      style={{ width: `${(segment.value / bar.total) * 100}%` }}
+                    />
+                  ))
+                : null}
+            </div>
+          </div>
+        ))}
+      </div>
     </article>
   );
+}
+
+function buildCategoryBars(locale: Locale, summary: FinanceSummary) {
+  const copy = financeLabels[locale];
+
+  return summary.years.map((year) => ({
+    label: String(year.year),
+    total: year.totalCost,
+    segments: hubBranchKeys.map((branch) => ({
+      label: copy.branches[branch],
+      value: year.categoryCosts[branch],
+    })),
+  }));
+}
+
+function buildTypeBars(locale: Locale, summary: FinanceSummary) {
+  const copy = financeLabels[locale];
+
+  return summary.years.map((year) => ({
+    label: String(year.year),
+    total: year.totalCost,
+    segments: financeCostTypeKeys.map((type) => ({
+      label: copy.costTypes[type],
+      value: year.typeCosts[type],
+    })),
+  }));
 }
 
 export function FinancialModelView({ locale }: FinancialModelViewProps) {
   const copy = financeLabels[locale];
-  const [scenario, setScenario] = useState<FinanceScenario>("base");
   const [assumptions, setAssumptions] = useState<FinanceAssumptions>(() => cloneAssumptions());
-  const baseSummary = calculateFinanceSummary(assumptions, "base");
-  const downsideSummary = calculateFinanceSummary(assumptions, "downside");
-  const summary = scenario === "base" ? baseSummary : downsideSummary;
+  const summary = calculateFinanceSummary(assumptions);
   const finalYear = summary.years[summary.years.length - 1];
 
   const updatePrimitiveField = (
-    field:
-      | "openingCash"
-      | "projectRevenueYearOne"
-      | "grantPerProject"
-      | "loanPerProject"
-      | "repaymentYears"
-      | "officeMonthly"
-      | "softwareMonthlyPerHead",
+    field: keyof Pick<
+      FinanceAssumptions,
+      "openingCash" | "officeMonthly" | "softwareMonthlyPerCoreHead" | "otherOperatingMonthly"
+    >,
     value: number,
   ) => {
     const constraints = numericConstraints[field];
@@ -205,74 +221,25 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
     }));
   };
 
-  const updatePercentField = (
-    field: "grossMargin" | "revenueGrowth" | "cacRate" | "interestRate",
-    percentValue: number,
-  ) => {
-    const constraints = percentConstraints[field];
-    const normalized = clampNumber(percentValue, constraints.min, constraints.max);
-
+  const updateLevelCost = (level: HubCostLevel, value: number) => {
     setAssumptions((current) => ({
       ...current,
-      [field]: normalized / 100,
-    }));
-  };
-
-  const updateLaunches = (index: number, value: number) => {
-    setAssumptions((current) => ({
-      ...current,
-      launchesPerYear: updateListValue(current.launchesPerYear, index, clampNumber(value, 0, 5)),
-    }));
-  };
-
-  const updateHeadcount = (role: RoleKey, index: number, value: number) => {
-    setAssumptions((current) => ({
-      ...current,
-      headcount: {
-        ...current.headcount,
-        [role]: updateListValue(current.headcount[role], index, clampNumber(value, 0, 20)),
+      monthlyCostByLevel: {
+        ...current.monthlyCostByLevel,
+        [level]: clampNumber(value, levelCostConstraints.min, levelCostConstraints.max),
       },
     }));
   };
 
-  const comparisonCards = [
-    {
-      label: copy.cards.cash,
-      baseValue: formatCurrency(baseSummary.endingCash, locale),
-      downsideValue: formatCurrency(downsideSummary.endingCash, locale),
-      deltaValue: `${copy.comparison.delta}: ${formatSignedCurrency(
-        baseSummary.endingCash - downsideSummary.endingCash,
-        locale,
-      )}`,
-    },
-    {
-      label: copy.cards.revenue,
-      baseValue: formatCurrency(baseSummary.yearTenRevenue, locale),
-      downsideValue: formatCurrency(downsideSummary.yearTenRevenue, locale),
-      deltaValue: `${copy.comparison.delta}: ${formatSignedCurrency(
-        baseSummary.yearTenRevenue - downsideSummary.yearTenRevenue,
-        locale,
-      )}`,
-    },
-    {
-      label: copy.cards.burn,
-      baseValue: formatCurrency(baseSummary.peakBurn, locale),
-      downsideValue: formatCurrency(downsideSummary.peakBurn, locale),
-      deltaValue: `${copy.comparison.delta}: ${formatSignedCurrency(
-        downsideSummary.peakBurn - baseSummary.peakBurn,
-        locale,
-      )}`,
-    },
-    {
-      label: copy.cards.dscr,
-      baseValue: formatDscr(baseSummary.yearTenDscr, locale, copy.states.notApplicable),
-      downsideValue: formatDscr(downsideSummary.yearTenDscr, locale, copy.states.notApplicable),
-      deltaValue:
-        baseSummary.yearTenDscr !== null && downsideSummary.yearTenDscr !== null
-          ? `${copy.comparison.delta}: ${formatNumber(baseSummary.yearTenDscr - downsideSummary.yearTenDscr, locale, 2)}x`
-          : `${copy.comparison.delta}: ${copy.states.notApplicable}`,
-    },
-  ];
+  const updatePositionLevel = (positionId: HubPositionId, level: HubCostLevel) => {
+    setAssumptions((current) => ({
+      ...current,
+      levelsByPosition: {
+        ...current.levelsByPosition,
+        [positionId]: level,
+      },
+    }));
+  };
 
   return (
     <div className="finance-view">
@@ -283,18 +250,6 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
           <p className="section-summary">{copy.summary}</p>
         </div>
         <div className="finance-actions">
-          <div className="scenario-switch">
-            {(["base", "downside"] as FinanceScenario[]).map((option) => (
-              <button
-                key={option}
-                className={`pill-button${scenario === option ? " active" : ""}`}
-                onClick={() => setScenario(option)}
-                type="button"
-              >
-                {copy.scenarios[option]}
-              </button>
-            ))}
-          </div>
           <div className="cta-row compact">
             <button className="cta-button secondary" onClick={() => setAssumptions(cloneAssumptions())} type="button">
               {copy.actions.reset}
@@ -308,95 +263,9 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
 
       <section className="finance-grid">
         <article className="feature-card">
-          <span className="eyebrow">{copy.sections.inputs}</span>
+          <span className="eyebrow">{copy.sections.assumptions}</span>
           <div className="input-grid compact">
-            {(
-              [
-                "openingCash",
-                "projectRevenueYearOne",
-                "grossMargin",
-                "revenueGrowth",
-                "cacRate",
-                "interestRate",
-              ] as const
-            ).map((field) => {
-              const isPercent = field in percentConstraints;
-
-              return (
-                <label className="field" key={field}>
-                  <span>{copy.fields[field]}</span>
-                  <input
-                    inputMode="decimal"
-                    max={isPercent ? percentConstraints[field as keyof typeof percentConstraints].max : undefined}
-                    min={isPercent ? percentConstraints[field as keyof typeof percentConstraints].min : 0}
-                    onChange={(event) => {
-                      const value = parseNumber(event.target.value);
-
-                      if (isPercent) {
-                        updatePercentField(field as keyof typeof percentConstraints, value);
-                        return;
-                      }
-
-                      updatePrimitiveField(field as keyof typeof numericConstraints, value);
-                    }}
-                    step={isPercent ? percentConstraints[field as keyof typeof percentConstraints].step : 1}
-                    type="number"
-                    value={
-                      isPercent
-                        ? Math.round(
-                            assumptions[field as keyof typeof percentConstraints] * 100,
-                          )
-                        : assumptions[field as keyof typeof numericConstraints]
-                    }
-                  />
-                </label>
-              );
-            })}
-          </div>
-        </article>
-
-        <article className="feature-card">
-          <span className="eyebrow">{copy.sections.grants}</span>
-          <div className="input-grid compact">
-            {(["grantPerProject", "loanPerProject", "repaymentYears"] as const).map((field) => (
-              <label className="field" key={field}>
-                <span>{copy.fields[field]}</span>
-                <input
-                  inputMode="numeric"
-                  max={numericConstraints[field].max}
-                  min={numericConstraints[field].min}
-                  onChange={(event) => updatePrimitiveField(field, parseNumber(event.target.value))}
-                  step={numericConstraints[field].step}
-                  type="number"
-                  value={assumptions[field]}
-                />
-              </label>
-            ))}
-          </div>
-
-          <div className="launch-grid">
-            {assumptions.launchesPerYear.map((launches, index) => (
-              <label className="mini-field" key={assumptions.startYear + index}>
-                <span>
-                  {copy.fields.launchesPerYear} {assumptions.startYear + index}
-                </span>
-                <input
-                  inputMode="numeric"
-                  max={5}
-                  min={0}
-                  onChange={(event) => updateLaunches(index, parseNumber(event.target.value))}
-                  type="number"
-                  value={launches}
-                />
-              </label>
-            ))}
-          </div>
-        </article>
-
-        <article className="feature-card">
-          <span className="eyebrow">{copy.sections.opex}</span>
-          <div className="input-grid compact">
-            {(["officeMonthly", "softwareMonthlyPerHead"] as const).map((field) => (
+            {(Object.keys(numericConstraints) as Array<keyof typeof numericConstraints>).map((field) => (
               <label className="field" key={field}>
                 <span>{copy.fields[field]}</span>
                 <input
@@ -411,114 +280,121 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
               </label>
             ))}
           </div>
+        </article>
 
-          <div className="mini-kpi-grid">
-            <div className="mini-kpi">
-              <span>{copy.table.payroll}</span>
-              <strong>{formatCurrency(finalYear?.payroll ?? 0, locale)}</strong>
-            </div>
-            <div className="mini-kpi">
-              <span>{copy.table.opex}</span>
-              <strong>{formatCurrency(finalYear?.opex ?? 0, locale)}</strong>
-            </div>
-            <div className="mini-kpi">
-              <span>{copy.table.grants}</span>
-              <strong>{formatCurrency(finalYear?.grants ?? 0, locale)}</strong>
-            </div>
-            <div className="mini-kpi">
-              <span>{copy.table.debtService}</span>
-              <strong>{formatCurrency(finalYear?.debtService ?? 0, locale)}</strong>
-            </div>
-          </div>
+        <article className="feature-card">
+          <span className="eyebrow">{copy.notesTitle}</span>
+          <ul className="card-list">
+            {copy.notes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
         </article>
       </section>
 
       <section className="feature-section">
         <div className="section-heading">
-          <span className="eyebrow">{copy.sections.metrics}</span>
-          <h2>{copy.sections.metrics}</h2>
+          <span className="eyebrow">{copy.sections.costLevels}</span>
+          <h2>{copy.sections.costLevels}</h2>
         </div>
-        <div className="mini-kpi-grid wide">
-          <div className="metric-card">
-            <span>{copy.cards.revenue}</span>
-            <strong>{formatCurrency(summary.yearTenRevenue, locale)}</strong>
-          </div>
-          <div className="metric-card">
-            <span>{copy.cards.burn}</span>
-            <strong>{formatCurrency(summary.peakBurn, locale)}</strong>
-          </div>
-          <div className="metric-card">
-            <span>{copy.cards.runway}</span>
-            <strong>{formatRunway(summary.startingRunwayMonths, locale, copy.states.unlimited)}</strong>
-          </div>
-          <div className="metric-card">
-            <span>{copy.cards.grossMargin}</span>
-            <strong>{formatPercent(summary.averageGrossMargin, locale)}</strong>
-          </div>
-          <div className="metric-card">
-            <span>{copy.cards.dscr}</span>
-            <strong>{formatDscr(summary.yearTenDscr, locale, copy.states.notApplicable)}</strong>
-          </div>
-          <div className="metric-card">
-            <span>{copy.cards.cash}</span>
-            <strong>{formatCurrency(summary.endingCash, locale)}</strong>
-          </div>
+        <div className="split-grid">
+          <article className="feature-card">
+            <div className="table-wrap">
+              <table className="data-table compact-table levels-table">
+                <thead>
+                  <tr>
+                    <th>{copy.levelsTable.type}</th>
+                    <th>{copy.levelsTable.monthlyCost}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hubCostLevels.map((level) => (
+                    <tr key={level}>
+                      <th>{copy.levels[level]}</th>
+                      <td>
+                        <input
+                          className="table-input"
+                          inputMode="decimal"
+                          max={levelCostConstraints.max}
+                          min={levelCostConstraints.min}
+                          onChange={(event) => updateLevelCost(level, parseNumber(event.target.value))}
+                          step={levelCostConstraints.step}
+                          type="number"
+                          value={assumptions.monthlyCostByLevel[level]}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <article className="feature-card">
+            <span className="eyebrow">{copy.sections.metrics}</span>
+            <div className="mini-kpi-grid">
+              <div className="mini-kpi">
+                <span>{copy.cards.totalCost}</span>
+                <strong>{formatCurrency(summary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.monthlyBurn}</span>
+                <strong>{formatCurrency(summary.yearOneMonthlyBurn, locale, 0, financeCurrency)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.runway}</span>
+                <strong>{formatRunway(summary.startingRunwayMonths, locale, copy.states.unlimited)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.cash}</span>
+                <strong>{formatCurrency(summary.endingCash, locale, 0, financeCurrency)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.coreHeadcount}</span>
+                <strong>{formatNumber(summary.finalCoreHeadcount, locale)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.categoryTable.allies}</span>
+                <strong>{formatNumber(finalYear?.allies ?? 0, locale)}</strong>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       <section className="feature-section">
         <div className="section-heading">
-          <span className="eyebrow">{copy.sections.comparison}</span>
-          <h2>{copy.comparison.title}</h2>
-          <p className="section-summary">{copy.comparison.summary}</p>
-        </div>
-        <div className="comparison-grid">
-          {comparisonCards.map((card) => (
-            <ComparisonCard
-              baseLabel={copy.comparison.base}
-              key={card.label}
-              baseValue={card.baseValue}
-              deltaValue={card.deltaValue}
-              downsideLabel={copy.comparison.downside}
-              downsideValue={card.downsideValue}
-              label={card.label}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="feature-section" id="headcount">
-        <div className="section-heading">
           <span className="eyebrow">{copy.sections.headcount}</span>
           <h2>{copy.sections.headcount}</h2>
         </div>
         <div className="table-wrap">
-          <table className="data-table compact-table">
+          <table className="data-table">
             <thead>
               <tr>
-                <th>{copy.sections.headcount}</th>
-                {summary.years.map((year) => (
-                  <th key={year.year}>{year.year}</th>
-                ))}
+                <th>{copy.positionsTable.role}</th>
+                <th>{copy.positionsTable.branch}</th>
+                <th>{copy.positionsTable.startYear}</th>
+                <th>{copy.positionsTable.level}</th>
               </tr>
             </thead>
             <tbody>
-              {editableRoles.map((role) => (
-                <tr key={role}>
-                  <th>{copy.roles[role]}</th>
-                  {assumptions.headcount[role].map((value, index) => (
-                    <td key={`${role}-${assumptions.startYear + index}`}>
-                      <input
-                        className="table-input"
-                        inputMode="numeric"
-                        max={20}
-                        min={0}
-                        onChange={(event) => updateHeadcount(role, index, parseNumber(event.target.value))}
-                        type="number"
-                        value={value}
-                      />
-                    </td>
-                  ))}
+              {hubPositions.map((position) => (
+                <tr key={position.id}>
+                  <th>{position.label[locale]}</th>
+                  <td>{copy.branches[position.branch]}</td>
+                  <td>{assumptions.startYear + position.startOffset}</td>
+                  <td>
+                    <select
+                      className="table-input table-select"
+                      onChange={(event) => updatePositionLevel(position.id, event.target.value as HubCostLevel)}
+                      value={assumptions.levelsByPosition[position.id]}
+                    >
+                      {hubCostLevels.map((level) => (
+                        <option key={level} value={level}>
+                          {copy.levels[level]}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -533,65 +409,87 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
         </div>
 
         <div className="chart-grid">
-          <TrendChartCard
-            formatter={formatCurrency}
-            locale={locale}
-            title={copy.charts.cash}
-            values={summary.years.map((year) => year.cashBalance)}
-          />
-          <TrendChartCard
-            formatter={formatCurrency}
-            locale={locale}
-            title={copy.charts.revenue}
-            values={summary.years.map((year) => year.revenue)}
-          />
-          <TrendChartCard
-            formatter={formatCurrency}
-            locale={locale}
-            title={copy.charts.burn}
-            values={summary.years.map((year) => year.burn)}
-          />
+          <TrendChartCard locale={locale} title={copy.charts.cash} values={summary.years.map((year) => year.cashBalance)} />
+          <StackedBarsCard bars={buildCategoryBars(locale, summary)} locale={locale} title={copy.charts.categories} />
+          <StackedBarsCard bars={buildTypeBars(locale, summary)} locale={locale} title={copy.charts.types} />
         </div>
 
-        <div className="table-wrap">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>{copy.table.year}</th>
-                <th>{copy.table.revenue}</th>
-                <th>{copy.table.grossProfit}</th>
-                <th>{copy.table.payroll}</th>
-                <th>{copy.table.opex}</th>
-                <th>{copy.table.grants}</th>
-                <th>{copy.table.loanDeployments}</th>
-                <th>{copy.table.repayments}</th>
-                <th>{copy.table.debtService}</th>
-                <th>{copy.table.cashBalance}</th>
-                <th>{copy.table.burn}</th>
-                <th>{copy.table.dscr}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {summary.years.map((year) => (
-                <tr key={year.year}>
-                  <td>{year.year}</td>
-                  <td>{formatCurrency(year.revenue, locale)}</td>
-                  <td>{formatCurrency(year.grossProfit, locale)}</td>
-                  <td>{formatCurrency(year.payroll, locale)}</td>
-                  <td>{formatCurrency(year.opex, locale)}</td>
-                  <td>{formatCurrency(year.grants, locale)}</td>
-                  <td>{formatCurrency(year.loanDeployments, locale)}</td>
-                  <td>{formatCurrency(year.repayments, locale)}</td>
-                  <td>{formatCurrency(year.debtService, locale)}</td>
-                  <td>{formatCurrency(year.cashBalance, locale)}</td>
-                  <td>{formatCurrency(year.burn, locale)}</td>
-                  <td>{formatDscr(year.dscr, locale, copy.states.notApplicable)}</td>
+        <article className="feature-card">
+          <h3>{copy.sections.categories}</h3>
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>{copy.categoryTable.year}</th>
+                  <th>{copy.categoryTable.allies}</th>
+                  <th>{copy.categoryTable.coreHeadcount}</th>
+                  <th>{copy.categoryTable.totalCost}</th>
+                  {hubBranchKeys.map((branch) => (
+                    <th key={branch}>{copy.branches[branch]}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {summary.years.map((year) => (
+                  <CategoryRow key={year.year} locale={locale} year={year} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article className="feature-card">
+          <h3>{copy.sections.types}</h3>
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>{copy.typeTable.year}</th>
+                  <th>{copy.typeTable.headcount}</th>
+                  <th>{copy.typeTable.software}</th>
+                  <th>{copy.typeTable.office}</th>
+                  <th>{copy.typeTable.externalOther}</th>
+                  <th>{copy.typeTable.monthlyBurn}</th>
+                  <th>{copy.typeTable.cashBalance}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {summary.years.map((year) => (
+                  <TypeRow key={`${year.year}-types`} locale={locale} year={year} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
       </section>
     </div>
+  );
+}
+
+function CategoryRow({ locale, year }: { locale: Locale; year: FinanceYear }) {
+  return (
+    <tr>
+      <td>{year.year}</td>
+      <td>{year.allies}</td>
+      <td>{year.coreHeadcount}</td>
+      <td>{formatCurrency(year.totalCost, locale, 0, financeCurrency)}</td>
+      {hubBranchKeys.map((branch) => (
+        <td key={`${year.year}-${branch}`}>{formatCurrency(year.categoryCosts[branch], locale, 0, financeCurrency)}</td>
+      ))}
+    </tr>
+  );
+}
+
+function TypeRow({ locale, year }: { locale: Locale; year: FinanceYear }) {
+  return (
+    <tr>
+      <td>{year.year}</td>
+      <td>{formatCurrency(year.typeCosts.headcount, locale, 0, financeCurrency)}</td>
+      <td>{formatCurrency(year.typeCosts.software, locale, 0, financeCurrency)}</td>
+      <td>{formatCurrency(year.typeCosts.office, locale, 0, financeCurrency)}</td>
+      <td>{formatCurrency(year.typeCosts.externalOther, locale, 0, financeCurrency)}</td>
+      <td>{formatCurrency(year.monthlyBurn, locale, 0, financeCurrency)}</td>
+      <td>{formatCurrency(year.cashBalance, locale, 0, financeCurrency)}</td>
+    </tr>
   );
 }

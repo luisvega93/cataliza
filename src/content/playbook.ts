@@ -1,5 +1,4 @@
 import type { Locale } from "@/lib/i18n";
-import type { StructureMapCopy } from "@/content/structure-map";
 
 import { playbookCopyEn } from "@/content/playbook.en";
 import { playbookCopyEs } from "@/content/playbook.es";
@@ -12,23 +11,30 @@ export type PlaybookCopy = {
   hero: {
     title: string;
     summary: string;
-    stats: Array<{ label: string; value: string }>;
+    stats: Array<{
+      label: string;
+      value: string;
+      details?: string[];
+      note?: string;
+    }>;
   };
   operatingModel: {
     title: string;
     summary: string;
     sharedServices: Array<{ title: string; summary: string }>;
     governance: Array<{ title: string; summary: string }>;
-    structure: StructureMapCopy;
+    structure: {
+      title: string;
+      intro: string;
+      note: string;
+      alt: string;
+      imageSrc: string;
+    };
   };
   values: {
     title: string;
     summary: string;
-    transformTitle: string;
-    transformSummary: string;
-    items: Array<{ title: string; summary: string }>;
-    behaviorsTitle: string;
-    behaviors: string[];
+    items: string[];
   };
   strategy: {
     title: string;
@@ -48,9 +54,8 @@ export type PlaybookCopy = {
     labels: {
       cadence: string;
       focus: string;
-      owner: string;
     };
-    rituals: Array<{ cadence: string; focus: string; owner: string }>;
+    rituals: Array<{ cadence: string; focus: string }>;
   };
   incentives: {
     title: string;
@@ -87,14 +92,38 @@ export type PlaybookCopy = {
   aiNative: {
     title: string;
     summary: string;
-    automateTitle: string;
-    automate: string[];
+    executiveTitle: string;
+    executive: Array<{ title: string; summary: string }>;
+    principlesTitle: string;
+    principles: string[];
+    blueprintTitle: string;
+    blueprint: Array<{
+      title: string;
+      owner: string;
+      ai: string;
+      deliverables: string;
+      kpi: string;
+    }>;
+    operatingTitle: string;
+    sequenceLabel: string;
+    sequence: string;
     humanTitle: string;
     human: string[];
-    ruleLabel: string;
-    rule: string;
-    ritualsTitle: string;
-    rituals: string[];
+    aiTitle: string;
+    ai: string[];
+    reviewTitle: string;
+    review: string[];
+    standardizeTitle: string;
+    standardize: string[];
+    escalationTitle: string;
+    escalation: string[];
+    rhythmsTitle: string;
+    rhythms: string;
+    teamTitle: string;
+    teamSummary: string;
+    team: string[];
+    avoidTitle: string;
+    avoid: string[];
   };
   ecosystem: {
     title: string;
@@ -118,12 +147,10 @@ export type PlaybookCopy = {
   dashboard: {
     title: string;
     summary: string;
-    sampleProject: string;
     snapshotTitle: string;
-    budgetTitle: string;
     definitionsTitle: string;
-    budgetRows: Array<{ label: string; amount: number }>;
-    metrics: Array<{ label: string; value: string; summary: string }>;
+    metrics: Array<{ label: string; summary: string }>;
+    annualCategoryTitle: string;
   };
 };
 

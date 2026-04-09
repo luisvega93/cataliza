@@ -44,8 +44,8 @@ export default async function FinancialModelPage({ params }: FinancialModelPageP
       nextPath={`/${locale}/financial-model`}
       summary={
         locale === "es"
-          ? "El modelo financiero se desbloquea con la misma contraseña compartida usada para el playbook."
-          : "The financial model unlocks with the same shared password used for the playbook."
+          ? "El modelo financiero se desbloquea con la misma contraseña compartida usada para el Playbook."
+          : "The financial model unlocks with the same shared password used for the Playbook."
       }
       title={locale === "es" ? "Entrar al modelo financiero" : "Enter the financial model"}
     >

@@ -18,7 +18,7 @@ function getDestinationLabel(locale: Locale, nextPath: string) {
   }
 
   if (nextPath.includes("playbook")) {
-    return locale === "es" ? "playbook interno" : "internal playbook";
+    return "Playbook";
   }
 
   return locale === "es" ? "sitio principal" : "main site";

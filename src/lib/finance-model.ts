@@ -1,165 +1,109 @@
-import type { FinanceAssumptions, FinanceScenario, RoleKey } from "@/content/finance";
+import {
+  financeCostTypeKeys,
+  hubBranchKeys,
+  hubPositions,
+  type FinanceAssumptions,
+  type FinanceCostTypeKey,
+  type HubBranchKey,
+} from "@/content/finance";
 
 export type FinanceYear = {
   year: number;
-  launches: number;
-  activeProjects: number;
-  headcountTotal: number;
-  revenue: number;
-  grossProfit: number;
-  payroll: number;
-  office: number;
-  software: number;
-  cac: number;
-  opex: number;
-  grants: number;
-  loanDeployments: number;
-  repayments: number;
-  debtService: number;
-  burn: number;
+  allies: number;
+  coreHeadcount: number;
+  categoryCosts: Record<HubBranchKey, number>;
+  typeCosts: Record<FinanceCostTypeKey, number>;
+  totalCost: number;
+  monthlyBurn: number;
   cashBalance: number;
-  dscr: number | null;
 };
 
 export type FinanceSummary = {
   years: FinanceYear[];
   endingCash: number;
-  peakBurn: number;
+  peakAnnualCost: number;
   startingRunwayMonths: number;
-  averageGrossMargin: number;
-  yearTenRevenue: number;
-  yearTenDscr: number | null;
+  yearTenTotalCost: number;
+  yearOneMonthlyBurn: number;
+  finalCoreHeadcount: number;
 };
 
-const roleKeys: RoleKey[] = ["leadership", "operators", "finance", "creative"];
-
-function getHeadcountTotal(assumptions: FinanceAssumptions, yearIndex: number) {
-  return roleKeys.reduce((sum, role) => sum + (assumptions.headcount[role][yearIndex] ?? 0), 0);
+function zeroRecord<TKey extends string>(keys: readonly TKey[]) {
+  return keys.reduce<Record<TKey, number>>((accumulator, key) => {
+    accumulator[key] = 0;
+    return accumulator;
+  }, {} as Record<TKey, number>);
 }
 
-function getPayroll(assumptions: FinanceAssumptions, yearIndex: number) {
-  return roleKeys.reduce((sum, role) => {
-    return sum + (assumptions.headcount[role][yearIndex] ?? 0) * assumptions.salaryByRole[role];
-  }, 0);
+function getOfficeAnnualCost(assumptions: FinanceAssumptions, yearIndex: number) {
+  return assumptions.officeMonthly * 12 * Math.pow(1 + assumptions.officeGrowthRate, yearIndex);
 }
 
-function getRevenue(assumptions: FinanceAssumptions, yearIndex: number, scenario: FinanceScenario) {
-  const salesDelay = scenario === "downside" ? 2 : 0;
-  let revenue = 0;
-
-  for (let cohortIndex = 0; cohortIndex <= yearIndex; cohortIndex += 1) {
-    const launches = assumptions.launchesPerYear[cohortIndex] ?? 0;
-    const commercialAge = yearIndex - cohortIndex - salesDelay;
-
-    if (commercialAge < 0) {
-      continue;
-    }
-
-    const firstYearRevenue = assumptions.projectRevenueYearOne ?? 180000;
-    const cohortRevenue =
-      launches * firstYearRevenue * Math.pow(1 + assumptions.revenueGrowth, commercialAge);
-
-    revenue += cohortRevenue;
-  }
-
-  return revenue;
+function getOtherAnnualCost(assumptions: FinanceAssumptions, yearIndex: number) {
+  return assumptions.otherOperatingMonthly * 12 * Math.pow(1 + assumptions.otherOperatingGrowthRate, yearIndex);
 }
 
-function getLoanFlows(assumptions: FinanceAssumptions, yearIndex: number) {
-  let repayments = 0;
-  let debtService = 0;
-
-  for (let cohortIndex = 0; cohortIndex < yearIndex; cohortIndex += 1) {
-    const launches = assumptions.launchesPerYear[cohortIndex] ?? 0;
-    const deployment = launches * assumptions.loanPerProject;
-    const yearsSinceLaunch = yearIndex - cohortIndex;
-
-    if (yearsSinceLaunch <= 0 || yearsSinceLaunch > assumptions.repaymentYears) {
-      continue;
-    }
-
-    const principalPayment = deployment / assumptions.repaymentYears;
-    const outstandingPrincipal = deployment - principalPayment * (yearsSinceLaunch - 1);
-    const interestPayment = outstandingPrincipal * assumptions.interestRate;
-
-    repayments += principalPayment;
-    debtService += principalPayment + interestPayment;
-  }
-
-  return { repayments, debtService };
-}
-
-export function calculateFinanceSummary(
-  assumptions: FinanceAssumptions,
-  scenario: FinanceScenario,
-): FinanceSummary {
+export function calculateFinanceSummary(assumptions: FinanceAssumptions): FinanceSummary {
   const years: FinanceYear[] = [];
   let cashBalance = assumptions.openingCash;
 
-  for (let yearIndex = 0; yearIndex < assumptions.launchesPerYear.length; yearIndex += 1) {
-    const launches = assumptions.launchesPerYear[yearIndex] ?? 0;
-    const activeProjects = assumptions.launchesPerYear
-      .slice(0, yearIndex + 1)
-      .reduce((sum, count) => sum + count, 0);
-    const headcountTotal = getHeadcountTotal(assumptions, yearIndex);
-    const payroll = getPayroll(assumptions, yearIndex);
-    const office =
-      assumptions.officeMonthly * 12 * Math.pow(1 + assumptions.officeGrowthRate, yearIndex);
-    const software = assumptions.softwareMonthlyPerHead * 12 * headcountTotal;
-    const revenue = getRevenue(assumptions, yearIndex, scenario);
-    const grossProfit = revenue * assumptions.grossMargin;
-    const cac = revenue * assumptions.cacRate;
-    const opex = payroll + office + software + cac;
-    const grants = launches * assumptions.grantPerProject;
-    const loanDeployments = launches * assumptions.loanPerProject;
-    const { repayments, debtService } = getLoanFlows(assumptions, yearIndex);
-    const netCashFlow = grossProfit - opex - grants - loanDeployments + repayments - debtService;
-    const burn = Math.max(-netCashFlow, 0);
+  for (let yearIndex = 0; yearIndex < assumptions.horizonYears; yearIndex += 1) {
+    const categoryCosts = zeroRecord(hubBranchKeys);
+    const typeCosts = zeroRecord(financeCostTypeKeys);
+    const activePositions = hubPositions.filter((position) => yearIndex >= position.startOffset);
 
-    cashBalance += netCashFlow;
+    let coreHeadcount = 0;
 
-    const ebitdaLike = grossProfit - opex;
-    const dscr = debtService > 0 ? ebitdaLike / debtService : null;
+    for (const position of activePositions) {
+      const level = assumptions.levelsByPosition[position.id];
+      const annualCost = assumptions.monthlyCostByLevel[level] * 12;
+
+      categoryCosts[position.branch] += annualCost;
+
+      if (level === "external") {
+        typeCosts.externalOther += annualCost;
+      } else {
+        typeCosts.headcount += annualCost;
+      }
+
+      if (position.countsAsCore && level !== "external") {
+        coreHeadcount += 1;
+      }
+    }
+
+    typeCosts.software = assumptions.softwareMonthlyPerCoreHead * 12 * coreHeadcount;
+    typeCosts.office = getOfficeAnnualCost(assumptions, yearIndex);
+    typeCosts.externalOther += getOtherAnnualCost(assumptions, yearIndex);
+
+    const totalCost = financeCostTypeKeys.reduce((sum, key) => sum + typeCosts[key], 0);
+    const monthlyBurn = totalCost / 12;
+
+    cashBalance -= totalCost;
 
     years.push({
       year: assumptions.startYear + yearIndex,
-      launches,
-      activeProjects,
-      headcountTotal,
-      revenue,
-      grossProfit,
-      payroll,
-      office,
-      software,
-      cac,
-      opex,
-      grants,
-      loanDeployments,
-      repayments,
-      debtService,
-      burn,
+      allies: yearIndex + 1,
+      coreHeadcount,
+      categoryCosts,
+      typeCosts,
+      totalCost,
+      monthlyBurn,
       cashBalance,
-      dscr,
     });
   }
 
-  const firstYearBurn = years[0]?.burn ?? 0;
-  const startingRunwayMonths =
-    firstYearBurn > 0 ? Math.round((assumptions.openingCash / (firstYearBurn / 12)) * 10) / 10 : Infinity;
+  const firstYear = years[0];
   const finalYear = years[years.length - 1];
-  const averageGrossMargin =
-    years.reduce(
-      (sum, year) => sum + (year.revenue > 0 ? year.grossProfit / year.revenue : assumptions.grossMargin),
-      0,
-    ) / years.length;
+  const startingRunwayMonths =
+    firstYear && firstYear.monthlyBurn > 0 ? assumptions.openingCash / firstYear.monthlyBurn : Number.POSITIVE_INFINITY;
 
   return {
     years,
     endingCash: finalYear?.cashBalance ?? assumptions.openingCash,
-    peakBurn: Math.max(...years.map((year) => year.burn), 0),
+    peakAnnualCost: Math.max(...years.map((year) => year.totalCost), 0),
     startingRunwayMonths,
-    averageGrossMargin,
-    yearTenRevenue: finalYear?.revenue ?? 0,
-    yearTenDscr: finalYear?.dscr ?? null,
+    yearTenTotalCost: finalYear?.totalCost ?? 0,
+    yearOneMonthlyBurn: firstYear?.monthlyBurn ?? 0,
+    finalCoreHeadcount: finalYear?.coreHeadcount ?? 0,
   };
 }

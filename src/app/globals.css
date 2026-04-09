@@ -634,6 +634,40 @@ main {
   color: var(--muted);
 }
 
+.stat-detail-list {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat-detail-list li,
+.stat-note {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.stat-detail-list li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.stat-detail-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--warm));
+}
+
+.stat-note {
+  margin: 0;
+}
+
 .cta-row {
   margin-top: 28px;
 }
@@ -746,6 +780,10 @@ main {
   height: 8px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent), var(--warm));
+}
+
+.values-list {
+  margin-top: 0;
 }
 
 .bullet-grid {
@@ -1051,6 +1089,27 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
 .chart-card strong {
   font-size: 1.45rem;
 }
@@ -1092,6 +1151,66 @@ main {
   display: flex;
   justify-content: space-between;
   gap: 12px;
+}
+
+.stacked-bars {
+  display: grid;
+  gap: 12px;
+}
+
+.stacked-bar-row {
+  display: grid;
+  gap: 8px;
+}
+
+.stacked-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stacked-bar-meta span {
+  color: var(--muted);
+}
+
+.stacked-bar-track {
+  display: flex;
+  min-height: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--line);
+}
+
+.stacked-segment {
+  display: block;
+  min-width: 0;
+  height: 16px;
+}
+
+.legend-swatch.tone-1,
+.stacked-segment.tone-1 {
+  background: #1f604c;
+}
+
+.legend-swatch.tone-2,
+.stacked-segment.tone-2 {
+  background: #3f7d6b;
+}
+
+.legend-swatch.tone-3,
+.stacked-segment.tone-3 {
+  background: #a0632f;
+}
+
+.legend-swatch.tone-4,
+.stacked-segment.tone-4 {
+  background: #d6b486;
+}
+
+.legend-swatch.tone-5,
+.stacked-segment.tone-5 {
+  background: #5f564d;
 }
 
 .table-wrap {
@@ -1137,6 +1256,14 @@ main {
   min-width: 72px;
   padding: 10px 12px;
   border-radius: 14px;
+}
+
+.table-select {
+  min-width: 140px;
+}
+
+.levels-table {
+  min-width: 0;
 }
 
 .stack-list {

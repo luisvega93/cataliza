@@ -2,17 +2,33 @@ import type { PlaybookCopy } from "@/content/playbook";
 
 export const playbookCopyEn: PlaybookCopy = {
   meta: {
-    title: "Cataliza Capital | Internal playbook",
+    title: "Cataliza Capital | Playbook",
     description:
-      "Cataliza operating playbook: operating model, strategy, benchmarks, AI-native operation, ecosystem, and project dashboard.",
+      "Cataliza operating playbook: operating model, strategy, benchmarks, AI Native Hub, ecosystem, and Hub cost dashboard.",
   },
   hero: {
-    title: "Internal playbook",
+    title: "Playbook",
     summary: "This playbook translates the thesis into day-to-day operations and decision structure.",
     stats: [
-      { label: "Shared services", value: "5 functions" },
-      { label: "Cadences", value: "monthly / quarterly / yearly" },
-      { label: "Operation", value: "AI-native + human" },
+      {
+        value: "5 functions",
+        label: "Shared services",
+        details: [
+          "Finance / planning",
+          "Legal / tax / accounting",
+          "Operations and systems",
+          "Marketing / design",
+          "Impact & Inclusion",
+        ],
+      },
+      {
+        value: "Double impact",
+        label: "Profits and social impact",
+      },
+      {
+        value: "AI Native + human",
+        label: "Operation",
+      },
     ],
   },
   operatingModel: {
@@ -20,25 +36,24 @@ export const playbookCopyEn: PlaybookCopy = {
     summary: "Operating model: Ally + Management + Hub, with shared services and a clear structure.",
     sharedServices: [
       {
-        title: "Financial planning",
-        summary: "Funding, cashflow, receivables/payables, modeling, and controls.",
+        title: "Finance / planning",
+        summary: "Cash, financial planning, control, and operating visibility to sustain business discipline.",
+      },
+      {
+        title: "Legal / tax / accounting",
+        summary: "Compliance, regularization, and support for decisions with traceability.",
       },
       {
         title: "Operations and systems",
-        summary: "ERP, processes, information flow, and technology tools.",
+        summary: "Processes, automation, structured information, and the core tools of the business.",
       },
       {
-        title: "Legal, accounting, and tax",
-        summary: "Regularization and compliance with authorities.",
+        title: "Marketing / design",
+        summary: "Commercial materials, identity, and minimum assets to communicate and sell better.",
       },
       {
-        title: "Marketing and design",
-        summary: "Branding, sales materials, and digital media.",
-      },
-      {
-        title: "Inclusion & Impact",
-        summary:
-          "Cataliza's institutional legitimacy, impact and equality standards, and public proof of value for the ally of the year.",
+        title: "Impact & Inclusion",
+        summary: "Impact infrastructure, evidence, legitimacy, and care for inclusion standards.",
       },
     ],
     governance: [
@@ -48,7 +63,7 @@ export const playbookCopyEn: PlaybookCopy = {
       },
       {
         title: "Management",
-        summary: "Ally + Cataliza managers. Defines vision, culture, business plan, and priorities.",
+        summary: "Ally + Cataliza manager. Defines vision, culture, business plan, and priorities.",
       },
       {
         title: "Hub",
@@ -57,46 +72,27 @@ export const playbookCopyEn: PlaybookCopy = {
     ],
     structure: {
       title: "Operating structure",
-      intro: "Operating map connecting council, ecosystem, Cataliza, Management, ally, Hub, and teams led by the ally.",
-      note: "The map lives here as an internal reference and also appears on the public landing page to explain the model.",
-      alt: "Cataliza Capital operating map showing council, ecosystem, Cataliza, management, ally, hub, and teams led by the ally.",
-      layers: [
-        { title: "Council / ecosystem", items: ["Council", "Ecosystem"] },
-        { title: "Cataliza", items: ["Cataliza Capital"] },
-        { title: "Management", items: ["Management"] },
-        { title: "Ally", items: ["Ally"] },
-        { title: "Hub", items: ["Hub"] },
-        { title: "Teams led by the ally", items: ["Production / service", "Sales", "Core team"] },
-      ],
+      intro: "Visual reference of Cataliza's current operating model.",
+      note: "This image replaces the previous map and remains as the internal guide to the flow between advisors, management, funding, and the Hub.",
+      alt: "Cataliza Capital operating structure with Board of Advisors, management, hybrid funding, and shared services modern hub.",
+      imageSrc: "/playbook-estructura-operativa.png",
     },
   },
   values: {
     title: "Values",
-    summary: "We translate craft into process, quality, discipline, and the long game.",
-    transformTitle: "Transform",
-    transformSummary: "Raise standards without losing identity.",
+    summary: "Principles that guide the Hub's daily operation and the relationship with each ally.",
     items: [
-      { title: "Care", summary: "We care for people and standards." },
-      { title: "Calm", summary: "Clarity over chaos." },
-      { title: "Craft", summary: "Excellence in the work." },
-      { title: "Culture", summary: "What inspires can elevate the surroundings." },
-      { title: "Curiosity", summary: "Ask better questions, learn faster." },
-      { title: "Continuity", summary: "Long game and consistency." },
-    ],
-    behaviorsTitle: "Day-to-day behaviors",
-    behaviors: [
-      "Document.",
-      "Professionalize.",
-      "Protect quality.",
-      "Sustain identity.",
-      "Measure progress.",
-      "Distribute value.",
+      "We care for people and quality standards.",
+      "We face the unknown with curiosity and effort.",
+      "Clarity over chaos.",
+      "What inspires creates pride and elevates our surroundings.",
+      "It is our responsibility to elevate the opportunities of those around us.",
     ],
   },
   strategy: {
     title: "Strategy",
     summary:
-      "The strategy starts from creative excellence with territorial impact and aims to open higher-value markets without losing identity.",
+      "The strategy starts from creative excellence with territorial impact and seeks to open higher-value markets without losing identity.",
     chainTitle: "Strategic chain",
     chain: [
       "Ally with creative excellence + territorial impact.",
@@ -134,27 +130,31 @@ export const playbookCopyEn: PlaybookCopy = {
   },
   cadence: {
     title: "Cadence",
-    summary: "Monthly, quarterly, and yearly rhythms to review operations, decisions, and follow-through.",
+    summary: "Operating rhythms to review, decide, and follow through with traceability.",
     labels: {
       cadence: "Cadence",
-      focus: "Focus",
-      owner: "Owner",
+      focus: "What to review and decide",
     },
     rituals: [
       {
+        cadence: "Daily (if needed)",
+        focus:
+          "10-minute asynchronous check-in within the Hub. Review blockers, deadlines, collections, and red-flag tasks. Decide task reassignment and incident escalation.",
+      },
+      {
+        cadence: "Weekly",
+        focus:
+          "Ally + Hub operating review, commercial review, and cash / collections review. Review pipeline, deliverables, risks, and the next 14 days. Decide weekly priorities, commercial follow-up, and cash actions.",
+      },
+      {
         cadence: "Monthly",
-        focus: "Dashboard, cash review, sales, 30-day priorities, and ally coaching.",
-        owner: "Ally + Cataliza manager",
+        focus:
+          "Close + dashboard + business review. Review P&L, cashflow, compliance, impact, and milestone progress. Decide budget adjustments, monthly focus, and whether milestones are released.",
       },
       {
         cadence: "Quarterly",
-        focus: "Milestone review, credit decisions, reforecast, and team health.",
-        owner: "Management",
-      },
-      {
-        cadence: "Yearly",
-        focus: "Business plan, budget, vision, cultural goals, and ecosystem map.",
-        owner: "Ally + Council",
+        focus:
+          "Strategic reset + committee + advisors / ecosystem. Review thesis, culture, growth, risk, and partnerships. Decide reprioritization, capital use, and major changes.",
       },
     ],
   },
@@ -180,10 +180,26 @@ export const playbookCopyEn: PlaybookCopy = {
     title: "Milestones per project",
     summary: "12-month roadmap with clear milestones to keep execution ordered.",
     items: [
-      { quarter: "Q1", target: "Financial setup and base brand", signal: "Operating budget and commercial messaging ready" },
-      { quarter: "Q2", target: "Disciplined offer and funnel", signal: "Measured pipeline and validated pricing" },
-      { quarter: "Q3", target: "Commercial repeatability", signal: "Recurring revenue or trustworthy pipeline" },
-      { quarter: "Q4", target: "Optimization and declining credit", signal: "Greater payroll coverage from operations" },
+      {
+        quarter: "Q1",
+        target: "Financial setup and base brand",
+        signal: "Operating budget and commercial messaging ready",
+      },
+      {
+        quarter: "Q2",
+        target: "Disciplined offer and funnel",
+        signal: "Measured funnel and validated pricing",
+      },
+      {
+        quarter: "Q3",
+        target: "Commercial repeatability",
+        signal: "Recurring revenue or reliable pipeline",
+      },
+      {
+        quarter: "Q4",
+        target: "Optimization and declining credit",
+        signal: "Greater payroll coverage from operations",
+      },
     ],
   },
   benchmarks: {
@@ -197,7 +213,7 @@ export const playbookCopyEn: PlaybookCopy = {
     },
     cases: [
       {
-        title: "Astrid y Gaston",
+        title: "Astrid y Gastón",
         mechanism: "Restaurant + school as the institutionalization of excellence.",
         environment: "Fair trade and access to higher-value markets for producers.",
         culture: "National pride and self-esteem through cuisine.",
@@ -215,7 +231,7 @@ export const playbookCopyEn: PlaybookCopy = {
         mechanism: "Contemporary design + traditional techniques + training.",
         environment: "Dignified economy with cooperative governance.",
         culture: "Clay as living identity, not souvenir.",
-        takeaway: "Real co-authorship and voice/vote.",
+        takeaway: "Real co-authorship and voice / vote.",
       },
       {
         title: "Teatro a Mil",
@@ -228,7 +244,7 @@ export const playbookCopyEn: PlaybookCopy = {
         title: "Cojolya",
         mechanism: "Technical pedagogy + quality control + fair market.",
         environment: "Education, health, productive training, and secondary income.",
-        culture: "Preservation of weaving as living practice.",
+        culture: "Preservation of weaving as a living practice.",
         takeaway: "Fair trade + social program.",
       },
     ],
@@ -262,34 +278,165 @@ export const playbookCopyEn: PlaybookCopy = {
     ],
   },
   aiNative: {
-    title: "AI-native operation",
-    summary: "AI prepares, orders, documents, and accelerates. The ally, Management, and the Hub decide.",
-    automateTitle: "Automate",
-    automate: [
-      "Summaries.",
-      "Follow-up.",
-      "Cash notes.",
-      "Legal and operating checklists.",
-      "Briefs.",
-      "Project memory.",
+    title: "AI Native operation",
+    summary: "AI removes friction; humans keep judgment.",
+    executiveTitle: "Executive summary",
+    executive: [
+      {
+        title: "What the Hub is",
+        summary:
+          "Cataliza's AI Native Shared Services Hub should be a small operating machine that takes on the business load that most distracts the ally: finance, systems, compliance, reporting, commercial materials, and impact infrastructure.",
+      },
+      {
+        title: "Why it exists",
+        summary:
+          "It exists so that an ally with craft and talent does not drown in administration, and can dedicate their best energy to producing, selling, serving, and strengthening their surroundings.",
+      },
+      {
+        title: "What problem it solves",
+        summary:
+          "It solves the gap between “there is a good thesis” and “there is a healthy company.” That gap usually consumes the founder: messy cash, informal processes, scattered information, reactive compliance, improvised marketing, and decisions without traceability.",
+      },
     ],
-    humanTitle: "Human-led",
+    principlesTitle: "AI Native Hub design principles",
+    principles: [
+      "Centralize what is repeatable, not the craft.",
+      "One human owner per flow.",
+      "AI first to prepare; human to decide.",
+      "Few systems, one source of truth.",
+      "Structured capture from day 1.",
+      "Governance by thresholds, not bureaucracy.",
+      "Design simple today, scalable tomorrow.",
+    ],
+    blueprintTitle: "Hub blueprint",
+    blueprint: [
+      {
+        title: "Finance and capital",
+        owner: "Owner: Finance & Compliance Manager.",
+        ai: "AI: assisted forecasting, deviation alerts, collection drafts.",
+        deliverables: "Deliverables: 13-week cashflow, monthly P&L, AR/AP aging, milestone tracker.",
+        kpi: "KPI: cash forecast accuracy.",
+      },
+      {
+        title: "Operations and systems",
+        owner: "Owner: Systems & AI Ops Manager.",
+        ai: "AI: forms, task routing, data sync, operating summaries.",
+        deliverables: "Deliverables: process map, operating base, permissions, core automations.",
+        kpi: "KPI: % of critical flows standardized.",
+      },
+      {
+        title: "Legal / accounting / tax",
+        owner: "Owner: Finance Manager + external firm.",
+        ai: "AI: checklists, clause extraction, reminders.",
+        deliverables: "Deliverables: compliance calendar, legal folder, obligation status.",
+        kpi: "KPI: % of obligations delivered on time.",
+      },
+      {
+        title: "Commercial / CRM",
+        owner: "Owner: Growth Manager + ally lead.",
+        ai: "AI: meeting summaries, next steps, pipeline hygiene.",
+        deliverables: "Deliverables: pipeline, stages, weekly forecast, commercial history.",
+        kpi: "KPI: 90-day pipeline coverage.",
+      },
+      {
+        title: "Marketing / design",
+        owner: "Owner: Growth Manager.",
+        ai: "AI: first copy drafts, asset adaptation, versioning.",
+        deliverables: "Deliverables: one-pager, deck, site / base copy, cases.",
+        kpi: "KPI: publishing time for critical assets.",
+      },
+      {
+        title: "Impact & Inclusion",
+        owner: "Owner: Growth / Impact Lead.",
+        ai: "AI: evidence synthesis, report drafts, ally mapping.",
+        deliverables: "Deliverables: impact thesis, north star metric, evidence log, alliance map.",
+        kpi: "KPI: % of impact evidence up to date.",
+      },
+      {
+        title: "Onboarding and dashboard",
+        owner: "Owner: Hub Lead / Operating Partner.",
+        ai: "AI: monthly summaries, risk flags, committee draft.",
+        deliverables: "Deliverables: 30-60 plan, monthly dashboard, decision log.",
+        kpi: "KPI: days from onboarding to dashboard-live.",
+      },
+    ],
+    operatingTitle: "AI Native operating model",
+    sequenceLabel: "Required operating sequence",
+    sequence: "structured capture → AI prepares → human decides → automation executes → system records",
+    humanTitle: "What humans do",
     human: [
-      "Vision.",
-      "Culture.",
-      "Pricing.",
-      "Credit.",
-      "Customer relationship.",
-      "Creative direction.",
-      "Legal approval.",
+      "Define judgment.",
+      "Set priorities.",
+      "Negotiate.",
+      "Approve spending.",
+      "Validate contracts.",
+      "Protect reputation.",
+      "Correct exceptions.",
+      "Hold the relationship with the ally.",
     ],
-    ruleLabel: "Rule",
-    rule: "Nothing critical goes out without a human owner.",
-    ritualsTitle: "Minimum rituals",
-    rituals: [
-      "Weekly operations review.",
-      "Monthly cash and milestones review.",
-      "Monthly audit of project memory.",
+    aiTitle: "What AI does",
+    ai: [
+      "Summarizes meetings.",
+      "Builds meeting notes.",
+      "Suggests next steps.",
+      "Drafts documents.",
+      "Orders evidence.",
+      "Detects cash / pipeline deviations.",
+      "Turns text into tasks.",
+      "Prepares monthly reports.",
+    ],
+    reviewTitle: "Mandatory human review",
+    review: [
+      "Budget.",
+      "Pricing.",
+      "Drawdowns.",
+      "Milestone release.",
+      "Contracts.",
+      "Tax issues.",
+      "Public impact claims.",
+      "Sensitive communications.",
+      "Key hires.",
+      "Policy exceptions.",
+    ],
+    standardizeTitle: "Standardize from day 1",
+    standardize: [
+      "File naming.",
+      "Folder structure.",
+      "Master data.",
+      "Onboarding template.",
+      "Meeting template.",
+      "Monthly close checklist.",
+      "Approval matrix.",
+      "Decision log.",
+      "Dashboard format.",
+    ],
+    escalationTitle: "Escalation",
+    escalation: [
+      "Routine operations → functional owner.",
+      "Relevant budget change or commercial commitment → ally + Hub Lead.",
+      "Legal, tax, reputation, financing, or thesis-change risk → committee.",
+    ],
+    rhythmsTitle: "Operating rhythms",
+    rhythms:
+      "Avoid daily synchronous meetings with the ally unless operations truly require them. Better: fewer good meetings and much more traceability.",
+    teamTitle: "Initial team",
+    teamSummary: "Start with 4 core roles and fractional specialists.",
+    team: [
+      "Hub Lead / Operating Partner",
+      "Finance & Compliance Manager",
+      "Systems & AI Ops Manager",
+      "Growth & Impact Manager",
+      "Accounting-tax firm + legal advisor (fractional)",
+    ],
+    avoidTitle: "Do not create at the start",
+    avoid: [
+      "Full-time CFO",
+      "In-house lawyer",
+      "Design team",
+      "Data engineer",
+      "Head of AI",
+      "Full HR team",
+      "Separate PMO",
     ],
   },
   ecosystem: {
@@ -304,7 +451,7 @@ export const playbookCopyEn: PlaybookCopy = {
           "Empresa B",
           "Pacto Global Red Mexico",
           "NMX-R-025",
-          "Impact Principles if Cataliza operates as an investment/impact vehicle",
+          "Impact Principles if Cataliza operates as an investment / impact vehicle",
         ],
       },
       {
@@ -336,11 +483,11 @@ export const playbookCopyEn: PlaybookCopy = {
     ],
     partnershipsTitle: "Partnership triangle",
     partnershipsSummary:
-      "Universities = pipeline + legitimacy + laboratories. Ecosystems and events = visibility + speaking + deal-flow. Capital/impact networks = co-investment + standards + international connections.",
+      "Universities = pipeline + legitimacy + laboratories. Ecosystems and events = visibility + speaking + deal-flow. Capital / impact networks = co-investment + standards + international connections.",
     partnerships: [
       {
         title: "Universities",
-        items: ["Tecnologico de Monterrey", "ITAM / EPIC Lab", "Ibero", "UDG", "UANL"],
+        items: ["Tecnológico de Monterrey", "ITAM / EPIC Lab", "Ibero", "UDG", "UANL"],
       },
       {
         title: "Capital / impact",
@@ -378,45 +525,27 @@ export const playbookCopyEn: PlaybookCopy = {
   },
   dashboard: {
     title: "Dashboard",
-    summary: "Monthly view of budget, cash, conversion, and impact defined per project.",
-    sampleProject: "Example project dashboard",
-    snapshotTitle: "Operating snapshot",
-    budgetTitle: "Budget",
-    definitionsTitle: "How to read the metrics",
-    budgetRows: [
-      { label: "Revenue", amount: 280000 },
-      { label: "Direct cost", amount: -98000 },
-      { label: "Core payroll", amount: -72000 },
-      { label: "Marketing and design", amount: -24000 },
-      { label: "Software and systems", amount: -12000 },
-      { label: "Operating cash flow", amount: 74000 },
-    ],
+    summary: "Annual view of Hub operating costs aligned with the base financial model.",
+    snapshotTitle: "Hub snapshot",
+    definitionsTitle: "How to read the dashboard",
     metrics: [
       {
+        label: "Total Hub cost",
+        summary: "Total yearly cost of running the Hub, including internal structure, office, software, and external network / other.",
+      },
+      {
         label: "Monthly burn",
-        value: "USD 9,500",
-        summary: "Net cash the project consumes each month when outflows exceed inflows.",
+        summary: "Average monthly cost required to sustain Hub operations that year.",
       },
       {
         label: "Runway",
-        value: "14 months",
-        summary: "Months the project can operate with available cash at the current burn rate.",
+        summary: "Months the Hub can operate with available cash at the first-year burn.",
       },
       {
-        label: "Gross margin",
-        value: "65%",
-        summary: "Revenue minus direct cost, before payroll and operating expenses.",
-      },
-      {
-        label: "Lead-to-close",
-        value: "21%",
-        summary: "Percentage of leads that convert into closed sales.",
-      },
-      {
-        label: "Impact KPI (defined per project)",
-        value: "To be defined",
-        summary: "Set per project according to the change each project seeks to create and measure.",
+        label: "Core FTE",
+        summary: "Active internal headcount per year, excluding the fractional external network.",
       },
     ],
+    annualCategoryTitle: "Hub costs by year",
   },
 };

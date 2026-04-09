@@ -4,10 +4,15 @@ function toIntlLocale(locale: Locale) {
   return locale === "es" ? "es-MX" : "en-US";
 }
 
-export function formatCurrency(value: number, locale: Locale, maximumFractionDigits = 0) {
+export function formatCurrency(
+  value: number,
+  locale: Locale,
+  maximumFractionDigits = 0,
+  currency = "USD",
+) {
   return new Intl.NumberFormat(toIntlLocale(locale), {
     style: "currency",
-    currency: "USD",
+    currency,
     maximumFractionDigits,
   }).format(value);
 }
@@ -25,8 +30,8 @@ export function formatPercent(value: number, locale: Locale, maximumFractionDigi
   }).format(value);
 }
 
-export function formatSignedCurrency(value: number, locale: Locale) {
-  const formatted = formatCurrency(Math.abs(value), locale);
+export function formatSignedCurrency(value: number, locale: Locale, currency = "USD") {
+  const formatted = formatCurrency(Math.abs(value), locale, 0, currency);
   return value > 0 ? `+${formatted}` : value < 0 ? `-${formatted}` : formatted;
 }
 

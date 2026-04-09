@@ -1,10 +1,12 @@
 "use client";
 
 import { ProtectedStaticSection } from "@/components/protected-static-section";
-import { StructureMap } from "@/components/structure-map";
+import { defaultFinanceAssumptions, financeCurrency, financeLabels, hubBranchKeys } from "@/content/finance";
 import type { PlaybookCopy } from "@/content/playbook";
-import { formatCurrency } from "@/lib/format";
+import { formatCurrency, formatRunway } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
+import { calculateFinanceSummary } from "@/lib/finance-model";
+import { siteBasePath } from "@/lib/site-config";
 
 type PlaybookPageClientProps = {
   locale: Locale;
@@ -32,6 +34,9 @@ function SectionLead({ title, summary, level = "h2", summaryClassName = "section
 
 export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
   const cadenceLabels = copy.cadence.labels;
+  const financeCopy = financeLabels[locale];
+  const financeSummary = calculateFinanceSummary(defaultFinanceAssumptions);
+  const finalYear = financeSummary.years[financeSummary.years.length - 1];
 
   return (
     <ProtectedStaticSection
@@ -39,10 +44,10 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
       nextPath={`/${locale}/playbook`}
       summary={
         locale === "es"
-          ? "El playbook se desbloquea con una contrasena compartida guardada solo en esta sesion del navegador."
-          : "The playbook unlocks with a shared password stored only in this browser session."
+          ? "El Playbook se desbloquea con una contraseña compartida guardada solo en esta sesión del navegador."
+          : "The Playbook unlocks with a shared password stored only in this browser session."
       }
-      title={locale === "es" ? "Entrar al playbook interno" : "Enter the internal playbook"}
+      title={locale === "es" ? "Entrar al Playbook" : "Enter the Playbook"}
     >
       <div className="page-stack">
         <section className="hero-panel tight">
@@ -54,6 +59,14 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               <div className="stat-card" key={stat.label}>
                 <strong>{stat.value}</strong>
                 <span>{stat.label}</span>
+                {stat.details ? (
+                  <ul className="stat-detail-list">
+                    {stat.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {stat.note ? <p className="stat-note">{stat.note}</p> : null}
               </div>
             ))}
           </div>
@@ -74,7 +87,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
             <article className="feature-card">
-              <h3>{locale === "es" ? "Estructura de decision" : "Decision structure"}</h3>
+              <h3>{locale === "es" ? "Estructura de decisión" : "Decision structure"}</h3>
               <div className="stack-list">
                 {copy.operatingModel.governance.map((item) => (
                   <div className="stack-item" key={item.title}>
@@ -85,33 +98,29 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               </div>
             </article>
           </div>
-          <StructureMap copy={copy.operatingModel.structure} />
+          <figure className="diagram-figure">
+            <div className="structure-map-head">
+              <span className="eyebrow">{copy.operatingModel.structure.title}</span>
+              <p>{copy.operatingModel.structure.intro}</p>
+              <p className="structure-map-note">{copy.operatingModel.structure.note}</p>
+            </div>
+            <img
+              alt={copy.operatingModel.structure.alt}
+              className="diagram-image"
+              src={`${siteBasePath}${copy.operatingModel.structure.imageSrc}`}
+            />
+          </figure>
         </section>
 
         <section className="feature-section">
           <SectionLead title={copy.values.title} summary={copy.values.summary} />
-          <div className="feature-grid three-up">
-            {copy.values.items.map((item) => (
-              <article className="feature-card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.summary}</p>
-              </article>
-            ))}
-          </div>
-          <div className="split-grid">
-            <article className="feature-card">
-              <h3>{copy.values.transformTitle}</h3>
-              <p>{copy.values.transformSummary}</p>
-            </article>
-            <article className="feature-card">
-              <h3>{copy.values.behaviorsTitle}</h3>
-              <ul className="card-list">
-                {copy.values.behaviors.map((behavior) => (
-                  <li key={behavior}>{behavior}</li>
-                ))}
-              </ul>
-            </article>
-          </div>
+          <article className="feature-card">
+            <ul className="card-list values-list">
+              {copy.values.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
         </section>
 
         <section className="feature-section">
@@ -158,7 +167,6 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
                 <tr>
                   <th scope="col">{cadenceLabels.cadence}</th>
                   <th scope="col">{cadenceLabels.focus}</th>
-                  <th scope="col">{cadenceLabels.owner}</th>
                 </tr>
               </thead>
               <tbody>
@@ -166,7 +174,6 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
                   <tr key={ritual.cadence}>
                     <td data-label={cadenceLabels.cadence}>{ritual.cadence}</td>
                     <td data-label={cadenceLabels.focus}>{ritual.focus}</td>
-                    <td data-label={cadenceLabels.owner}>{ritual.owner}</td>
                   </tr>
                 ))}
               </tbody>
@@ -175,7 +182,7 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
         </section>
 
         <section className="feature-section">
-          <div className="feature-grid">
+          <div className="split-grid">
             <article className="feature-card">
               <SectionLead title={copy.incentives.title} summary={copy.incentives.summary} />
               <div className="stack-list">
@@ -252,15 +259,55 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
 
         <section className="feature-section">
           <SectionLead title={copy.aiNative.title} summary={copy.aiNative.summary} />
+          <div className="feature-grid three-up">
+            {copy.aiNative.executive.map((item) => (
+              <article className="feature-card" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+              </article>
+            ))}
+          </div>
           <div className="split-grid">
             <article className="feature-card">
-              <h3>{copy.aiNative.automateTitle}</h3>
+              <h3>{copy.aiNative.principlesTitle}</h3>
               <ul className="card-list">
-                {copy.aiNative.automate.map((item) => (
+                {copy.aiNative.principles.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.operatingTitle}</h3>
+              <div className="stack-list">
+                <div className="stack-item">
+                  <strong>{copy.aiNative.sequenceLabel}</strong>
+                  <p>{copy.aiNative.sequence}</p>
+                </div>
+                <div className="stack-item">
+                  <strong>{copy.aiNative.rhythmsTitle}</strong>
+                  <p>{copy.aiNative.rhythms}</p>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div className="feature-grid auto-fit">
+            {copy.aiNative.blueprint.map((item) => (
+              <article className="feature-card" key={item.title}>
+                <h3>{item.title}</h3>
+                <div className="stack-list compact">
+                  <div className="stack-item">
+                    <strong>{item.owner}</strong>
+                    <p>{item.ai}</p>
+                  </div>
+                  <div className="stack-item">
+                    <strong>{item.deliverables}</strong>
+                    <p>{item.kpi}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="feature-grid">
             <article className="feature-card">
               <h3>{copy.aiNative.humanTitle}</h3>
               <ul className="card-list">
@@ -269,19 +316,56 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
                 ))}
               </ul>
             </article>
-          </div>
-          <div className="split-grid">
             <article className="feature-card">
-              <h3>{copy.aiNative.ruleLabel}</h3>
-              <p>{copy.aiNative.rule}</p>
-            </article>
-            <article className="feature-card">
-              <h3>{copy.aiNative.ritualsTitle}</h3>
+              <h3>{copy.aiNative.aiTitle}</h3>
               <ul className="card-list">
-                {copy.aiNative.rituals.map((item) => (
+                {copy.aiNative.ai.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.reviewTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.review.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.standardizeTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.standardize.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.escalationTitle}</h3>
+              <ul className="card-list">
+                {copy.aiNative.escalation.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="feature-card">
+              <h3>{copy.aiNative.teamTitle}</h3>
+              <p>{copy.aiNative.teamSummary}</p>
+              <ul className="card-list">
+                {copy.aiNative.team.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="stack-list compact">
+                <div className="stack-item">
+                  <strong>{copy.aiNative.avoidTitle}</strong>
+                  <ul className="card-list">
+                    {copy.aiNative.avoid.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </article>
           </div>
         </section>
@@ -369,42 +453,77 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
 
         <section className="feature-section">
           <SectionLead title={copy.dashboard.title} summary={copy.dashboard.summary} />
-          <div className="feature-grid">
+          <div className="split-grid">
             <article className="feature-card">
               <h3>{copy.dashboard.snapshotTitle}</h3>
-              <p>{copy.dashboard.sampleProject}</p>
-              <div className="mini-kpi-grid wide">
-                {copy.dashboard.metrics.map((metric) => (
-                  <div className="mini-kpi" key={metric.label}>
-                    <span>{metric.label}</span>
-                    <strong>{metric.value}</strong>
-                  </div>
-                ))}
+              <div className="mini-kpi-grid">
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.totalCost}</span>
+                  <strong>{formatCurrency(financeSummary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.monthlyBurn}</span>
+                  <strong>{formatCurrency(financeSummary.yearOneMonthlyBurn, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.runway}</span>
+                  <strong>{formatRunway(financeSummary.startingRunwayMonths, locale, financeCopy.states.unlimited)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.cash}</span>
+                  <strong>{formatCurrency(financeSummary.endingCash, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.coreHeadcount}</span>
+                  <strong>{finalYear?.coreHeadcount ?? 0}</strong>
+                </div>
               </div>
             </article>
             <article className="feature-card">
               <h3>{copy.dashboard.definitionsTitle}</h3>
               <div className="stack-list">
                 {copy.dashboard.metrics.map((metric) => (
-                  <div className="stack-item" key={`${metric.label}-summary`}>
+                  <div className="stack-item" key={metric.label}>
                     <strong>{metric.label}</strong>
                     <p>{metric.summary}</p>
                   </div>
                 ))}
               </div>
             </article>
-            <article className="feature-card">
-              <h3>{copy.dashboard.budgetTitle}</h3>
-              <div className="budget-list">
-                {copy.dashboard.budgetRows.map((row) => (
-                  <div className="budget-row" key={row.label}>
-                    <span>{row.label}</span>
-                    <strong>{formatCurrency(row.amount, locale)}</strong>
-                  </div>
-                ))}
-              </div>
-            </article>
           </div>
+          <article className="feature-card">
+            <h3>{copy.dashboard.annualCategoryTitle}</h3>
+            <div className="table-wrap">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>{financeCopy.categoryTable.year}</th>
+                    <th>{financeCopy.categoryTable.allies}</th>
+                    <th>{financeCopy.categoryTable.coreHeadcount}</th>
+                    <th>{financeCopy.categoryTable.totalCost}</th>
+                    {hubBranchKeys.map((branch) => (
+                      <th key={branch}>{financeCopy.branches[branch]}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {financeSummary.years.map((year) => (
+                    <tr key={year.year}>
+                      <td>{year.year}</td>
+                      <td>{year.allies}</td>
+                      <td>{year.coreHeadcount}</td>
+                      <td>{formatCurrency(year.totalCost, locale, 0, financeCurrency)}</td>
+                      {hubBranchKeys.map((branch) => (
+                        <td key={`${year.year}-${branch}`}>
+                          {formatCurrency(year.categoryCosts[branch], locale, 0, financeCurrency)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
         </section>
       </div>
     </ProtectedStaticSection>
