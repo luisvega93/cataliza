@@ -1065,7 +1065,7 @@ main {
 }
 
 .finance-kpi-grid .mini-kpi strong {
-  font-size: clamp(0.9rem, 0.95vw, 1.25rem);
+  font-size: clamp(0.78rem, 0.82vw, 1.05rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
