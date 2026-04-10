@@ -456,14 +456,22 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
           <div className="split-grid">
             <article className="feature-card">
               <h3>{copy.dashboard.snapshotTitle}</h3>
-              <div className="mini-kpi-grid">
-                <div className="mini-kpi">
-                  <span>{financeCopy.cards.totalCostYearTen}</span>
-                  <strong>{formatCurrency(financeSummary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
-                </div>
+              <div className="mini-kpi-grid finance-kpi-grid">
                 <div className="mini-kpi">
                   <span>{financeCopy.cards.monthlyBurnYearOne}</span>
                   <strong>{formatCurrency(financeSummary.yearOneMonthlyBurn, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.totalCostYearOne}</span>
+                  <strong>{formatCurrency(financeSummary.years[0]?.totalCost ?? 0, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.monthlyBurnYearTen}</span>
+                  <strong>{formatCurrency(finalYear?.monthlyBurn ?? 0, locale, 0, financeCurrency)}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.cards.totalCostYearTen}</span>
+                  <strong>{formatCurrency(financeSummary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
                 </div>
                 <div className="mini-kpi">
                   <span>{financeCopy.cards.runway}</span>
@@ -476,6 +484,10 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
                 <div className="mini-kpi">
                   <span>{financeCopy.cards.coreHeadcount}</span>
                   <strong>{finalYear?.coreHeadcount ?? 0}</strong>
+                </div>
+                <div className="mini-kpi">
+                  <span>{financeCopy.categoryTable.allies}</span>
+                  <strong>{finalYear?.allies ?? 0}</strong>
                 </div>
               </div>
             </article>
