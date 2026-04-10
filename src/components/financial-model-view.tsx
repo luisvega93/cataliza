@@ -333,12 +333,20 @@ export function FinancialModelView({ locale }: FinancialModelViewProps) {
             <span className="eyebrow">{copy.sections.metrics}</span>
             <div className="mini-kpi-grid finance-kpi-grid">
               <div className="mini-kpi">
-                <span>{copy.cards.totalCost}</span>
+                <span>{copy.cards.totalCostYearOne}</span>
+                <strong>{formatCurrency(summary.years[0]?.totalCost ?? 0, locale, 0, financeCurrency)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.totalCostYearTen}</span>
                 <strong>{formatCurrency(summary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
               </div>
               <div className="mini-kpi">
-                <span>{copy.cards.monthlyBurn}</span>
+                <span>{copy.cards.monthlyBurnYearOne}</span>
                 <strong>{formatCurrency(summary.yearOneMonthlyBurn, locale, 0, financeCurrency)}</strong>
+              </div>
+              <div className="mini-kpi">
+                <span>{copy.cards.monthlyBurnYearTen}</span>
+                <strong>{formatCurrency(finalYear?.monthlyBurn ?? 0, locale, 0, financeCurrency)}</strong>
               </div>
               <div className="mini-kpi">
                 <span>{copy.cards.runway}</span>

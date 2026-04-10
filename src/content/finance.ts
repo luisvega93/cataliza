@@ -210,8 +210,10 @@ export type FinanceLabels = {
   branches: Record<HubBranchKey, string>;
   costTypes: Record<FinanceCostTypeKey, string>;
   cards: {
-    totalCost: string;
-    monthlyBurn: string;
+    totalCostYearOne: string;
+    totalCostYearTen: string;
+    monthlyBurnYearOne: string;
+    monthlyBurnYearTen: string;
     runway: string;
     cash: string;
     coreHeadcount: string;
@@ -321,8 +323,10 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       externalOther: "Externos / otros",
     },
     cards: {
-      totalCost: "Costo total año 10",
-      monthlyBurn: "Burn mensual año 1",
+      totalCostYearOne: "Costo total año 1",
+      totalCostYearTen: "Costo total año 10",
+      monthlyBurnYearOne: "Burn mensual año 1",
+      monthlyBurnYearTen: "Burn mensual año 10",
       runway: "Runway inicial",
       cash: "Caja final",
       coreHeadcount: "FTE núcleo año 10",
@@ -417,8 +421,10 @@ export const financeLabels: Record<Locale, FinanceLabels> = {
       externalOther: "External / other",
     },
     cards: {
-      totalCost: "Year 10 total cost",
-      monthlyBurn: "Year 1 monthly burn",
+      totalCostYearOne: "Year 1 total cost",
+      totalCostYearTen: "Year 10 total cost",
+      monthlyBurnYearOne: "Year 1 monthly burn",
+      monthlyBurnYearTen: "Year 10 monthly burn",
       runway: "Starting runway",
       cash: "Ending cash",
       coreHeadcount: "Year 10 core FTE",

@@ -458,11 +458,11 @@ export function PlaybookPageClient({ locale, copy }: PlaybookPageClientProps) {
               <h3>{copy.dashboard.snapshotTitle}</h3>
               <div className="mini-kpi-grid">
                 <div className="mini-kpi">
-                  <span>{financeCopy.cards.totalCost}</span>
+                  <span>{financeCopy.cards.totalCostYearTen}</span>
                   <strong>{formatCurrency(financeSummary.yearTenTotalCost, locale, 0, financeCurrency)}</strong>
                 </div>
                 <div className="mini-kpi">
-                  <span>{financeCopy.cards.monthlyBurn}</span>
+                  <span>{financeCopy.cards.monthlyBurnYearOne}</span>
                   <strong>{formatCurrency(financeSummary.yearOneMonthlyBurn, locale, 0, financeCurrency)}</strong>
                 </div>
                 <div className="mini-kpi">
